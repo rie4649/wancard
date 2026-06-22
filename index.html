@@ -8,14 +8,14 @@
 <style>
 body{
 font-family:sans-serif;
-background:linear-gradient(180deg,#fff7fb,#eef4ff);
+background:linear-gradient(180deg,#fff3fb,#eef7ff);
 text-align:center;
 padding:14px;
 color:#333;
 }
 
 h1{
-font-size:36px;
+font-size:38px;
 color:#5b2b00;
 margin:8px 0 2px;
 }
@@ -27,10 +27,10 @@ margin-bottom:15px;
 }
 
 .formBox{
-max-width:520px;
+max-width:540px;
 margin:0 auto 18px;
 background:white;
-border-radius:22px;
+border-radius:24px;
 padding:16px;
 box-shadow:0 6px 16px rgba(0,0,0,.12);
 }
@@ -46,9 +46,9 @@ box-sizing:border-box;
 }
 
 button{
-font-size:19px;
+font-size:20px;
 font-weight:bold;
-padding:13px 28px;
+padding:14px 30px;
 border:none;
 border-radius:18px;
 background:#d4a017;
@@ -68,46 +68,58 @@ color:#666;
 margin-top:5px;
 }
 
-/* 名刺カード */
+/* カード */
 .card{
 max-width:720px;
-aspect-ratio: 16 / 9;
 margin:0 auto 25px;
-border-radius:24px;
+border-radius:28px;
 padding:18px;
 box-sizing:border-box;
-box-shadow:0 8px 24px rgba(0,0,0,.18);
+box-shadow:0 8px 26px rgba(0,0,0,.18);
 border:5px solid #d4a017;
-background:#fffdf5;
 position:relative;
 overflow:hidden;
+background:#fffdf5;
+}
+
+.card::before{
+content:"🐾 ✨ 🐾 ✨ 🐾 ✨ 🐾 ✨";
+position:absolute;
+top:8px;
+left:0;
+width:100%;
+font-size:26px;
+opacity:.16;
+letter-spacing:14px;
 }
 
 .cardInner{
+position:relative;
+z-index:2;
 display:flex;
-height:100%;
 gap:18px;
 align-items:center;
 }
 
 .left{
-width:36%;
+width:42%;
 }
 
 .right{
-width:64%;
+width:58%;
 text-align:left;
 }
 
 .photoFrame{
-width:190px;
-height:190px;
+width:250px;
+height:250px;
 max-width:100%;
 margin:auto;
-border-radius:22px;
+border-radius:28px;
 overflow:hidden;
-border:5px solid #d4a017;
+border:6px solid #d4a017;
 background:#eee;
+box-shadow:0 6px 14px rgba(0,0,0,.18);
 }
 
 #dogPhoto{
@@ -117,51 +129,68 @@ object-fit:cover;
 object-position:center center;
 }
 
-.vip{
-font-size:23px;
+.title{
+font-size:28px;
 font-weight:bold;
 letter-spacing:1px;
-margin-bottom:10px;
+margin-bottom:8px;
 }
 
 .name{
-font-size:44px;
+font-size:46px;
 font-weight:bold;
 letter-spacing:2px;
 line-height:1.1;
 }
 
+.info{
+font-size:17px;
+line-height:1.55;
+margin-top:8px;
+}
+
 .job{
 font-size:20px;
-line-height:1.5;
-margin-top:8px;
+font-weight:bold;
+line-height:1.45;
+margin-top:10px;
+}
+
+.message{
+font-size:17px;
+font-weight:bold;
+margin-top:10px;
+padding:8px 12px;
+border-radius:14px;
+background:rgba(255,255,255,.65);
+display:inline-block;
 }
 
 .instaBtn{
 display:none;
 background:#e1306c;
 color:white;
-font-size:17px;
+font-size:16px;
 font-weight:bold;
 padding:10px 18px;
 border-radius:999px;
 text-decoration:none;
-margin-top:13px;
-display:none;
+margin-top:12px;
 width:fit-content;
 }
 
 .qrArea{
 display:none;
 position:absolute;
-right:18px;
-bottom:18px;
+right:16px;
+bottom:16px;
 text-align:center;
+z-index:3;
 }
 
 .qrArea img{
-width:95px;
-height:95px;
+width:92px;
+height:92px;
 border-radius:12px;
 border:3px solid #d4a017;
 background:white;
@@ -170,8 +199,9 @@ background:white;
 .badge{
 position:absolute;
 left:18px;
-bottom:18px;
-font-size:15px;
+bottom:16px;
+z-index:3;
+font-size:14px;
 font-weight:bold;
 background:#fff0c7;
 border-radius:999px;
@@ -179,93 +209,89 @@ padding:7px 15px;
 color:#8a5a00;
 }
 
-/* テンプレート色 */
+/* デザイン */
 .vipGold{
-background:#fffdf5;
+background:linear-gradient(135deg,#fffdf5,#fff0bd);
 border-color:#d4a017;
 }
-.vipGold .vip{color:#8a5a00;}
+.vipGold .title{color:#8a5a00;}
 .vipGold .name{color:#4b2e05;}
-.vipGold .job{color:#6b4a12;}
+.vipGold .info,.vipGold .job{color:#6b4a12;}
 
 .tiffany{
-background:#e8fffb;
-border-color:#57c7c2;
+background:linear-gradient(135deg,#dffff8,#f7fffd);
+border-color:#55c7c1;
 }
-.tiffany .vip{color:#007c89;}
-.tiffany .name{color:#00636b;}
-.tiffany .job{color:#007c89;}
-.tiffany .photoFrame{border-color:#57c7c2;}
+.tiffany::before{content:"💎 🐾 ✨ 💎 🐾 ✨ 💎";}
+.tiffany .title{color:#007c89;}
+.tiffany .name{color:#005f66;}
+.tiffany .info,.tiffany .job{color:#007c89;}
+.tiffany .photoFrame,.tiffany .qrArea img{border-color:#55c7c1;}
 .tiffany .badge{background:#d7fff9;color:#007c89;}
-.tiffany .qrArea img{border-color:#57c7c2;}
 
 .princess{
-background:#fff1f7;
+background:linear-gradient(135deg,#fff0f8,#ffe0ef);
 border-color:#ff8fbd;
 }
-.princess .vip{color:#d63384;}
+.princess::before{content:"👑 🌹 ✨ 👑 🌹 ✨ 👑";}
+.princess .title{color:#d63384;}
 .princess .name{color:#b0005a;}
-.princess .job{color:#c2186a;}
-.princess .photoFrame{border-color:#ff8fbd;}
+.princess .info,.princess .job{color:#c2186a;}
+.princess .photoFrame,.princess .qrArea img{border-color:#ff8fbd;}
 .princess .badge{background:#ffe0ef;color:#c2186a;}
-.princess .qrArea img{border-color:#ff8fbd;}
 
-.staff{
-background:#f5f7ff;
-border-color:#333;
+.model{
+background:linear-gradient(135deg,#111,#555);
+border-color:#f5d06f;
+color:white;
 }
-.staff .vip{color:#222;}
-.staff .name{color:#111;}
-.staff .job{color:#333;}
-.staff .photoFrame{border-color:#333;}
-.staff .badge{background:#eee;color:#222;}
-.staff .qrArea img{border-color:#333;}
+.model::before{content:"★ MODEL ★ WAN CARD ★ MODEL ★";color:white;}
+.model .title,.model .name,.model .info,.model .job{color:white;}
+.model .message{color:#222;}
+.model .photoFrame,.model .qrArea img{border-color:#f5d06f;}
+.model .badge{background:#f5d06f;color:#111;}
 
 .birthday{
-background:#fff7dc;
+background:linear-gradient(135deg,#fff7dc,#ffe6a7);
 border-color:#ff9f1c;
 }
-.birthday .vip{color:#ff6b00;}
+.birthday::before{content:"🎂 🎈 🎉 🎁 🎂 🎈 🎉";}
+.birthday .title{color:#ff6b00;}
 .birthday .name{color:#c44a00;}
-.birthday .job{color:#a85a00;}
-.birthday .photoFrame{border-color:#ff9f1c;}
+.birthday .info,.birthday .job{color:#a85a00;}
+.birthday .photoFrame,.birthday .qrArea img{border-color:#ff9f1c;}
 .birthday .badge{background:#fff0b8;color:#c44a00;}
-.birthday .qrArea img{border-color:#ff9f1c;}
 
 @media(max-width:600px){
-.card{
-aspect-ratio:auto;
-min-height:360px;
-}
 .cardInner{
 flex-direction:column;
-gap:10px;
+gap:12px;
 }
 .left,.right{
 width:100%;
 text-align:center;
 }
 .photoFrame{
-width:180px;
-height:180px;
+width:260px;
+height:260px;
 }
 .name{
-font-size:36px;
+font-size:40px;
 }
-.job{
-font-size:19px;
-}
-.instaBtn{
-margin:12px auto;
+.title{
+font-size:25px;
 }
 .qrArea{
 position:static;
-margin-top:10px;
+margin-top:12px;
 }
 .badge{
 position:static;
 display:inline-block;
 margin-top:12px;
+}
+.instaBtn{
+margin:12px auto;
 }
 }
 </style>
@@ -274,10 +300,26 @@ margin-top:12px;
 <body>
 
 <h1>🐶 WAN CARD</h1>
-<div class="subtitle">世界にひとつだけのうちの子名刺</div>
+<div class="subtitle">世界にひとつだけのうちの子プロフィール名刺</div>
 
 <div class="formBox">
-<div class="small">① 写真を選んでね</div>
+
+<div class="small">① デザイン選択</div>
+<select id="templateSelect">
+<option value="vipGold">👑 VIPゴールド</option>
+<option value="tiffany">💎 ティファニーブルー</option>
+<option value="princess">🎀 プリンセス</option>
+<option value="model">📸 モデル犬</option>
+<option value="birthday">🎂 バースデー</option>
+</select>
+
+<div class="small">② 一言</div>
+<input type="text" id="messageInput" placeholder="例：お友達募集中🐶">
+
+<div class="small">③ Instagram</div>
+<input type="text" id="instaInput" placeholder="例：pocha1005 または Instagram URL">
+
+<div class="small">④ 写真を選んでね</div>
 <input type="file" id="photoInput" accept="image/*">
 
 <div class="rangeBox">写真の横位置</div>
@@ -286,37 +328,43 @@ margin-top:12px;
 <div class="rangeBox">写真の縦位置</div>
 <input type="range" id="posY" min="0" max="100" value="50">
 
-<div class="small">② 名前を入力</div>
+<div class="small">⑤ 名前</div>
 <input type="text" id="nameInput" placeholder="例：ぽむ">
 
-<div class="small">③ Instagramを入力</div>
-<input type="text" id="instaInput" placeholder="例：pocha1005 または Instagram URL">
+<div class="small">⑥ 誕生日</div>
+<input type="text" id="birthdayInput" placeholder="例：2021.05.10">
 
-<div class="small">④ 肩書きを選択</div>
+<div class="small">⑦ 肩書き</div>
 <select id="jobSelect">
 <option value="Chief Snack Officer<br>おやつ最高責任者">Chief Snack Officer｜おやつ最高責任者</option>
 <option value="Super Model<br>モデル犬認定証">Super Model｜モデル犬認定証</option>
+<option value="Princess Member<br>お姫様認定証">Princess Member｜お姫様認定証</option>
 <option value="Security Manager<br>玄関警備主任">Security Manager｜玄関警備主任</option>
 <option value="Nap Director<br>昼寝部長">Nap Director｜昼寝部長</option>
 <option value="Treat Inspector<br>おやつ検査官">Treat Inspector｜おやつ検査官</option>
 <option value="Dog Idol<br>わんこアイドル">Dog Idol｜わんこアイドル</option>
 <option value="Professional Beggar<br>おねだり職人">Professional Beggar｜おねだり職人</option>
 <option value="Sleeping Champion<br>昼寝世界王者">Sleeping Champion｜昼寝世界王者</option>
-<option value="Walk Leader<br>お散歩推進部長">Walk Leader｜お散歩推進部長</option>
-<option value="Sofa Guard<br>ソファー警備隊長">Sofa Guard｜ソファー警備隊長</option>
+<option value="Smile Ambassador<br>笑顔大使">Smile Ambassador｜笑顔大使</option>
 </select>
 
-<div class="small">⑤ デザインを選択</div>
-<select id="templateSelect">
-<option value="vipGold">👑 VIPゴールド</option>
-<option value="tiffany">💎 ティファニーブルー</option>
-<option value="princess">🎀 プリンセス</option>
-<option value="staff">🏢 社員証</option>
-<option value="birthday">🎂 バースデー</option>
+<div class="small">⑧ 特徴</div>
+<select id="featureSelect">
+<option value="おやつ大好き">おやつ大好き</option>
+<option value="人懐っこい">人懐っこい</option>
+<option value="甘えん坊">甘えん坊</option>
+<option value="お散歩大好き">お散歩大好き</option>
+<option value="食いしん坊">食いしん坊</option>
+<option value="マイペース">マイペース</option>
+<option value="元気いっぱい">元気いっぱい</option>
+<option value="ビビりさん">ビビりさん</option>
+<option value="モデル犬">モデル犬</option>
+<option value="お昼寝大好き">お昼寝大好き</option>
 </select>
 
 <br>
 <button onclick="makeCard()">✨ 名刺を作る</button>
+
 </div>
 
 <div id="wanCard" class="card vipGold">
@@ -330,29 +378,37 @@ margin-top:12px;
 </div>
 
 <div class="right">
-<div id="cardTitle" class="vip">👑 VIP MEMBER CARD</div>
+
+<div id="cardTitle" class="title">👑 VIP MEMBER CARD</div>
 
 <div id="cardName" class="name">POMU</div>
+
+<div id="cardInfo" class="info">
+🎂 Birthday：2021.05.10<br>
+⭐ 特徴：おやつ大好き
+</div>
 
 <div id="cardJob" class="job">
 Chief Snack Officer<br>
 おやつ最高責任者
 </div>
 
+<div id="cardMessage" class="message">
+お友達募集中🐶
+</div>
+
 <a id="instaBtn" class="instaBtn" target="_blank">
 📸 Instagramを見る
 </a>
-</div>
 
+</div>
 </div>
 
 <div id="qrArea" class="qrArea">
 <img id="qrImage">
 </div>
 
-<div class="badge">
-🐾 OFFICIAL WAN CARD 🐾
-</div>
+<div class="badge">🐾 OFFICIAL WAN CARD 🐾</div>
 
 </div>
 
@@ -385,7 +441,10 @@ posY.addEventListener("input", updatePhotoPosition);
 
 function makeCard(){
  const name = document.getElementById("nameInput").value.trim();
+ const birthday = document.getElementById("birthdayInput").value.trim();
  const job = document.getElementById("jobSelect").value;
+ const feature = document.getElementById("featureSelect").value;
+ const message = document.getElementById("messageInput").value.trim();
  const insta = document.getElementById("instaInput").value.trim();
  const template = document.getElementById("templateSelect").value;
 
@@ -396,18 +455,27 @@ function makeCard(){
    document.getElementById("cardName").innerHTML = name;
  }
 
+ let birthText = birthday !== "" ? birthday : "ひみつ";
+
+ document.getElementById("cardInfo").innerHTML =
+ "🎂 Birthday：" + birthText + "<br>⭐ 特徴：" + feature;
+
  document.getElementById("cardJob").innerHTML = job;
+
+ if(message !== ""){
+   document.getElementById("cardMessage").innerHTML = message;
+ }
 
  const title = document.getElementById("cardTitle");
 
  if(template === "tiffany"){
-   title.innerHTML = "💎 LUXURY MEMBER CARD";
+   title.innerHTML = "💎 TIFFANY MEMBER";
  }else if(template === "princess"){
    title.innerHTML = "👑 PRINCESS MEMBER";
- }else if(template === "staff"){
-   title.innerHTML = "🏢 WAN COMPANY ID";
+ }else if(template === "model"){
+   title.innerHTML = "📸 DOG MODEL CARD";
  }else if(template === "birthday"){
-   title.innerHTML = "🎂 HAPPY BIRTHDAY CARD";
+   title.innerHTML = "🎂 BIRTHDAY CARD";
  }else{
    title.innerHTML = "👑 VIP MEMBER CARD";
  }
