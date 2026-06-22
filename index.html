@@ -4,30 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WAN CARD</title>
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
 <style>
 body{
 font-family:sans-serif;
-background:linear-gradient(180deg,#fff3fb,#eef7ff);
+background:#f7f2ff;
 text-align:center;
 padding:14px;
 color:#333;
 }
-
 h1{
-font-size:38px;
-margin:8px 0 2px;
+font-size:36px;
+margin:8px 0 4px;
 color:#5b2b00;
 }
-
-.subtitle{
-font-size:15px;
-color:#8a5a44;
-margin-bottom:15px;
-}
-
-.formBox{
+.subtitle{font-size:15px;color:#8a5a44;margin-bottom:15px}
+.box{
 max-width:560px;
 margin:0 auto 18px;
 background:white;
@@ -35,324 +27,175 @@ border-radius:24px;
 padding:16px;
 box-shadow:0 6px 16px rgba(0,0,0,.12);
 }
-
-input, select{
+input,select{
 width:92%;
 font-size:16px;
 padding:11px;
 margin:7px 0;
 border-radius:12px;
-border:2px solid #f2d7a0;
+border:2px solid #d8c6ff;
 box-sizing:border-box;
 }
-
 button{
 font-size:18px;
 font-weight:bold;
 padding:12px 24px;
 border:none;
 border-radius:18px;
-background:#d4a017;
+background:#8b5cf6;
 color:white;
 margin:8px 4px;
 }
-
-.small{
-font-size:14px;
-color:#777;
-margin-top:8px;
-}
-
-.templateBtns{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:8px;
-margin-top:8px;
-}
-
-.templateBtns button{
-font-size:15px;
-padding:12px 8px;
-margin:0;
-}
+.small{font-size:14px;color:#777;margin-top:8px}
 
 .card{
-max-width:720px;
+max-width:420px;
 margin:0 auto 20px;
 border-radius:30px;
 padding:18px;
-box-sizing:border-box;
-box-shadow:0 8px 28px rgba(0,0,0,.22);
-border:6px solid #d4a017;
+box-shadow:0 8px 26px rgba(0,0,0,.22);
+border:6px solid #57c7c2;
+background:linear-gradient(180deg,#dffff8,#ffffff);
 position:relative;
 overflow:hidden;
-background:#fffdf5;
 }
-
-.card::before{
-content:"🐾 ✨ 🐾 ✨ 🐾 ✨ 🐾";
+.card:before{
+content:"💎 🐾 ✨ 🐾 💎";
 position:absolute;
 top:10px;
 left:0;
 width:100%;
 font-size:28px;
-opacity:.14;
-letter-spacing:18px;
+opacity:.2;
 }
-
-.cardInner{
+.title{
+font-size:26px;
+font-weight:bold;
+color:#007c89;
+margin-bottom:10px;
 position:relative;
 z-index:2;
-display:flex;
-gap:18px;
-align-items:center;
 }
-
-.left{width:48%;}
-.right{width:52%;text-align:left;}
-
 .photoFrame{
 width:300px;
 height:300px;
-max-width:100%;
 margin:auto;
 border-radius:30px;
 overflow:hidden;
-border:7px solid #d4a017;
+border:6px solid #57c7c2;
 background:#eee;
-box-shadow:0 6px 16px rgba(0,0,0,.18);
+position:relative;
+z-index:2;
 }
-
 #dogPhoto{
 width:100%;
 height:100%;
 object-fit:cover;
 object-position:center center;
 }
-
-.title{
-font-size:30px;
-font-weight:bold;
-letter-spacing:1px;
-margin-bottom:8px;
-}
-
 .name{
-font-size:48px;
+font-size:42px;
 font-weight:bold;
-letter-spacing:2px;
-line-height:1.1;
+color:#005f66;
+margin-top:12px;
+position:relative;
+z-index:2;
 }
-
-.info{
+.info,.job{
 font-size:17px;
 line-height:1.6;
-margin-top:8px;
-}
-
-.job{
-font-size:21px;
+color:#007c89;
 font-weight:bold;
-line-height:1.45;
-margin-top:10px;
+position:relative;
+z-index:2;
 }
-
 .message{
-font-size:18px;
-font-weight:bold;
-margin-top:10px;
-padding:9px 13px;
-border-radius:16px;
-background:rgba(255,255,255,.72);
 display:inline-block;
+background:white;
+border-radius:18px;
+padding:9px 14px;
+margin-top:10px;
+font-weight:bold;
+color:#007c89;
+position:relative;
+z-index:2;
 }
-
-.instaBtn{
+#instaBtn{
 display:none;
 background:#e1306c;
 color:white;
-font-size:16px;
-font-weight:bold;
-padding:10px 18px;
-border-radius:999px;
 text-decoration:none;
-margin-top:12px;
+font-weight:bold;
+border-radius:999px;
+padding:10px 18px;
+margin:12px auto;
 width:fit-content;
+position:relative;
+z-index:2;
 }
-
-.qrArea{
-display:none;
-position:absolute;
-right:16px;
-bottom:16px;
-text-align:center;
-z-index:3;
-}
-
-.qrArea img{
-width:90px;
-height:90px;
+#qrBox{display:none;position:relative;z-index:2;margin-top:8px}
+#qrImage{
+width:110px;
+height:110px;
+border:3px solid #57c7c2;
 border-radius:12px;
-border:3px solid #d4a017;
 background:white;
 }
-
-.badge{
-position:absolute;
-left:18px;
-bottom:16px;
-z-index:3;
-font-size:14px;
-font-weight:bold;
-background:#fff0c7;
-border-radius:999px;
-padding:7px 15px;
-color:#8a5a00;
-}
-
-.vipGold{
-background:linear-gradient(135deg,#fffdf5,#ffe8a8);
-border-color:#d4a017;
-}
-.vipGold .title{color:#8a5a00;}
-.vipGold .name{color:#4b2e05;}
-.vipGold .info,.vipGold .job{color:#6b4a12;}
-
-.tiffany{
-background:linear-gradient(135deg,#cffff8,#f8fffd);
-border-color:#48c7c2;
-}
-.tiffany::before{content:"💎 🐾 ✨ 💎 🐾 ✨ 💎";}
-.tiffany .title{color:#007c89;}
-.tiffany .name{color:#005f66;}
-.tiffany .info,.tiffany .job{color:#007c89;}
-.tiffany .photoFrame,.tiffany .qrArea img{border-color:#48c7c2;}
-.tiffany .badge{background:#d7fff9;color:#007c89;}
-
-.princess{
-background:linear-gradient(135deg,#fff0f8,#ffd9ed);
-border-color:#ff83b7;
-}
-.princess::before{content:"👑 🌹 ✨ 👑 🌹 ✨ 👑";}
-.princess .title{color:#d63384;}
-.princess .name{color:#b0005a;}
-.princess .info,.princess .job{color:#c2186a;}
-.princess .photoFrame,.princess .qrArea img{border-color:#ff83b7;}
-.princess .badge{background:#ffe0ef;color:#c2186a;}
-
-.model{
-background:linear-gradient(135deg,#111,#555);
-border-color:#f5d06f;
-color:white;
-}
-.model::before{content:"★ WAN MAGAZINE ★ MODEL DOG ★";color:white;}
-.model .title,.model .name,.model .info,.model .job{color:white;}
-.model .message{color:#222;}
-.model .photoFrame,.model .qrArea img{border-color:#f5d06f;}
-.model .badge{background:#f5d06f;color:#111;}
-
-.staff{
-background:linear-gradient(135deg,#f5f7ff,#e8ecf7);
-border-color:#222;
-}
-.staff::before{content:"WAN COMPANY ID CARD WAN COMPANY";}
-.staff .title,.staff .name,.staff .info,.staff .job{color:#222;}
-.staff .photoFrame,.staff .qrArea img{border-color:#222;}
-.staff .badge{background:#222;color:white;}
-
-.menuBox{
-max-width:720px;
-margin:0 auto 25px;
+.actionBox{
+max-width:420px;
+margin:0 auto 20px;
 background:white;
 border-radius:24px;
-padding:16px;
+padding:14px;
 box-shadow:0 6px 16px rgba(0,0,0,.12);
 }
-
-.friendList{
+.friendBox{
+background:#f6edff;
+border-radius:18px;
+padding:12px;
 font-size:15px;
 line-height:1.8;
-background:#fff7fb;
-border-radius:16px;
-padding:12px;
-margin-top:10px;
-}
-
-@media(max-width:600px){
-.cardInner{
-flex-direction:column;
-gap:12px;
-}
-.left,.right{
-width:100%;
-text-align:center;
-}
-.photoFrame{
-width:285px;
-height:285px;
-}
-.name{font-size:42px;}
-.title{font-size:27px;}
-.qrArea{
-position:static;
-margin-top:12px;
-}
-.badge{
-position:static;
-display:inline-block;
-margin-top:12px;
-}
-.instaBtn{
-margin:12px auto;
-}
 }
 </style>
 </head>
 
 <body>
 
-<h1>🐶 WAN CARD</h1>
-<div class="subtitle">世界にひとつだけのうちの子プロフィール名刺</div>
+<h1>🐾 WAN CARD</h1>
+<div class="subtitle">うちの子プロフィール名刺</div>
 
-<div class="formBox">
+<div class="box">
 
 <div class="small">🐶 名前</div>
-<input type="text" id="nameInput" placeholder="例：ぽむ">
+<input id="nameInput" placeholder="例：ぽむ">
 
 <div class="small">🎂 誕生日</div>
-<input type="text" id="birthdayInput" placeholder="例：2021.05.10">
+<input id="birthdayInput" placeholder="例：2021.05.10">
 
 <div class="small">👑 肩書き</div>
-<select id="jobSelect">
+<select id="jobInput">
 <option value="Chief Snack Officer<br>おやつ最高責任者">Chief Snack Officer｜おやつ最高責任者</option>
 <option value="Super Model<br>モデル犬認定証">Super Model｜モデル犬認定証</option>
 <option value="Princess Member<br>お姫様認定証">Princess Member｜お姫様認定証</option>
 <option value="Security Manager<br>玄関警備主任">Security Manager｜玄関警備主任</option>
-<option value="Nap Director<br>昼寝部長">Nap Director｜昼寝部長</option>
-<option value="Treat Inspector<br>おやつ検査官">Treat Inspector｜おやつ検査官</option>
-<option value="Dog Idol<br>わんこアイドル">Dog Idol｜わんこアイドル</option>
 <option value="Sleeping Champion<br>昼寝世界王者">Sleeping Champion｜昼寝世界王者</option>
-<option value="Smile Ambassador<br>笑顔大使">Smile Ambassador｜笑顔大使</option>
 </select>
 
 <div class="small">⭐ 特徴</div>
-<select id="featureSelect">
-<option value="おやつ大好き">おやつ大好き</option>
-<option value="人懐っこい">人懐っこい</option>
-<option value="甘えん坊">甘えん坊</option>
-<option value="お散歩大好き">お散歩大好き</option>
-<option value="食いしん坊">食いしん坊</option>
-<option value="マイペース">マイペース</option>
-<option value="元気いっぱい">元気いっぱい</option>
-<option value="モデル犬">モデル犬</option>
-<option value="お昼寝大好き">お昼寝大好き</option>
+<select id="featureInput">
+<option>おやつ大好き</option>
+<option>人懐っこい</option>
+<option>甘えん坊</option>
+<option>お散歩大好き</option>
+<option>モデル犬</option>
+<option>お昼寝大好き</option>
 </select>
 
 <div class="small">💬 一言</div>
-<input type="text" id="messageInput" placeholder="例：お友達募集中🐶">
+<input id="messageInput" placeholder="例：お友達募集中🐶">
 
 <div class="small">📸 Instagram</div>
-<input type="text" id="instaInput" placeholder="例：pocha1005 または Instagram URL">
+<input id="instaInput" placeholder="例：pocha1005">
 
 <div class="small">📷 写真を選んでね</div>
 <input type="file" id="photoInput" accept="image/*">
@@ -363,37 +206,20 @@ margin:12px auto;
 <div class="small">写真の縦位置</div>
 <input type="range" id="posY" min="0" max="100" value="50">
 
-<div class="small">🎨 デザイン選択</div>
-<div class="templateBtns">
-<button onclick="setTemplate('vipGold')">👑 VIP</button>
-<button onclick="setTemplate('tiffany')">💎 Tiffany</button>
-<button onclick="setTemplate('princess')">🎀 Princess</button>
-<button onclick="setTemplate('model')">📸 Model</button>
-<button onclick="setTemplate('staff')">🏢 社員証</button>
-</div>
-
 <button onclick="makeCard()">✨ 名刺を作る</button>
-
 </div>
 
-<div id="wanCard" class="card vipGold">
+<div id="card" class="card">
+<div class="title">💎 TIFFANY MEMBER</div>
 
-<div class="cardInner">
-
-<div class="left">
 <div class="photoFrame">
 <img id="dogPhoto" src="https://placehold.co/300x300?text=WAN">
 </div>
-</div>
-
-<div class="right">
-
-<div id="cardTitle" class="title">👑 VIP MEMBER CARD</div>
 
 <div id="cardName" class="name">POMU</div>
 
 <div id="cardInfo" class="info">
-🎂 Birthday：2021.05.10<br>
+🎂 Birthday：ひみつ<br>
 ⭐ 特徴：おやつ大好き
 </div>
 
@@ -406,125 +232,75 @@ Chief Snack Officer<br>
 お友達募集中🐶
 </div>
 
-<a id="instaBtn" class="instaBtn" target="_blank">
-📸 Instagramを見る
-</a>
+<a id="instaBtn" target="_blank">📸 Instagramを見る</a>
 
-</div>
-</div>
-
-<div id="qrArea" class="qrArea">
+<div id="qrBox">
+<div class="small">QRコードで簡単交換</div>
 <img id="qrImage">
 </div>
-
-<div class="badge">🐾 OFFICIAL WAN CARD 🐾</div>
-
 </div>
 
-<div class="menuBox">
-<button onclick="saveCard()">💾 名刺を保存</button>
-<button onclick="alert('QRコードを見せてInstagram交換してね🐶')">📷 QRコードで簡単交換</button>
+<div class="actionBox">
+<button onclick="alert('次のバージョンで、自分の名刺帳に保存できるようにするよ🐶')">💾 自分の名刺として保存</button>
+<button onclick="alert('次のバージョンでQR読み取りを作るよ📷')">📷 QRコード読み取り</button>
 
 <h3>📒 名刺交換したお友達</h3>
-<div class="friendList">
-まだ名刺交換したお友達はいません🐾<br>
-次のバージョンで保存機能を作るよ✨
+<div class="friendBox">
+まだ交換した名刺はありません🐾<br>
+ここにお友達のWAN CARDが保存されます
 </div>
 </div>
 
 <script>
-const photoInput = document.getElementById("photoInput");
-const dogPhoto = document.getElementById("dogPhoto");
-const posX = document.getElementById("posX");
-const posY = document.getElementById("posY");
-let currentTemplate = "vipGold";
+const dogPhoto=document.getElementById("dogPhoto");
 
-photoInput.addEventListener("change", function(event){
- const file = event.target.files[0];
+document.getElementById("photoInput").addEventListener("change",function(e){
+ const file=e.target.files[0];
  if(file){
-   const reader = new FileReader();
-   reader.onload = function(e){
-     dogPhoto.src = e.target.result;
+   const reader=new FileReader();
+   reader.onload=function(ev){
+     dogPhoto.src=ev.target.result;
    };
    reader.readAsDataURL(file);
  }
 });
 
-function updatePhotoPosition(){
- dogPhoto.style.objectPosition = posX.value + "% " + posY.value + "%";
+function updatePos(){
+ dogPhoto.style.objectPosition=
+ document.getElementById("posX").value+"% "+
+ document.getElementById("posY").value+"%";
 }
-
-posX.addEventListener("input", updatePhotoPosition);
-posY.addEventListener("input", updatePhotoPosition);
-
-function setTemplate(template){
- currentTemplate = template;
- makeCard();
-}
+document.getElementById("posX").addEventListener("input",updatePos);
+document.getElementById("posY").addEventListener("input",updatePos);
 
 function makeCard(){
- const name = document.getElementById("nameInput").value.trim();
- const birthday = document.getElementById("birthdayInput").value.trim();
- const job = document.getElementById("jobSelect").value;
- const feature = document.getElementById("featureSelect").value;
- const message = document.getElementById("messageInput").value.trim();
- const insta = document.getElementById("instaInput").value.trim();
+ const name=document.getElementById("nameInput").value.trim();
+ const birthday=document.getElementById("birthdayInput").value.trim();
+ const job=document.getElementById("jobInput").value;
+ const feature=document.getElementById("featureInput").value;
+ const message=document.getElementById("messageInput").value.trim();
+ const insta=document.getElementById("instaInput").value.trim();
 
- const card = document.getElementById("wanCard");
- card.className = "card " + currentTemplate;
+ if(name) document.getElementById("cardName").innerHTML=name;
 
- if(name !== ""){
-   document.getElementById("cardName").innerHTML = name;
- }
+ document.getElementById("cardInfo").innerHTML=
+ "🎂 Birthday："+(birthday || "ひみつ")+"<br>⭐ 特徴："+feature;
 
- const birthText = birthday !== "" ? birthday : "ひみつ";
+ document.getElementById("cardJob").innerHTML=job;
 
- document.getElementById("cardInfo").innerHTML =
- "🎂 Birthday：" + birthText + "<br>⭐ 特徴：" + feature;
+ if(message) document.getElementById("cardMessage").innerHTML=message;
 
- document.getElementById("cardJob").innerHTML = job;
-
- if(message !== ""){
-   document.getElementById("cardMessage").innerHTML = message;
- }
-
- const title = document.getElementById("cardTitle");
-
- if(currentTemplate === "tiffany"){
-   title.innerHTML = "💎 TIFFANY MEMBER";
- }else if(currentTemplate === "princess"){
-   title.innerHTML = "👑 PRINCESS MEMBER";
- }else if(currentTemplate === "model"){
-   title.innerHTML = "📸 WAN MAGAZINE";
- }else if(currentTemplate === "staff"){
-   title.innerHTML = "🏢 WAN COMPANY ID";
- }else{
-   title.innerHTML = "👑 VIP MEMBER CARD";
- }
-
- if(insta !== ""){
-   let url = insta;
+ if(insta){
+   let url=insta;
    if(!url.startsWith("http")){
-     url = "https://www.instagram.com/" + insta.replace("@","");
+     url="https://www.instagram.com/"+insta.replace("@","");
    }
-
-   document.getElementById("instaBtn").href = url;
-   document.getElementById("instaBtn").style.display = "block";
-
-   document.getElementById("qrImage").src =
-   "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" + encodeURIComponent(url);
-
-   document.getElementById("qrArea").style.display = "block";
+   document.getElementById("instaBtn").href=url;
+   document.getElementById("instaBtn").style.display="block";
+   document.getElementById("qrImage").src=
+   "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data="+encodeURIComponent(url);
+   document.getElementById("qrBox").style.display="block";
  }
-}
-
-function saveCard(){
- html2canvas(document.getElementById("wanCard")).then(canvas => {
-   const link = document.createElement("a");
-   link.download = "wancard.png";
-   link.href = canvas.toDataURL();
-   link.click();
- });
 }
 </script>
 
