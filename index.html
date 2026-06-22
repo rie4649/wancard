@@ -1,116 +1,383 @@
 <!DOCTYPE html>
+
 <html lang="ja">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>WAN CARD</title>
 
 <style>
+
 body{
+
 font-family:sans-serif;
-background:#f5f7ff;
+
+background:linear-gradient(180deg,#fff7fb,#f5f7ff);
+
 text-align:center;
+
 padding:20px;
+
 color:#333;
+
+}
+
+h1{
+
+font-size:36px;
+
+color:#5b2b00;
+
+margin-bottom:5px;
+
+}
+
+.subtitle{
+
+font-size:16px;
+
+color:#8a5a44;
+
+margin-bottom:20px;
+
+}
+
+.formBox{
+
+max-width:430px;
+
+margin:0 auto 18px auto;
+
+background:white;
+
+border-radius:22px;
+
+padding:18px;
+
+box-shadow:0 6px 16px rgba(0,0,0,.12);
+
+}
+
+input, select{
+
+width:90%;
+
+font-size:18px;
+
+padding:12px;
+
+margin:8px 0;
+
+border-radius:12px;
+
+border:2px solid #f2d7a0;
+
+box-sizing:border-box;
+
+}
+
+button{
+
+font-size:20px;
+
+font-weight:bold;
+
+padding:14px 28px;
+
+border:none;
+
+border-radius:16px;
+
+background:#d4a017;
+
+color:white;
+
+margin-top:10px;
+
 }
 
 .card{
-max-width:420px;
+
+max-width:430px;
+
 margin:auto;
-background:white;
-border-radius:24px;
+
+background:#fffdf5;
+
+border-radius:26px;
+
 padding:22px;
-box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+box-shadow:0 8px 22px rgba(0,0,0,.18);
+
+border:5px solid #d4a017;
+
 }
 
 .vip{
+
 background:linear-gradient(135deg,#111,#444);
+
 color:white;
+
 padding:18px;
+
 border-radius:18px;
-font-size:26px;
+
+font-size:24px;
+
 font-weight:bold;
+
 margin-bottom:18px;
+
 letter-spacing:1px;
+
 }
 
-input{
-font-size:16px;
-margin:8px 0;
-}
+#dogPhoto{
 
-img{
 width:190px;
+
 height:190px;
+
 object-fit:cover;
-border-radius:18px;
+
+border-radius:22px;
+
 background:#eee;
+
+border:4px solid #d4a017;
+
 }
 
 .name{
-font-size:34px;
+
+font-size:36px;
+
 font-weight:bold;
+
 margin-top:18px;
+
 letter-spacing:2px;
+
+color:#4b2e05;
+
 }
 
 .job{
+
 font-size:20px;
-color:#666;
+
+color:#6b4a12;
+
 line-height:1.7;
+
 margin-top:8px;
+
 }
 
 .small{
+
 font-size:14px;
+
 color:#777;
+
 margin-top:10px;
+
 }
+
+.badge{
+
+font-size:18px;
+
+font-weight:bold;
+
+background:#fff0c7;
+
+border-radius:999px;
+
+display:inline-block;
+
+padding:8px 18px;
+
+margin-top:14px;
+
+color:#8a5a00;
+
+}
+
 </style>
+
 </head>
 
 <body>
 
-<div class="card">
+<h1>🐶 WAN CARD</h1>
 
-<div class="vip">
-👑 VIP MEMBER CARD
-</div>
+<div class="subtitle">世界にひとつだけのうちの子名刺</div>
 
-<div class="small">写真を選んでね🐶</div>
+<div class="formBox">
+
+<div class="small">① 写真を選んでね</div>
 
 <input type="file" id="photoInput" accept="image/*">
 
-<br><br>
+<div class="small">② 名前を入力</div>
+
+<input type="text" id="nameInput" placeholder="例：CHA CHA">
+
+<div class="small">③ 肩書きを選択</div>
+
+<select id="jobSelect">
+
+<option value="Chief Snack Officer<br>おやつ最高責任者">Chief Snack Officer｜おやつ最高責任者</option>
+
+<option value="Security Manager<br>玄関警備主任">Security Manager｜玄関警備主任</option>
+
+<option value="Nap Director<br>昼寝部長">Nap Director｜昼寝部長</option>
+
+<option value="Treat Inspector<br>おやつ検査官">Treat Inspector｜おやつ検査官</option>
+
+<option value="Happiness Manager<br>幸せ係長">Happiness Manager｜幸せ係長</option>
+
+<option value="Cafe Manager<br>カフェ店長">Cafe Manager｜カフェ店長</option>
+
+<option value="Dog Idol<br>わんこアイドル">Dog Idol｜わんこアイドル</option>
+
+<option value="CEO<br>ちゅーる営業本部長">CEO｜ちゅーる営業本部長</option>
+
+<option value="President<br>わんこ社長">President｜わんこ社長</option>
+
+<option value="Chairman<br>会長">Chairman｜会長</option>
+
+<option value="Princess Member<br>お姫様認定証">Princess Member｜お姫様認定証</option>
+
+<option value="Prince Member<br>王子様認定証">Prince Member｜王子様認定証</option>
+
+<option value="Angel Member<br>天使認定証">Angel Member｜天使認定証</option>
+
+<option value="Fairy Member<br>妖精認定証">Fairy Member｜妖精認定証</option>
+
+<option value="Super Model<br>モデル犬認定証">Super Model｜モデル犬認定証</option>
+
+<option value="Beauty Queen<br>美人部門代表">Beauty Queen｜美人部門代表</option>
+
+<option value="Mama's Treasure<br>ママの宝物">Mama's Treasure｜ママの宝物</option>
+
+<option value="Daddy's Treasure<br>パパの宝物">Daddy's Treasure｜パパの宝物</option>
+
+<option value="Bakery Chief<br>パン職人">Bakery Chief｜パン職人</option>
+
+<option value="Barista Dog<br>バリスタ犬">Barista Dog｜バリスタ犬</option>
+
+<option value="Pet Hotel Staff<br>ホテルスタッフ">Pet Hotel Staff｜ホテルスタッフ</option>
+
+<option value="Dog Park Ranger<br>ドッグラン管理人">Dog Park Ranger｜ドッグラン管理人</option>
+
+<option value="Professional Beggar<br>おねだり職人">Professional Beggar｜おねだり職人</option>
+
+<option value="Food Hunter<br>食べ物探索隊">Food Hunter｜食べ物探索隊</option>
+
+<option value="Floor Cleaner<br>床掃除担当">Floor Cleaner｜床掃除担当</option>
+
+<option value="Snack Detector<br>おやつ探知機">Snack Detector｜おやつ探知機</option>
+
+<option value="Sleeping Champion<br>昼寝世界王者">Sleeping Champion｜昼寝世界王者</option>
+
+<option value="Walk Leader<br>お散歩推進部長">Walk Leader｜お散歩推進部長</option>
+
+<option value="Sofa Guard<br>ソファー警備隊長">Sofa Guard｜ソファー警備隊長</option>
+
+<option value="Smile Ambassador<br>笑顔大使">Smile Ambassador｜笑顔大使</option>
+
+</select>
+
+<br>
+
+<button onclick="makeCard()">✨ 名刺を作る</button>
+
+</div>
+
+<div class="card">
+
+<div class="vip">
+
+👑 VIP MEMBER CARD
+
+</div>
 
 <img id="dogPhoto" src="https://placehold.co/300x300?text=WAN">
 
-<div class="name">
+<div id="cardName" class="name">
+
 CHA CHA
+
 </div>
 
-<div class="job">
+<div id="cardJob" class="job">
+
 Chief Snack Officer<br>
+
 おやつ最高責任者
+
+</div>
+
+<div class="badge">
+
+🐾 OFFICIAL WAN CARD 🐾
+
 </div>
 
 </div>
 
 <script>
-document.getElementById("photoInput").addEventListener("change", function(event){
+
+const photoInput = document.getElementById("photoInput");
+
+const dogPhoto = document.getElementById("dogPhoto");
+
+photoInput.addEventListener("change", function(event){
+
  const file = event.target.files[0];
 
  if(file){
+
    const reader = new FileReader();
 
    reader.onload = function(e){
-     document.getElementById("dogPhoto").src = e.target.result;
+
+     dogPhoto.src = e.target.result;
+
    };
 
    reader.readAsDataURL(file);
+
  }
+
 });
+
+function makeCard(){
+
+ const name = document.getElementById("nameInput").value;
+
+ const job = document.getElementById("jobSelect").value;
+
+ if(name.trim() !== ""){
+
+   document.getElementById("cardName").innerHTML = name;
+
+ }
+
+ document.getElementById("cardJob").innerHTML = job;
+
+}
+
 </script>
 
 </body>
+
 </html>
