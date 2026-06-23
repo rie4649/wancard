@@ -2,339 +2,335 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BRIEFSDAN-DOG</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BRIEFSDAN-DOG Ver3</title>
 
 <style>
-:root{
-  --main:#ff4fa3;
-  --soft:#ffb3d7;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Arial',sans-serif;
 }
+
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#050505;
-  color:white;
-  text-align:center;
-}
-.app{
-  max-width:430px;
-  margin:auto;
-  padding:18px;
-}
-.logo{
-  color:var(--main);
-  font-size:25px;
-  font-weight:900;
-  letter-spacing:2px;
-  margin:18px 0 6px;
-}
-.sub{
-  color:#aaa;
-  font-size:13px;
-  margin-bottom:16px;
+background:#111;
+color:#fff;
+padding-bottom:90px;
 }
 
-/* 横長名刺 */
+:root{
+--main:#ff4fa3;
+--card:#1b1b1b;
+--text:#ffffff;
+}
+
+header{
+background:linear-gradient(135deg,#000,var(--main));
+padding:20px;
+text-align:center;
+font-size:24px;
+font-weight:bold;
+letter-spacing:2px;
+}
+
+.container{
+padding:15px;
+}
+
 .card{
-  width:100%;
-  aspect-ratio:1.78/1;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255,79,163,.22), transparent 35%),
-    linear-gradient(135deg,#111,#050505);
-  border:2px solid var(--main);
-  border-radius:22px;
-  box-shadow:0 0 24px rgba(255,79,163,.45);
-  box-sizing:border-box;
-  padding:14px;
-  position:relative;
-  overflow:hidden;
-}
-.card-title{
-  color:var(--main);
-  font-size:17px;
-  font-weight:900;
-  letter-spacing:2px;
-  text-align:left;
-  margin-bottom:8px;
-}
-.card-body{
-  display:flex;
-  gap:12px;
-  align-items:center;
-}
-.photo-frame{
-  width:43%;
-  aspect-ratio:1.15/1;
-  border:3px solid var(--main);
-  border-radius:18px;
-  background:#151515;
-  overflow:hidden;
-  position:relative;
-  box-shadow:0 0 14px rgba(255,79,163,.55);
-}
-.photo-frame img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transform-origin:center;
-}
-.placeholder{
-  font-size:48px;
-  margin-top:25px;
+background:var(--card);
+border:3px solid var(--main);
+border-radius:20px;
+padding:15px;
+max-width:900px;
+margin:auto;
+box-shadow:0 0 20px rgba(255,79,163,.5);
 }
 
-/* 仮の覆面マーク */
-.mask{
-  position:absolute;
-  inset:12px 18px 18px;
-  border:7px solid var(--main);
-  border-radius:48% 48% 40% 40%;
-  pointer-events:none;
-  box-shadow:0 0 8px #000;
+.previewCard{
+width:100%;
+aspect-ratio:1.8/1;
+background:#222;
+border-radius:20px;
+overflow:hidden;
+position:relative;
+border:4px solid var(--main);
 }
-.initial{
-  position:absolute;
-  top:8px;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:26px;
-  font-weight:900;
-  color:white;
-  text-shadow:0 0 6px #000;
+
+.photo{
+position:absolute;
+cursor:move;
+touch-action:none;
+}
+
+.photo img{
+display:block;
+width:100%;
+height:100%;
+object-fit:cover;
 }
 
 .info{
-  flex:1;
-  text-align:left;
-  font-size:13px;
-  line-height:1.75;
-}
-.name{
-  color:var(--main);
-  font-size:24px;
-  font-weight:900;
-  margin-bottom:4px;
-}
-.insta{
-  color:var(--main);
-  text-decoration:none;
-  font-weight:bold;
-}
-.qr{
-  position:absolute;
-  right:14px;
-  bottom:12px;
-  width:50px;
-  height:50px;
-  background:white;
-  color:#111;
-  border:3px solid var(--main);
-  border-radius:10px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:900;
-  font-size:11px;
+position:absolute;
+right:20px;
+top:20px;
+text-align:right;
+z-index:10;
 }
 
-/* 入力 */
-.panel{
-  margin-top:16px;
-  background:#111;
-  border:1px solid #333;
-  border-radius:20px;
-  padding:14px;
-  text-align:left;
+.info h2{
+font-size:28px;
+color:var(--main);
 }
-label{
-  display:block;
-  margin-top:11px;
-  font-size:13px;
-  color:#ddd;
+
+.info p{
+font-size:14px;
+margin-top:5px;
 }
-input,textarea,select{
-  width:100%;
-  box-sizing:border-box;
-  margin-top:5px;
-  padding:11px;
-  border:0;
-  border-radius:12px;
-  font-size:15px;
+
+.controls{
+margin-top:20px;
+display:grid;
+gap:12px;
 }
-textarea{
-  height:58px;
-  resize:none;
+
+input,button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+font-size:16px;
 }
-.adjust{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:8px;
-  margin-top:8px;
+
+input{
+background:#333;
+color:white;
 }
-.adjust button,.mainbtn{
-  border:0;
-  border-radius:12px;
-  padding:12px;
-  font-weight:900;
-  background:var(--main);
-  color:white;
+
+button{
+background:var(--main);
+color:white;
+font-weight:bold;
 }
-.mainbtn{
-  width:100%;
-  margin-top:16px;
-  font-size:16px;
+
+.colorBtns{
+display:flex;
+gap:10px;
 }
-.hidden{display:none;}
+
+.colorBtns button{
+flex:1;
+}
+
+.bottomMenu{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+height:70px;
+background:#000;
+display:flex;
+justify-content:space-around;
+align-items:center;
+border-top:3px solid var(--main);
+z-index:999;
+}
+
+.bottomMenu button{
+width:auto;
+padding:8px 14px;
+border-radius:12px;
+}
+
+a{
+text-decoration:none;
+color:white;
+}
 </style>
 </head>
 
 <body>
-<div class="app">
 
-  <div class="logo">BRIEFSDAN-DOG</div>
-  <div class="sub">VIP DOG CARD 名刺作成</div>
+<header>BRIEFSDAN-DOG</header>
 
-  <div class="card">
-    <div class="card-title">BRIEFSDAN-DOG</div>
+<div class="container">
 
-    <div class="card-body">
-      <div class="photo-frame">
-        <img id="dogPhoto" class="hidden">
-        <div id="dogIcon" class="placeholder">🐶</div>
-        <div class="mask"></div>
-        <div id="cardInitial" class="initial">C</div>
-      </div>
+<div class="card">
 
-      <div class="info">
-        <div id="cardName" class="name">CHA CHA</div>
-        <div>🎂 <span id="cardBirthday">2022.05.31</span></div>
-        <div>💬 <span id="cardMessage">おやつは別腹です！</span></div>
-        <div>📷 <a id="instaLink" class="insta" href="https://instagram.com/chacha_dog" target="_blank">@chacha_dog</a></div>
-      </div>
-    </div>
+<div class="previewCard" id="card">
 
-    <div class="qr">QR</div>
-  </div>
+<div class="photo" id="photoBox"
+style="left:20px;top:20px;width:180px;height:180px;">
+<img id="photoPreview">
+</div>
 
-  <div class="panel">
+<div class="info">
+<h2 id="cardName">BREAFSDAN-DOG</h2>
+<p id="cardText">My Digital Card</p>
+</div>
 
-    <label>📷 写真</label>
-    <input type="file" accept="image/*" onchange="loadPhoto(event)">
+</div>
 
-    <label>🔍 写真サイズ</label>
-    <input id="photoScale" type="range" min="0.6" max="2.8" step="0.1" value="1" oninput="updatePhoto()">
+<div class="controls">
 
-    <label>📍 写真位置</label>
-    <div class="adjust">
-      <div></div><button onclick="movePhoto(0,-10)">↑</button><div></div>
-      <button onclick="movePhoto(-10,0)">←</button>
-      <button onclick="resetPhoto()">中央</button>
-      <button onclick="movePhoto(10,0)">→</button>
-      <div></div><button onclick="movePhoto(0,10)">↓</button><div></div>
-    </div>
+<input type="text" id="nameInput" placeholder="名前">
 
-    <label>🎭 カラー</label>
-    <select id="themeColor" oninput="changeTheme()">
-      <option value="pink">ピンク</option>
-      <option value="white">白</option>
-      <option value="blue">ブルー</option>
-    </select>
+<input type="file" id="upload" accept="image/*">
 
-    <label>🔤 イニシャル</label>
-    <input id="initialInput" value="C" maxlength="2" oninput="updateCard()">
+<label>写真サイズ</label>
+<input type="range" id="sizeRange" min="80" max="350" value="180">
 
-    <label>🐶 名前</label>
-    <input id="nameInput" value="CHA CHA" oninput="updateCard()">
+<input type="text" id="instaInput"
+placeholder="Instagram URL">
 
-    <label>🎂 誕生日</label>
-    <input id="birthdayInput" value="2022.05.31" oninput="updateCard()">
+<button onclick="saveCard()">💾 マイカード保存</button>
 
-    <label>💬 一言</label>
-    <textarea id="messageInput" oninput="updateCard()">おやつは別腹です！</textarea>
+<div class="colorBtns">
+<button onclick="setTheme('pink')">🩷</button>
+<button onclick="setTheme('white')">🤍</button>
+<button onclick="setTheme('blue')">💙</button>
+</div>
 
-    <label>📷 Instagram</label>
-    <input id="instaInput" value="@chacha_dog" oninput="updateCard()">
+</div>
 
-    <button class="mainbtn" onclick="updateCard()">🐾 名刺を作成する</button>
-  </div>
+</div>
+</div>
+
+<div class="bottomMenu">
+
+<button onclick="home()">🏠</button>
+
+<button onclick="openInstagram()">📸</button>
+
+<button onclick="saveCard()">💾</button>
+
+<button onclick="location.reload()">⚙️</button>
 
 </div>
 
 <script>
-let photoX = 0;
-let photoY = 0;
 
-function updateCard(){
-  const initial = document.getElementById("initialInput").value || "C";
-  const name = document.getElementById("nameInput").value || "CHA CHA";
-  const birthday = document.getElementById("birthdayInput").value || "2022.05.31";
-  const message = document.getElementById("messageInput").value || "おやつは別腹です！";
-  let insta = document.getElementById("instaInput").value || "@chacha_dog";
+const upload=document.getElementById("upload");
+const photo=document.getElementById("photoBox");
+const img=document.getElementById("photoPreview");
 
-  if(!insta.startsWith("@")) insta = "@" + insta;
+upload.addEventListener("change",e=>{
+const file=e.target.files[0];
+if(!file)return;
 
-  document.getElementById("cardInitial").textContent = initial;
-  document.getElementById("cardName").textContent = name;
-  document.getElementById("cardBirthday").textContent = birthday;
-  document.getElementById("cardMessage").textContent = message;
+const reader=new FileReader();
 
-  const link = document.getElementById("instaLink");
-  link.textContent = insta;
-  link.href = "https://instagram.com/" + insta.replace("@","");
+reader.onload=function(ev){
+img.src=ev.target.result;
+};
+
+reader.readAsDataURL(file);
+});
+
+document.getElementById("nameInput").addEventListener("input",e=>{
+document.getElementById("cardName").textContent=e.target.value||"BREAFSDAN-DOG";
+});
+
+document.getElementById("sizeRange").addEventListener("input",e=>{
+const s=e.target.value;
+photo.style.width=s+"px";
+photo.style.height=s+"px";
+});
+
+function setTheme(type){
+
+if(type==="pink"){
+document.documentElement.style.setProperty("--main","#ff4fa3");
+document.documentElement.style.setProperty("--card","#1b1b1b");
 }
 
-function changeTheme(){
-  const color = document.getElementById("themeColor").value;
-  const root = document.documentElement;
-
-  if(color === "pink"){
-    root.style.setProperty("--main","#ff4fa3");
-    root.style.setProperty("--soft","#ffb3d7");
-  }
-  if(color === "white"){
-    root.style.setProperty("--main","#ffffff");
-    root.style.setProperty("--soft","#dddddd");
-  }
-  if(color === "blue"){
-    root.style.setProperty("--main","#35bfff");
-    root.style.setProperty("--soft","#9ce2ff");
-  }
+if(type==="white"){
+document.documentElement.style.setProperty("--main","#ffffff");
+document.documentElement.style.setProperty("--card","#444");
 }
 
-function loadPhoto(event){
-  const file = event.target.files[0];
-  if(!file) return;
-
-  const reader = new FileReader();
-  reader.onload = function(e){
-    const img = document.getElementById("dogPhoto");
-    img.src = e.target.result;
-    img.classList.remove("hidden");
-    document.getElementById("dogIcon").classList.add("hidden");
-    updatePhoto();
-  };
-  reader.readAsDataURL(file);
+if(type==="blue"){
+document.documentElement.style.setProperty("--main","#42a5ff");
+document.documentElement.style.setProperty("--card","#13233d");
 }
 
-function updatePhoto(){
-  const img = document.getElementById("dogPhoto");
-  const scale = document.getElementById("photoScale").value;
-  img.style.transform = `translate(${photoX}px, ${photoY}px) scale(${scale})`;
 }
 
-function movePhoto(x,y){
-  photoX += x;
-  photoY += y;
-  updatePhoto();
+function openInstagram(){
+const url=document.getElementById("instaInput").value;
+
+if(url){
+window.open(url,"_blank");
+}
 }
 
-function resetPhoto(){
-  photoX = 0;
-  photoY = 0;
-  document.getElementById("photoScale").value = 1;
-  updatePhoto();
+function saveCard(){
+
+const data={
+name:document.getElementById("nameInput").value,
+instagram:document.getElementById("instaInput").value,
+photo:img.src,
+left:photo.style.left,
+top:photo.style.top,
+width:photo.style.width,
+height:photo.style.height
+};
+
+localStorage.setItem("briefsdandog",JSON.stringify(data));
+
+alert("保存しました");
 }
+
+window.onload=function(){
+
+const data=JSON.parse(localStorage.getItem("briefsdandog"));
+
+if(!data)return;
+
+document.getElementById("nameInput").value=data.name||"";
+document.getElementById("instaInput").value=data.instagram||"";
+
+document.getElementById("cardName").textContent=data.name||"BREAFSDAN-DOG";
+
+img.src=data.photo||"";
+
+photo.style.left=data.left;
+photo.style.top=data.top;
+photo.style.width=data.width;
+photo.style.height=data.height;
+
+};
+
+let active=false;
+let startX,startY;
+
+photo.addEventListener("pointerdown",e=>{
+active=true;
+startX=e.clientX-photo.offsetLeft;
+startY=e.clientY-photo.offsetTop;
+});
+
+document.addEventListener("pointermove",e=>{
+
+if(!active)return;
+
+photo.style.left=(e.clientX-startX)+"px";
+photo.style.top=(e.clientY-startY)+"px";
+
+});
+
+document.addEventListener("pointerup",()=>{
+active=false;
+});
+
+function home(){
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+}
+
 </script>
 
 </body>
