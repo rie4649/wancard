@@ -1,334 +1,791 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+:root{
+--pink:#ff4fa3;
+--dark:#0b0b0b;
+--card:#151515;
+}
+
+body{
+background:#000;
+color:#fff;
+padding-bottom:90px;
+}
+
+header{
+background:linear-gradient(135deg,#000,var(--pink));
+padding:18px;
+text-align:center;
+font-size:24px;
+font-weight:bold;
+letter-spacing:2px;
+box-shadow:0 0 25px rgba(255,79,163,.6);
+}
+
+.page{
+padding:15px;
+max-width:1000px;
+margin:auto;
+}
+
+.vip-card{
+background:linear-gradient(145deg,#111,#1f1f1f);
+border:3px solid var(--pink);
+border-radius:25px;
+overflow:hidden;
+box-shadow:
+0 0 15px var(--pink),
+0 0 40px rgba(255,79,163,.3);
+margin-bottom:20px;
+}
+
+.card-top{
+display:flex;
+min-height:250px;
+}
+
+.photo-area{
+width:45%;
+position:relative;
+background:#111;
+overflow:hidden;
+}
+
+.photo-area img{
+position:absolute;
+left:20px;
+top:20px;
+width:180px;
+height:180px;
+object-fit:cover;
+border-radius:20px;
+border:4px solid var(--pink);
+}
+
+.info-area{
+width:55%;
+padding:20px;
+position:relative;
+}
+
+.initial{
+font-size:70px;
+font-weight:bold;
+color:var(--pink);
+line-height:1;
+}
+
+.name{
+font-size:28px;
+font-weight:bold;
+margin-top:10px;
+}
+
+.birth{
+margin-top:10px;
+opacity:.8;
+}
+
+.message{
+margin-top:15px;
+font-size:15px;
+line-height:1.6;
+}
+
+.instagram{
+display:inline-block;
+margin-top:15px;
+padding:8px 14px;
+background:var(--pink);
+border-radius:20px;
+text-decoration:none;
+color:white;
+font-weight:bold;
+}
+
+.qr-box{
+margin-top:15px;
+width:100px;
+height:100px;
+background:white;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+color:black;
+font-weight:bold;
+}
+
+.control{
+background:#151515;
+border:2px solid #333;
+padding:15px;
+border-radius:20px;
+margin-bottom:15px;
+}
+
+.control input,
+.control textarea{
+width:100%;
+padding:12px;
+margin-top:8px;
+margin-bottom:12px;
+border:none;
+border-radius:12px;
+background:#222;
+color:white;
+}
+
+.control button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:15px;
+background:var(--pink);
+color:white;
+font-size:16px;
+font-weight:bold;
+}
+
+.bottom-nav{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+height:75px;
+background:#000;
+border-top:2px solid var(--pink);
+display:flex;
+justify-content:space-around;
+align-items:center;
+z-index:999;
+}
+
+.bottom-nav a{
+color:white;
+text-decoration:none;
+font-size:13px;
+text-align:center;
+}
+
+.bottom-nav span{
+display:block;
+font-size:24px;
+margin-bottom:4px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+gap:15px;
+}
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>BRIEFSDAN-DOG Ver3</title>
-
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Arial',sans-serif;
-}
-
-body{
-background:#111;
-color:#fff;
-padding-bottom:90px;
-}
-
-:root{
---main:#ff4fa3;
---card:#1b1b1b;
---text:#ffffff;
-}
-
-header{
-background:linear-gradient(135deg,#000,var(--main));
-padding:20px;
-text-align:center;
-font-size:24px;
-font-weight:bold;
-letter-spacing:2px;
-}
-
-.container{
-padding:15px;
-}
-
-.card{
-background:var(--card);
-border:3px solid var(--main);
-border-radius:20px;
-padding:15px;
-max-width:900px;
-margin:auto;
-box-shadow:0 0 20px rgba(255,79,163,.5);
-}
-
-.previewCard{
-width:100%;
-aspect-ratio:1.8/1;
-background:#222;
-border-radius:20px;
-overflow:hidden;
-position:relative;
-border:4px solid var(--main);
-}
-
-.photo{
-position:absolute;
-cursor:move;
-touch-action:none;
-}
-
-.photo img{
-display:block;
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-.info{
-position:absolute;
-right:20px;
-top:20px;
-text-align:right;
-z-index:10;
-}
-
-.info h2{
-font-size:28px;
-color:var(--main);
-}
-
-.info p{
-font-size:14px;
-margin-top:5px;
-}
-
-.controls{
-margin-top:20px;
-display:grid;
-gap:12px;
-}
-
-input,button{
-width:100%;
-padding:12px;
-border:none;
-border-radius:12px;
-font-size:16px;
-}
-
-input{
-background:#333;
-color:white;
-}
-
-button{
-background:var(--main);
-color:white;
-font-weight:bold;
-}
-
-.colorBtns{
-display:flex;
-gap:10px;
-}
-
-.colorBtns button{
-flex:1;
-}
-
-.bottomMenu{
-position:fixed;
-bottom:0;
-left:0;
-right:0;
-height:70px;
-background:#000;
-display:flex;
-justify-content:space-around;
-align-items:center;
-border-top:3px solid var(--main);
-z-index:999;
-}
-
-.bottomMenu button{
-width:auto;
-padding:8px 14px;
-border-radius:12px;
-}
-
-a{
-text-decoration:none;
-color:white;
-}
-</style>
+<title>BRIEFSDAN-DOG</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>BRIEFSDAN-DOG</header>
+<header>
+🐶 BRIEFSDAN-DOG
+</header>
 
-<div class="container">
+<div class="page">
 
-<div class="card">
+<div class="vip-card">
 
-<div class="previewCard" id="card">
+<div class="card-top">
 
-<div class="photo" id="photoBox"
-style="left:20px;top:20px;width:180px;height:180px;">
-<img id="photoPreview">
+<div class="photo-area">
+<img id="homePhoto"
+src="https://placehold.jp/300x300.png">
 </div>
 
-<div class="info">
-<h2 id="cardName">BREAFSDAN-DOG</h2>
-<p id="cardText">My Digital Card</p>
+<div class="info-area">
+
+<div class="initial" id="homeInitial">
+B
+</div>
+
+<div class="name" id="homeName">
+VIP DOG
+</div>
+
+<div class="birth" id="homeBirth">
+2026.01.01
+</div>
+
+<div class="message" id="homeMessage">
+世界に一枚だけのVIP DOG CARD
+</div>
+
+<a class="instagram"
+id="homeInstagram"
+href="#"
+target="_blank">
+Instagram
+</a>
+
+<div class="qr-box">
+QR
 </div>
 
 </div>
 
-<div class="controls">
-
-<input type="text" id="nameInput" placeholder="名前">
-
-<input type="file" id="upload" accept="image/*">
-
-<label>写真サイズ</label>
-<input type="range" id="sizeRange" min="80" max="350" value="180">
-
-<input type="text" id="instaInput"
-placeholder="Instagram URL">
-
-<button onclick="saveCard()">💾 マイカード保存</button>
-
-<div class="colorBtns">
-<button onclick="setTheme('pink')">🩷</button>
-<button onclick="setTheme('white')">🤍</button>
-<button onclick="setTheme('blue')">💙</button>
 </div>
 
 </div>
 
+<h2 style="margin-bottom:15px;">
+⭐ お気に入りカード
+</h2>
+
+<div class="grid" id="favoriteArea">
 </div>
+
 </div>
 
-<div class="bottomMenu">
+<div class="bottom-nav">
 
-<button onclick="home()">🏠</button>
+<a href="index.html">
+<span>🏠</span>
+ホーム
+</a>
 
-<button onclick="openInstagram()">📸</button>
+<a href="create.html">
+<span>➕</span>
+作る
+</a>
 
-<button onclick="saveCard()">💾</button>
+<a href="mycard.html">
+<span>💳</span>
+マイカード
+</a>
 
-<button onclick="location.reload()">⚙️</button>
+<a href="scan.html">
+<span>📷</span>
+QR読取
+</a>
+
+<a href="book.html">
+<span>📖</span>
+名刺帳
+</a>
 
 </div>
 
 <script>
 
-const upload=document.getElementById("upload");
-const photo=document.getElementById("photoBox");
-const img=document.getElementById("photoPreview");
+const card=
+JSON.parse(localStorage.getItem("briefsdandog"));
 
-upload.addEventListener("change",e=>{
-const file=e.target.files[0];
-if(!file)return;
+if(card){
 
-const reader=new FileReader();
+document.getElementById("homeName").innerText=
+card.name || "VIP DOG";
 
-reader.onload=function(ev){
-img.src=ev.target.result;
-};
+document.getElementById("homeBirth").innerText=
+card.birth || "";
 
-reader.readAsDataURL(file);
-});
+document.getElementById("homeMessage").innerText=
+card.message || "";
 
-document.getElementById("nameInput").addEventListener("input",e=>{
-document.getElementById("cardName").textContent=e.target.value||"BREAFSDAN-DOG";
-});
+document.getElementById("homeInitial").innerText=
+(card.name || "B").charAt(0);
 
-document.getElementById("sizeRange").addEventListener("input",e=>{
-const s=e.target.value;
-photo.style.width=s+"px";
-photo.style.height=s+"px";
-});
+document.getElementById("homePhoto").src=
+card.photo || "https://placehold.jp/300x300.png";
 
-function setTheme(type){
-
-if(type==="pink"){
-document.documentElement.style.setProperty("--main","#ff4fa3");
-document.documentElement.style.setProperty("--card","#1b1b1b");
-}
-
-if(type==="white"){
-document.documentElement.style.setProperty("--main","#ffffff");
-document.documentElement.style.setProperty("--card","#444");
-}
-
-if(type==="blue"){
-document.documentElement.style.setProperty("--main","#42a5ff");
-document.documentElement.style.setProperty("--card","#13233d");
-}
+document.getElementById("homeInstagram").href=
+card.instagram || "#";
 
 }
 
-function openInstagram(){
-const url=document.getElementById("instaInput").value;
+</script>
 
-if(url){
-window.open(url,"_blank");
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>マイカード</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+💳 マイカード
+</header>
+
+<div class="page">
+
+<div id="cardArea"></div>
+
+</div>
+
+<div class="bottom-nav">
+
+<a href="index.html">
+<span>🏠</span>
+ホーム
+</a>
+
+<a href="create.html">
+<span>➕</span>
+作る
+</a>
+
+<a href="mycard.html">
+<span>💳</span>
+マイカード
+</a>
+
+<a href="scan.html">
+<span>📷</span>
+QR読取
+</a>
+
+<a href="book.html">
+<span>📖</span>
+名刺帳
+</a>
+
+</div>
+
+<script>
+
+const card =
+JSON.parse(localStorage.getItem("briefsdandog"));
+
+const area =
+document.getElementById("cardArea");
+
+if(card){
+
+area.innerHTML = `
+
+<div class="vip-card">
+
+<div class="card-top">
+
+<div class="photo-area">
+
+<img
+src="${card.photo}"
+style="
+left:${card.left};
+top:${card.top};
+width:${card.width};
+height:${card.height};
+">
+
+</div>
+
+<div class="info-area">
+
+<div class="initial">
+${card.name ? card.name.charAt(0) : "B"}
+</div>
+
+<div class="name">
+${card.name || "VIP DOG"}
+</div>
+
+<div class="birth">
+${card.birth || ""}
+</div>
+
+<div class="message">
+${card.message || ""}
+</div>
+
+<a
+class="instagram"
+href="${card.instagram || '#'}"
+target="_blank">
+Instagram
+</a>
+
+<div class="qr-box">
+QR
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<button
+onclick="deleteCard()"
+style="
+width:100%;
+padding:15px;
+border:none;
+border-radius:15px;
+background:#ff4fa3;
+color:white;
+font-size:16px;
+font-weight:bold;
+margin-top:15px;
+">
+🗑 カード削除
+</button>
+
+`;
+
+}else{
+
+area.innerHTML=`
+
+<div class="control">
+
+<h2 style="text-align:center;">
+カードがありません
+</h2>
+
+<p style="
+text-align:center;
+margin-top:10px;
+opacity:.8;">
+まずはカードを作成してください
+</p>
+
+</div>
+
+`;
+
 }
+
+function deleteCard(){
+
+if(confirm("カードを削除しますか？")){
+
+localStorage.removeItem("briefsdandog");
+
+location.reload();
+
 }
 
-function saveCard(){
-
-const data={
-name:document.getElementById("nameInput").value,
-instagram:document.getElementById("instaInput").value,
-photo:img.src,
-left:photo.style.left,
-top:photo.style.top,
-width:photo.style.width,
-height:photo.style.height
-};
-
-localStorage.setItem("briefsdandog",JSON.stringify(data));
-
-alert("保存しました");
 }
 
-window.onload=function(){
+</script>
 
-const data=JSON.parse(localStorage.getItem("briefsdandog"));
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>QR読取</title>
+<link rel="stylesheet" href="style.css">
 
-if(!data)return;
+<script src="https://unpkg.com/html5-qrcode"></script>
 
-document.getElementById("nameInput").value=data.name||"";
-document.getElementById("instaInput").value=data.instagram||"";
+</head>
 
-document.getElementById("cardName").textContent=data.name||"BREAFSDAN-DOG";
+<body>
 
-img.src=data.photo||"";
+<header>
+📷 QR読取
+</header>
 
-photo.style.left=data.left;
-photo.style.top=data.top;
-photo.style.width=data.width;
-photo.style.height=data.height;
+<div class="page">
 
-};
+<div class="control">
 
-let active=false;
-let startX,startY;
+<h2 style="text-align:center;">
+QRコードを読み取る
+</h2>
 
-photo.addEventListener("pointerdown",e=>{
-active=true;
-startX=e.clientX-photo.offsetLeft;
-startY=e.clientY-photo.offsetTop;
+<div id="reader"
+style="
+width:100%;
+margin-top:15px;
+border-radius:20px;
+overflow:hidden;">
+</div>
+
+<div id="result"
+style="
+margin-top:15px;
+text-align:center;
+font-size:18px;
+font-weight:bold;">
+</div>
+
+</div>
+
+</div>
+
+<div class="bottom-nav">
+
+<a href="index.html">
+<span>🏠</span>
+ホーム
+</a>
+
+<a href="create.html">
+<span>➕</span>
+作る
+</a>
+
+<a href="mycard.html">
+<span>💳</span>
+マイカード
+</a>
+
+<a href="scan.html">
+<span>📷</span>
+QR読取
+</a>
+
+<a href="book.html">
+<span>📖</span>
+名刺帳
+</a>
+
+</div>
+
+<script>
+
+function success(decodedText){
+
+document.getElementById("result")
+.innerHTML=
+"読み取り成功<br><br>"+decodedText;
+
+}
+
+const qr=new Html5QrcodeScanner(
+"reader",
+{
+fps:10,
+qrbox:250
+}
+);
+
+qr.render(success);
+
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>名刺帳</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+📖 名刺帳
+</header>
+
+<div class="page">
+
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:15px;">
+
+<h2>保存カード</h2>
+
+<button onclick="clearBook()"
+style="
+width:auto;
+padding:10px 15px;
+border:none;
+border-radius:10px;
+background:#ff4fa3;
+color:white;">
+全削除
+</button>
+
+</div>
+
+<div id="bookArea" class="grid"></div>
+
+</div>
+
+<div class="bottom-nav">
+
+<a href="index.html">
+<span>🏠</span>
+ホーム
+</a>
+
+<a href="create.html">
+<span>➕</span>
+作る
+</a>
+
+<a href="mycard.html">
+<span>💳</span>
+マイカード
+</a>
+
+<a href="scan.html">
+<span>📷</span>
+QR読取
+</a>
+
+<a href="book.html">
+<span>📖</span>
+名刺帳
+</a>
+
+</div>
+
+<script>
+
+let cards=
+JSON.parse(localStorage.getItem("briefsdandog_book")) || [];
+
+const area=
+document.getElementById("bookArea");
+
+renderCards();
+
+function renderCards(){
+
+if(cards.length===0){
+
+area.innerHTML=`
+
+<div class="control">
+
+<h3 style="text-align:center;">
+名刺帳は空です
+</h3>
+
+<p style="
+text-align:center;
+margin-top:10px;">
+QR交換したカードが表示されます
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+area.innerHTML="";
+
+cards.forEach((card,index)=>{
+
+area.innerHTML += `
+
+<div class="vip-card">
+
+<div class="card-top">
+
+<div class="photo-area">
+
+<img
+src="${card.photo || 'https://placehold.jp/300x300.png'}"
+style="
+left:20px;
+top:20px;
+width:150px;
+height:150px;">
+
+</div>
+
+<div class="info-area">
+
+<div class="initial">
+${card.name ? card.name.charAt(0) : "B"}
+</div>
+
+<div class="name">
+${card.name || "VIP DOG"}
+</div>
+
+<div class="birth">
+${card.birth || ""}
+</div>
+
+<div class="message">
+${card.message || ""}
+</div>
+
+<a
+class="instagram"
+href="${card.instagram || '#'}"
+target="_blank">
+Instagram
+</a>
+
+</div>
+
+</div>
+
+<button
+onclick="deleteCard(${index})"
+style="
+width:100%;
+padding:12px;
+border:none;
+background:#ff4fa3;
+color:white;">
+削除
+</button>
+
+</div>
+
+`;
+
 });
 
-document.addEventListener("pointermove",e=>{
+}
 
-if(!active)return;
+function deleteCard(index){
 
-photo.style.left=(e.clientX-startX)+"px";
-photo.style.top=(e.clientY-startY)+"px";
+cards.splice(index,1);
 
-});
+localStorage.setItem(
+"briefsdandog_book",
+JSON.stringify(cards)
+);
 
-document.addEventListener("pointerup",()=>{
-active=false;
-});
+renderCards();
 
-function home(){
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
+}
+
+function clearBook(){
+
+if(confirm("名刺帳を全削除しますか？")){
+
+localStorage.removeItem("briefsdandog_book");
+
+cards=[];
+
+renderCards();
+
+}
+
 }
 
 </script>
