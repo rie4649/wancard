@@ -3,304 +3,364 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WAN CARD</title>
+<title>BRIEFSDAN-DOG</title>
 
 <style>
 body{
-font-family:sans-serif;
-background:#f7f2ff;
-text-align:center;
-padding:14px;
-color:#333;
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#050505;
+  color:white;
+  text-align:center;
 }
-h1{
-font-size:36px;
-margin:8px 0 4px;
-color:#5b2b00;
+.app{
+  max-width:430px;
+  margin:auto;
+  padding:18px;
 }
-.subtitle{font-size:15px;color:#8a5a44;margin-bottom:15px}
-.box{
-max-width:560px;
-margin:0 auto 18px;
-background:white;
-border-radius:24px;
-padding:16px;
-box-shadow:0 6px 16px rgba(0,0,0,.12);
+.logo{
+  font-size:26px;
+  font-weight:900;
+  letter-spacing:2px;
+  margin:18px 0 6px;
 }
-input,select{
-width:92%;
-font-size:16px;
-padding:11px;
-margin:7px 0;
-border-radius:12px;
-border:2px solid #d8c6ff;
-box-sizing:border-box;
+.sub{
+  color:#ccc;
+  font-size:13px;
+  margin-bottom:18px;
 }
-button{
-font-size:18px;
-font-weight:bold;
-padding:12px 24px;
-border:none;
-border-radius:18px;
-background:#8b5cf6;
-color:white;
-margin:8px 4px;
-}
-.small{font-size:14px;color:#777;margin-top:8px}
 
+/* 横長名刺 */
 .card{
-max-width:420px;
-margin:0 auto 20px;
-border-radius:30px;
-padding:18px;
-box-shadow:0 8px 26px rgba(0,0,0,.22);
-border:6px solid #57c7c2;
-background:linear-gradient(180deg,#dffff8,#ffffff);
-position:relative;
-overflow:hidden;
+  width:100%;
+  aspect-ratio:1.75/1;
+  background:#0b0b0b;
+  border:2px solid #fff;
+  border-radius:18px;
+  padding:14px;
+  box-sizing:border-box;
+  box-shadow:0 0 18px rgba(255,255,255,.25);
+  position:relative;
+  overflow:hidden;
+  margin-bottom:16px;
 }
-.card:before{
-content:"💎 🐾 ✨ 🐾 💎";
-position:absolute;
-top:10px;
-left:0;
-width:100%;
-font-size:28px;
-opacity:.2;
+.card-title{
+  font-weight:900;
+  font-size:16px;
+  letter-spacing:2px;
+  margin-bottom:8px;
 }
-.title{
-font-size:26px;
-font-weight:bold;
-color:#007c89;
-margin-bottom:10px;
-position:relative;
-z-index:2;
+.card-body{
+  display:flex;
+  gap:12px;
+  align-items:center;
 }
-.photoFrame{
-width:300px;
-height:300px;
-margin:auto;
-border-radius:30px;
-overflow:hidden;
-border:6px solid #57c7c2;
-background:#eee;
-position:relative;
-z-index:2;
+
+/* 社員証風写真枠 */
+.photo-frame{
+  width:42%;
+  aspect-ratio:1.15/1;
+  background:#222;
+  border:4px solid white;
+  border-radius:14px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 0 10px rgba(255,255,255,.35);
 }
-#dogPhoto{
-width:100%;
-height:100%;
-object-fit:cover;
-object-position:center center;
+.photo-frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform-origin:center center;
+}
+.dog-placeholder{
+  font-size:48px;
+  margin-top:22px;
+}
+
+/* 覆面 */
+.mask-overlay{
+  position:absolute;
+  inset:8px;
+  border:8px solid #ff7ac8;
+  border-radius:45% 45% 35% 35%;
+  pointer-events:none;
+  box-shadow:0 0 8px rgba(0,0,0,.8);
+}
+.mask-pink{border-color:#ff7ac8;}
+.mask-white{border-color:#fff;}
+.mask-blue{border-color:#7ddcff;}
+
+.initial{
+  position:absolute;
+  top:7px;
+  left:50%;
+  transform:translateX(-50%);
+  font-weight:900;
+  font-size:26px;
+  color:white;
+  text-shadow:0 0 6px black;
+  z-index:5;
+}
+
+/* 文字情報 */
+.info{
+  flex:1;
+  text-align:left;
+  font-size:13px;
+  line-height:1.7;
 }
 .name{
-font-size:42px;
-font-weight:bold;
-color:#005f66;
-margin-top:12px;
-position:relative;
-z-index:2;
+  font-size:22px;
+  font-weight:900;
+  color:#ff7ac8;
 }
-.info,.job{
-font-size:17px;
-line-height:1.6;
-color:#007c89;
-font-weight:bold;
-position:relative;
-z-index:2;
+.qr{
+  position:absolute;
+  right:14px;
+  bottom:12px;
+  width:46px;
+  height:46px;
+  background:white;
+  color:black;
+  font-size:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:6px;
+  font-weight:bold;
 }
-.message{
-display:inline-block;
-background:white;
-border-radius:18px;
-padding:9px 14px;
-margin-top:10px;
-font-weight:bold;
-color:#007c89;
-position:relative;
-z-index:2;
+
+/* ボタン */
+.btn{
+  width:100%;
+  background:#141414;
+  border:2px solid #fff;
+  border-radius:16px;
+  padding:14px;
+  margin:8px 0;
+  font-size:16px;
+  font-weight:bold;
+  color:white;
 }
-#instaBtn{
-display:none;
-background:#e1306c;
-color:white;
-text-decoration:none;
-font-weight:bold;
-border-radius:999px;
-padding:10px 18px;
-margin:12px auto;
-width:fit-content;
-position:relative;
-z-index:2;
+.create{
+  background:linear-gradient(135deg,#ff7ac8,#7ddcff);
+  color:#000;
+  border:none;
 }
-#qrBox{display:none;position:relative;z-index:2;margin-top:8px}
-#qrImage{
-width:110px;
-height:110px;
-border:3px solid #57c7c2;
-border-radius:12px;
-background:white;
+
+/* 入力欄 */
+.panel{
+  background:#111;
+  border:1px solid #333;
+  border-radius:16px;
+  padding:14px;
+  margin-top:15px;
+  text-align:left;
 }
-.actionBox{
-max-width:420px;
-margin:0 auto 20px;
-background:white;
-border-radius:24px;
-padding:14px;
-box-shadow:0 6px 16px rgba(0,0,0,.12);
+label{
+  display:block;
+  font-size:13px;
+  margin-top:10px;
+  color:#ddd;
 }
-.friendBox{
-background:#f6edff;
-border-radius:18px;
-padding:12px;
-font-size:15px;
-line-height:1.8;
+input, textarea, select{
+  width:100%;
+  box-sizing:border-box;
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  margin-top:5px;
+  font-size:15px;
+}
+textarea{
+  resize:none;
+  height:60px;
+}
+.hidden{
+  display:none;
+}
+.small{
+  font-size:12px;
+  color:#aaa;
+}
+
+/* 写真調整ボタン */
+.adjust{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:8px;
+  margin-top:8px;
+}
+.adjust button{
+  padding:10px;
+  border:none;
+  border-radius:10px;
+  font-weight:bold;
 }
 </style>
 </head>
 
 <body>
 
-<h1>🐾 WAN CARD</h1>
-<div class="subtitle">うちの子プロフィール名刺</div>
+<div class="app">
 
-<div class="box">
+  <div class="logo">BRIEFSDAN-DOG</div>
+  <div class="sub">覆面レスラー犬の横長名刺メーカー</div>
 
-<div class="small">🐶 名前</div>
-<input id="nameInput" placeholder="例：ぽむ">
+  <div class="card" id="card">
+    <div class="card-title">BRIEFSDAN-DOG</div>
 
-<div class="small">🎂 誕生日</div>
-<input id="birthdayInput" placeholder="例：2021.05.10">
+    <div class="card-body">
+      <div class="photo-frame">
+        <img id="dogPhoto" class="hidden">
+        <div id="dogIcon" class="dog-placeholder">🐶</div>
 
-<div class="small">👑 肩書き</div>
-<select id="jobInput">
-<option value="Chief Snack Officer<br>おやつ最高責任者">Chief Snack Officer｜おやつ最高責任者</option>
-<option value="Super Model<br>モデル犬認定証">Super Model｜モデル犬認定証</option>
-<option value="Princess Member<br>お姫様認定証">Princess Member｜お姫様認定証</option>
-<option value="Security Manager<br>玄関警備主任">Security Manager｜玄関警備主任</option>
-<option value="Sleeping Champion<br>昼寝世界王者">Sleeping Champion｜昼寝世界王者</option>
-</select>
+        <div id="maskOverlay" class="mask-overlay mask-pink"></div>
+        <div id="cardInitial" class="initial">C</div>
+      </div>
 
-<div class="small">⭐ 特徴</div>
-<select id="featureInput">
-<option>おやつ大好き</option>
-<option>人懐っこい</option>
-<option>甘えん坊</option>
-<option>お散歩大好き</option>
-<option>モデル犬</option>
-<option>お昼寝大好き</option>
-</select>
+      <div class="info">
+        <div id="cardName" class="name">CHA CHA</div>
+        <div>🎂 <span id="cardBirthday">2016.05.31</span></div>
+        <div>💬 <span id="cardMessage">おやつは別腹です</span></div>
+        <div>📷 <span id="cardInsta">@chacha_dog</span></div>
+      </div>
+    </div>
 
-<div class="small">💬 一言</div>
-<input id="messageInput" placeholder="例：お友達募集中🐶">
+    <div class="qr">QR</div>
+  </div>
 
-<div class="small">📸 Instagram</div>
-<input id="instaInput" placeholder="例：pocha1005">
+  <button class="btn create" onclick="showCreate()">＋ 名刺を作る</button>
+  <button class="btn">💳 マイカード</button>
+  <button class="btn">📸 QRコード読み取り</button>
+  <button class="btn">👥 名刺帳</button>
 
-<div class="small">📷 写真を選んでね</div>
-<input type="file" id="photoInput" accept="image/*">
+  <div id="createPanel" class="panel hidden">
 
-<div class="small">写真の横位置</div>
-<input type="range" id="posX" min="0" max="100" value="50">
+    <label>📷 写真</label>
+    <input type="file" accept="image/*" onchange="loadPhoto(event)">
 
-<div class="small">写真の縦位置</div>
-<input type="range" id="posY" min="0" max="100" value="50">
+    <label>🎭 覆面カラー</label>
+    <select id="maskColor" oninput="updateCard()">
+      <option value="pink">ピンク</option>
+      <option value="white">白</option>
+      <option value="blue">ブルー</option>
+    </select>
 
-<button onclick="makeCard()">✨ 名刺を作る</button>
-</div>
+    <label>🔤 イニシャル</label>
+    <input id="initialInput" value="C" maxlength="2" oninput="updateCard()">
 
-<div id="card" class="card">
-<div class="title">💎 TIFFANY MEMBER</div>
+    <label>🐶 名前</label>
+    <input id="nameInput" value="CHA CHA" oninput="updateCard()">
 
-<div class="photoFrame">
-<img id="dogPhoto" src="https://placehold.co/300x300?text=WAN">
-</div>
+    <label>🎂 誕生日</label>
+    <input id="birthdayInput" value="2016.05.31" oninput="updateCard()">
 
-<div id="cardName" class="name">POMU</div>
+    <label>💬 一言</label>
+    <textarea id="messageInput" oninput="updateCard()">おやつは別腹です</textarea>
 
-<div id="cardInfo" class="info">
-🎂 Birthday：ひみつ<br>
-⭐ 特徴：おやつ大好き
-</div>
+    <label>📷 Instagram</label>
+    <input id="instaInput" value="@chacha_dog" oninput="updateCard()">
 
-<div id="cardJob" class="job">
-Chief Snack Officer<br>
-おやつ最高責任者
-</div>
+    <label>🔍 写真サイズ</label>
+    <input id="photoScale" type="range" min="0.6" max="2.5" step="0.1" value="1" oninput="updatePhoto()">
 
-<div id="cardMessage" class="message">
-お友達募集中🐶
-</div>
+    <label>📍 写真位置調整</label>
+    <div class="adjust">
+      <div></div>
+      <button onclick="movePhoto(0,-10)">↑</button>
+      <div></div>
 
-<a id="instaBtn" target="_blank">📸 Instagramを見る</a>
+      <button onclick="movePhoto(-10,0)">←</button>
+      <button onclick="resetPhoto()">中央</button>
+      <button onclick="movePhoto(10,0)">→</button>
 
-<div id="qrBox">
-<div class="small">QRコードで簡単交換</div>
-<img id="qrImage">
-</div>
-</div>
+      <div></div>
+      <button onclick="movePhoto(0,10)">↓</button>
+      <div></div>
+    </div>
 
-<div class="actionBox">
-<button onclick="alert('次のバージョンで、自分の名刺帳に保存できるようにするよ🐶')">💾 自分の名刺として保存</button>
-<button onclick="alert('次のバージョンでQR読み取りを作るよ📷')">📷 QRコード読み取り</button>
+    <div class="small">写真は拡大・縮小・上下左右に動かせるよ</div>
 
-<h3>📒 名刺交換したお友達</h3>
-<div class="friendBox">
-まだ交換した名刺はありません🐾<br>
-ここにお友達のWAN CARDが保存されます
-</div>
+  </div>
+
 </div>
 
 <script>
-const dogPhoto=document.getElementById("dogPhoto");
+let photoX = 0;
+let photoY = 0;
 
-document.getElementById("photoInput").addEventListener("change",function(e){
- const file=e.target.files[0];
- if(file){
-   const reader=new FileReader();
-   reader.onload=function(ev){
-     dogPhoto.src=ev.target.result;
-   };
-   reader.readAsDataURL(file);
- }
-});
-
-function updatePos(){
- dogPhoto.style.objectPosition=
- document.getElementById("posX").value+"% "+
- document.getElementById("posY").value+"%";
+function showCreate(){
+  document.getElementById("createPanel").classList.toggle("hidden");
 }
-document.getElementById("posX").addEventListener("input",updatePos);
-document.getElementById("posY").addEventListener("input",updatePos);
 
-function makeCard(){
- const name=document.getElementById("nameInput").value.trim();
- const birthday=document.getElementById("birthdayInput").value.trim();
- const job=document.getElementById("jobInput").value;
- const feature=document.getElementById("featureInput").value;
- const message=document.getElementById("messageInput").value.trim();
- const insta=document.getElementById("instaInput").value.trim();
+function updateCard(){
+  const initial = document.getElementById("initialInput").value || "C";
+  const name = document.getElementById("nameInput").value || "CHA CHA";
+  const birthday = document.getElementById("birthdayInput").value || "2016.05.31";
+  const message = document.getElementById("messageInput").value || "おやつは別腹です";
+  const insta = document.getElementById("instaInput").value || "@chacha_dog";
+  const color = document.getElementById("maskColor").value;
 
- if(name) document.getElementById("cardName").innerHTML=name;
+  document.getElementById("cardInitial").textContent = initial;
+  document.getElementById("cardName").textContent = name;
+  document.getElementById("cardBirthday").textContent = birthday;
+  document.getElementById("cardMessage").textContent = message;
+  document.getElementById("cardInsta").textContent = insta;
 
- document.getElementById("cardInfo").innerHTML=
- "🎂 Birthday："+(birthday || "ひみつ")+"<br>⭐ 特徴："+feature;
+  const mask = document.getElementById("maskOverlay");
+  const nameEl = document.getElementById("cardName");
 
- document.getElementById("cardJob").innerHTML=job;
+  mask.className = "mask-overlay";
+  nameEl.style.color = "#ff7ac8";
 
- if(message) document.getElementById("cardMessage").innerHTML=message;
+  if(color === "pink"){
+    mask.classList.add("mask-pink");
+    nameEl.style.color = "#ff7ac8";
+  }
+  if(color === "white"){
+    mask.classList.add("mask-white");
+    nameEl.style.color = "#ffffff";
+  }
+  if(color === "blue"){
+    mask.classList.add("mask-blue");
+    nameEl.style.color = "#7ddcff";
+  }
+}
 
- if(insta){
-   let url=insta;
-   if(!url.startsWith("http")){
-     url="https://www.instagram.com/"+insta.replace("@","");
-   }
-   document.getElementById("instaBtn").href=url;
-   document.getElementById("instaBtn").style.display="block";
-   document.getElementById("qrImage").src=
-   "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data="+encodeURIComponent(url);
-   document.getElementById("qrBox").style.display="block";
- }
+function loadPhoto(event){
+  const file = event.target.files[0];
+  if(!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const img = document.getElementById("dogPhoto");
+    img.src = e.target.result;
+    img.classList.remove("hidden");
+    document.getElementById("dogIcon").classList.add("hidden");
+    updatePhoto();
+  };
+  reader.readAsDataURL(file);
+}
+
+function updatePhoto(){
+  const img = document.getElementById("dogPhoto");
+  const scale = document.getElementById("photoScale").value;
+  img.style.transform = `translate(${photoX}px, ${photoY}px) scale(${scale})`;
+}
+
+function movePhoto(x,y){
+  photoX += x;
+  photoY += y;
+  updatePhoto();
+}
+
+function resetPhoto(){
+  photoX = 0;
+  photoY = 0;
+  document.getElementById("photoScale").value = 1;
+  updatePhoto();
 }
 </script>
 
