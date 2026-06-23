@@ -8,231 +8,213 @@
 <style>
 body{
   margin:0;
-  font-family:Arial, sans-serif;
-  background:#030303;
-  color:#f7d77a;
+  font-family:Arial,sans-serif;
+  background:radial-gradient(circle at top,#1b1b1b,#000 65%);
+  color:#d8b85a;
   text-align:center;
 }
-.app{
-  max-width:430px;
-  margin:auto;
-  padding:18px;
-}
+.app{max-width:430px;margin:auto;padding:18px}
 .logo{
-  font-size:28px;
+  font-size:25px;
   font-weight:900;
   letter-spacing:3px;
-  margin-top:20px;
-  color:#f7d77a;
+  margin:20px 0 6px;
 }
-.sub{
-  color:#e8c86a;
-  font-size:14px;
-  margin:8px 0 20px;
-}
+.sub{font-size:14px;color:#c9a94a;margin-bottom:16px}
 
-/* VIP名刺 */
 .card{
   width:100%;
   aspect-ratio:1.75/1;
-  background:linear-gradient(135deg,#050505,#171717,#050505);
-  border:2px solid #f7d77a;
-  border-radius:20px;
+  background:linear-gradient(135deg,#080808,#181818,#050505);
+  border:2px solid #d8b85a;
+  border-radius:22px;
   padding:14px;
   box-sizing:border-box;
-  box-shadow:0 0 22px rgba(247,215,122,.45);
   position:relative;
+  box-shadow:0 0 25px rgba(216,184,90,.5), inset 0 0 20px rgba(216,184,90,.12);
   overflow:hidden;
-  margin-bottom:16px;
+}
+.card::before{
+  content:"";
+  position:absolute;
+  inset:8px;
+  border:1px solid rgba(216,184,90,.35);
+  border-radius:17px;
 }
 .card-title{
-  font-size:17px;
   font-weight:900;
+  font-size:17px;
   letter-spacing:2px;
   margin-bottom:8px;
-  color:#f7d77a;
 }
 .vip{
   position:absolute;
-  top:10px;
-  right:14px;
+  right:18px;
+  top:12px;
   font-size:10px;
-  color:#f7d77a;
 }
 .card-body{
   display:flex;
   gap:12px;
   align-items:center;
-}
-
-/* 社員証風写真枠 */
-.photo-frame{
-  width:42%;
-  aspect-ratio:1.15/1;
-  background:#222;
-  border:4px solid #f7d77a;
-  border-radius:14px;
   position:relative;
+  z-index:2;
+}
+.photo-frame{
+  width:43%;
+  aspect-ratio:1.15/1;
+  background:#111;
+  border:3px solid #d8b85a;
+  border-radius:16px;
   overflow:hidden;
-  box-shadow:0 0 14px rgba(247,215,122,.55);
+  position:relative;
+  box-shadow:0 0 15px rgba(216,184,90,.6);
 }
 .photo-frame img{
   width:100%;
   height:100%;
   object-fit:cover;
-  transform-origin:center center;
+  transform-origin:center;
 }
-.dog-placeholder{
+.placeholder{
   font-size:48px;
   margin-top:22px;
 }
-
-/* 覆面 */
-.mask-overlay{
+.mask-svg{
   position:absolute;
-  inset:8px;
-  border:8px solid #ff6fbd;
-  border-radius:45% 45% 35% 35%;
+  inset:0;
+  width:100%;
+  height:100%;
   pointer-events:none;
-  box-shadow:0 0 8px rgba(0,0,0,.8);
+  z-index:4;
 }
-.mask-pink{border-color:#ff6fbd;}
-.mask-white{border-color:#fff;}
-.mask-blue{border-color:#67cfff;}
-
 .initial{
   position:absolute;
   top:7px;
   left:50%;
   transform:translateX(-50%);
+  color:white;
+  font-size:27px;
   font-weight:900;
-  font-size:26px;
-  color:#fff;
-  text-shadow:0 0 6px #000;
   z-index:5;
+  text-shadow:0 0 6px #000;
 }
-
-/* 情報 */
 .info{
   flex:1;
   text-align:left;
   font-size:13px;
   line-height:1.7;
-  color:#f7d77a;
 }
 .name{
-  font-size:23px;
+  font-size:24px;
   font-weight:900;
-  color:#f7d77a;
 }
-.insta-link{
-  color:#f7d77a;
-  text-decoration:none;
-  font-weight:bold;
-}
+a{color:#d8b85a;text-decoration:none;font-weight:bold}
 .qr{
   position:absolute;
-  right:14px;
-  bottom:12px;
+  right:16px;
+  bottom:14px;
   width:48px;
   height:48px;
-  background:#f7d77a;
+  background:#d8b85a;
   color:#000;
-  font-size:10px;
+  border-radius:9px;
   display:flex;
   align-items:center;
   justify-content:center;
-  border-radius:8px;
-  font-weight:bold;
+  font-weight:900;
+  font-size:10px;
+  z-index:3;
 }
-
-/* ボタン */
 .btn{
   width:100%;
-  background:#111;
-  border:2px solid #f7d77a;
-  border-radius:16px;
-  padding:14px;
-  margin:8px 0;
+  margin:9px 0;
+  padding:15px;
+  border-radius:18px;
+  border:2px solid #d8b85a;
+  background:#101010;
+  color:#d8b85a;
   font-size:16px;
-  font-weight:bold;
-  color:#f7d77a;
+  font-weight:900;
 }
-.create{
-  background:linear-gradient(135deg,#f7d77a,#fff1b0,#c9972b);
+.create,.done{
+  background:linear-gradient(135deg,#d8b85a,#fff2a8,#a87820);
   color:#000;
   border:none;
 }
-
-/* 入力欄 */
 .panel{
-  background:#111;
-  border:1px solid #5c4a19;
-  border-radius:16px;
+  margin:14px 0;
   padding:14px;
-  margin:12px 0;
+  background:#0c0c0c;
+  border:1px solid #5e4b19;
+  border-radius:18px;
   text-align:left;
 }
-label{
-  display:block;
-  font-size:13px;
-  margin-top:10px;
-  color:#f7d77a;
-}
-input, textarea, select{
+label{display:block;margin-top:10px;font-size:13px}
+input,textarea,select{
   width:100%;
   box-sizing:border-box;
-  padding:11px;
-  border-radius:10px;
-  border:none;
   margin-top:5px;
+  padding:11px;
+  border:none;
+  border-radius:10px;
   font-size:15px;
 }
-textarea{
-  resize:none;
-  height:58px;
-}
-.hidden{display:none;}
-.small{
-  font-size:12px;
-  color:#d8bd70;
-  margin-top:8px;
-}
-
-/* 写真調整 */
+textarea{height:56px;resize:none}
 .adjust{
   display:grid;
   grid-template-columns:1fr 1fr 1fr;
   gap:8px;
-  margin-top:8px;
 }
 .adjust button{
   padding:11px;
   border:none;
   border-radius:10px;
-  font-weight:bold;
-  background:#f7d77a;
-  color:#000;
+  background:#d8b85a;
+  font-weight:900;
 }
+.hidden{display:none}
+.list-card{
+  background:#111;
+  border:1px solid #d8b85a;
+  border-radius:14px;
+  padding:10px;
+  margin:8px 0;
+}
+.small{font-size:12px;color:#bfa75f}
 </style>
 </head>
 
 <body>
-
 <div class="app">
 
   <div class="logo">BREAFSDANDOG</div>
   <div class="sub">BREAFSDANDOG名刺作成</div>
 
-  <div class="card" id="card">
-    <div class="vip">VIP DOG CARD</div>
+  <div class="card">
+    <div class="vip">VIP CARD</div>
     <div class="card-title">BRIEFSDAN-DOG</div>
 
     <div class="card-body">
       <div class="photo-frame">
         <img id="dogPhoto" class="hidden">
-        <div id="dogIcon" class="dog-placeholder">🐶</div>
-        <div id="maskOverlay" class="mask-overlay mask-pink"></div>
+        <div id="dogIcon" class="placeholder">🐶</div>
+
+        <svg class="mask-svg" viewBox="0 0 200 170">
+          <path id="maskShape"
+            d="M100 15
+            C45 15 25 55 28 95
+            C32 145 70 160 100 160
+            C130 160 168 145 172 95
+            C175 55 155 15 100 15Z"
+            fill="rgba(255,105,190,.72)"
+            stroke="white"
+            stroke-width="5"/>
+          <path d="M45 78 C65 58 85 64 90 83 C72 92 58 94 45 78Z" fill="white"/>
+          <path d="M155 78 C135 58 115 64 110 83 C128 92 142 94 155 78Z" fill="white"/>
+          <path d="M92 95 L100 83 L108 95 L100 103Z" fill="white"/>
+        </svg>
+
         <div id="cardInitial" class="initial">C</div>
       </div>
 
@@ -240,7 +222,7 @@ textarea{
         <div id="cardName" class="name">CHA CHA</div>
         <div>🎂 <span id="cardBirthday">2022.05.31</span></div>
         <div>💬 <span id="cardMessage">おやつは別腹です</span></div>
-        <div>📷 <a id="instaLink" class="insta-link" href="https://instagram.com/chacha_dog" target="_blank">@chacha_dog</a></div>
+        <div>📷 <a id="instaLink" href="https://instagram.com/chacha_dog" target="_blank">@chacha_dog</a></div>
       </div>
     </div>
 
@@ -250,29 +232,18 @@ textarea{
   <button class="btn create" onclick="showCreate()">＋ 名刺を作る</button>
 
   <div id="createPanel" class="panel hidden">
-
     <label>📷 写真</label>
     <input type="file" accept="image/*" onchange="loadPhoto(event)">
 
     <label>🔍 写真サイズ</label>
-    <input id="photoScale" type="range" min="0.6" max="2.5" step="0.1" value="1" oninput="updatePhoto()">
+    <input id="photoScale" type="range" min="0.6" max="2.8" step="0.1" value="1" oninput="updatePhoto()">
 
-    <label>📍 写真位置調整</label>
+    <label>📍 写真位置</label>
     <div class="adjust">
-      <div></div>
-      <button onclick="movePhoto(0,-10)">↑</button>
-      <div></div>
-
-      <button onclick="movePhoto(-10,0)">←</button>
-      <button onclick="resetPhoto()">中央</button>
-      <button onclick="movePhoto(10,0)">→</button>
-
-      <div></div>
-      <button onclick="movePhoto(0,10)">↓</button>
-      <div></div>
+      <div></div><button onclick="movePhoto(0,-10)">↑</button><div></div>
+      <button onclick="movePhoto(-10,0)">←</button><button onclick="resetPhoto()">中央</button><button onclick="movePhoto(10,0)">→</button>
+      <div></div><button onclick="movePhoto(0,10)">↓</button><div></div>
     </div>
-
-    <div class="small">写真を先に合わせてから、下の文字を入力してね。</div>
 
     <label>🎭 覆面カラー</label>
     <select id="maskColor" oninput="updateCard()">
@@ -296,57 +267,58 @@ textarea{
     <label>📷 Instagram</label>
     <input id="instaInput" value="@chacha_dog" oninput="updateCard()">
 
+    <button class="btn done" onclick="saveCard()">決定して保存</button>
+    <div class="small">決定するとマイカードに入るよ</div>
   </div>
 
-  <button class="btn">💳 マイカード</button>
+  <button class="btn" onclick="showMyCards()">💳 マイカード</button>
+  <div id="myCards" class="hidden"></div>
+
   <button class="btn">📸 QRコード読み取り</button>
   <button class="btn">👥 名刺帳</button>
 
 </div>
 
 <script>
-let photoX = 0;
-let photoY = 0;
+let photoX=0, photoY=0, photoData="";
 
 function showCreate(){
   document.getElementById("createPanel").classList.toggle("hidden");
 }
 
 function updateCard(){
-  const initial = document.getElementById("initialInput").value || "C";
-  const name = document.getElementById("nameInput").value || "CHA CHA";
-  const birthday = document.getElementById("birthdayInput").value || "2022.05.31";
-  const message = document.getElementById("messageInput").value || "おやつは別腹です";
-  let insta = document.getElementById("instaInput").value || "@chacha_dog";
-  const color = document.getElementById("maskColor").value;
+  const initial=document.getElementById("initialInput").value||"C";
+  const name=document.getElementById("nameInput").value||"CHA CHA";
+  const birthday=document.getElementById("birthdayInput").value||"2022.05.31";
+  const message=document.getElementById("messageInput").value||"おやつは別腹です";
+  let insta=document.getElementById("instaInput").value||"@chacha_dog";
+  const color=document.getElementById("maskColor").value;
 
-  if(!insta.startsWith("@")) insta = "@" + insta;
+  if(!insta.startsWith("@")) insta="@"+insta;
 
-  document.getElementById("cardInitial").textContent = initial;
-  document.getElementById("cardName").textContent = name;
-  document.getElementById("cardBirthday").textContent = birthday;
-  document.getElementById("cardMessage").textContent = message;
+  document.getElementById("cardInitial").textContent=initial;
+  document.getElementById("cardName").textContent=name;
+  document.getElementById("cardBirthday").textContent=birthday;
+  document.getElementById("cardMessage").textContent=message;
 
-  const instaLink = document.getElementById("instaLink");
-  instaLink.textContent = insta;
-  instaLink.href = "https://instagram.com/" + insta.replace("@","");
+  const link=document.getElementById("instaLink");
+  link.textContent=insta;
+  link.href="https://instagram.com/"+insta.replace("@","");
 
-  const mask = document.getElementById("maskOverlay");
-  mask.className = "mask-overlay";
-
-  if(color === "pink") mask.classList.add("mask-pink");
-  if(color === "white") mask.classList.add("mask-white");
-  if(color === "blue") mask.classList.add("mask-blue");
+  const mask=document.getElementById("maskShape");
+  if(color==="pink") mask.setAttribute("fill","rgba(255,105,190,.72)");
+  if(color==="white") mask.setAttribute("fill","rgba(255,255,255,.72)");
+  if(color==="blue") mask.setAttribute("fill","rgba(80,190,255,.72)");
 }
 
 function loadPhoto(event){
-  const file = event.target.files[0];
-  if(!file) return;
-
-  const reader = new FileReader();
-  reader.onload = function(e){
-    const img = document.getElementById("dogPhoto");
-    img.src = e.target.result;
+  const file=event.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(e){
+    photoData=e.target.result;
+    const img=document.getElementById("dogPhoto");
+    img.src=photoData;
     img.classList.remove("hidden");
     document.getElementById("dogIcon").classList.add("hidden");
     updatePhoto();
@@ -355,22 +327,54 @@ function loadPhoto(event){
 }
 
 function updatePhoto(){
-  const img = document.getElementById("dogPhoto");
-  const scale = document.getElementById("photoScale").value;
-  img.style.transform = `translate(${photoX}px, ${photoY}px) scale(${scale})`;
+  const img=document.getElementById("dogPhoto");
+  const scale=document.getElementById("photoScale").value;
+  img.style.transform=`translate(${photoX}px,${photoY}px) scale(${scale})`;
 }
 
 function movePhoto(x,y){
-  photoX += x;
-  photoY += y;
+  photoX+=x;
+  photoY+=y;
   updatePhoto();
 }
 
 function resetPhoto(){
-  photoX = 0;
-  photoY = 0;
-  document.getElementById("photoScale").value = 1;
+  photoX=0; photoY=0;
+  document.getElementById("photoScale").value=1;
   updatePhoto();
+}
+
+function saveCard(){
+  updateCard();
+  const cards=JSON.parse(localStorage.getItem("briefCards")||"[]");
+  cards.push({
+    name:document.getElementById("nameInput").value,
+    birthday:document.getElementById("birthdayInput").value,
+    message:document.getElementById("messageInput").value,
+    insta:document.getElementById("instaInput").value
+  });
+  localStorage.setItem("briefCards",JSON.stringify(cards));
+  alert("マイカードに保存したよ！");
+}
+
+function showMyCards(){
+  const box=document.getElementById("myCards");
+  const cards=JSON.parse(localStorage.getItem("briefCards")||"[]");
+  box.classList.toggle("hidden");
+  box.innerHTML="";
+  if(cards.length===0){
+    box.innerHTML="<div class='list-card'>まだカードがありません</div>";
+    return;
+  }
+  cards.forEach(c=>{
+    box.innerHTML+=`
+      <div class="list-card">
+        <b>${c.name}</b><br>
+        🎂 ${c.birthday}<br>
+        💬 ${c.message}<br>
+        📷 ${c.insta}
+      </div>`;
+  });
 }
 </script>
 
