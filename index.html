@@ -3,72 +3,75 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BREAFSDANDOG名刺作成</title>
+<title>BRIEFSDAN-DOG</title>
 
 <style>
+:root{
+  --main:#ff4fa3;
+  --soft:#ffb3d7;
+}
 body{
   margin:0;
   font-family:Arial,sans-serif;
-  background:radial-gradient(circle at top,#1b1b1b,#000 65%);
-  color:#d8b85a;
+  background:#050505;
+  color:white;
   text-align:center;
 }
-.app{max-width:430px;margin:auto;padding:18px}
+.app{
+  max-width:430px;
+  margin:auto;
+  padding:18px;
+}
 .logo{
+  color:var(--main);
   font-size:25px;
   font-weight:900;
-  letter-spacing:3px;
-  margin:20px 0 6px;
+  letter-spacing:2px;
+  margin:18px 0 6px;
 }
-.sub{font-size:14px;color:#c9a94a;margin-bottom:16px}
+.sub{
+  color:#aaa;
+  font-size:13px;
+  margin-bottom:16px;
+}
 
+/* 横長名刺 */
 .card{
   width:100%;
-  aspect-ratio:1.75/1;
-  background:linear-gradient(135deg,#080808,#181818,#050505);
-  border:2px solid #d8b85a;
+  aspect-ratio:1.78/1;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,79,163,.22), transparent 35%),
+    linear-gradient(135deg,#111,#050505);
+  border:2px solid var(--main);
   border-radius:22px;
-  padding:14px;
+  box-shadow:0 0 24px rgba(255,79,163,.45);
   box-sizing:border-box;
+  padding:14px;
   position:relative;
-  box-shadow:0 0 25px rgba(216,184,90,.5), inset 0 0 20px rgba(216,184,90,.12);
   overflow:hidden;
 }
-.card::before{
-  content:"";
-  position:absolute;
-  inset:8px;
-  border:1px solid rgba(216,184,90,.35);
-  border-radius:17px;
-}
 .card-title{
-  font-weight:900;
+  color:var(--main);
   font-size:17px;
+  font-weight:900;
   letter-spacing:2px;
+  text-align:left;
   margin-bottom:8px;
-}
-.vip{
-  position:absolute;
-  right:18px;
-  top:12px;
-  font-size:10px;
 }
 .card-body{
   display:flex;
   gap:12px;
   align-items:center;
-  position:relative;
-  z-index:2;
 }
 .photo-frame{
   width:43%;
   aspect-ratio:1.15/1;
-  background:#111;
-  border:3px solid #d8b85a;
-  border-radius:16px;
+  border:3px solid var(--main);
+  border-radius:18px;
+  background:#151515;
   overflow:hidden;
   position:relative;
-  box-shadow:0 0 15px rgba(216,184,90,.6);
+  box-shadow:0 0 14px rgba(255,79,163,.55);
 }
 .photo-frame img{
   width:100%;
@@ -78,160 +81,144 @@ body{
 }
 .placeholder{
   font-size:48px;
-  margin-top:22px;
+  margin-top:25px;
 }
-.mask-svg{
+
+/* 仮の覆面マーク */
+.mask{
   position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
+  inset:12px 18px 18px;
+  border:7px solid var(--main);
+  border-radius:48% 48% 40% 40%;
   pointer-events:none;
-  z-index:4;
+  box-shadow:0 0 8px #000;
 }
 .initial{
   position:absolute;
-  top:7px;
+  top:8px;
   left:50%;
   transform:translateX(-50%);
-  color:white;
-  font-size:27px;
+  font-size:26px;
   font-weight:900;
-  z-index:5;
+  color:white;
   text-shadow:0 0 6px #000;
 }
+
 .info{
   flex:1;
   text-align:left;
   font-size:13px;
-  line-height:1.7;
+  line-height:1.75;
 }
 .name{
+  color:var(--main);
   font-size:24px;
   font-weight:900;
+  margin-bottom:4px;
 }
-a{color:#d8b85a;text-decoration:none;font-weight:bold}
+.insta{
+  color:var(--main);
+  text-decoration:none;
+  font-weight:bold;
+}
 .qr{
   position:absolute;
-  right:16px;
-  bottom:14px;
-  width:48px;
-  height:48px;
-  background:#d8b85a;
-  color:#000;
-  border-radius:9px;
+  right:14px;
+  bottom:12px;
+  width:50px;
+  height:50px;
+  background:white;
+  color:#111;
+  border:3px solid var(--main);
+  border-radius:10px;
   display:flex;
   align-items:center;
   justify-content:center;
   font-weight:900;
-  font-size:10px;
-  z-index:3;
+  font-size:11px;
 }
-.btn{
-  width:100%;
-  margin:9px 0;
-  padding:15px;
-  border-radius:18px;
-  border:2px solid #d8b85a;
-  background:#101010;
-  color:#d8b85a;
-  font-size:16px;
-  font-weight:900;
-}
-.create,.done{
-  background:linear-gradient(135deg,#d8b85a,#fff2a8,#a87820);
-  color:#000;
-  border:none;
-}
+
+/* 入力 */
 .panel{
-  margin:14px 0;
+  margin-top:16px;
+  background:#111;
+  border:1px solid #333;
+  border-radius:20px;
   padding:14px;
-  background:#0c0c0c;
-  border:1px solid #5e4b19;
-  border-radius:18px;
   text-align:left;
 }
-label{display:block;margin-top:10px;font-size:13px}
+label{
+  display:block;
+  margin-top:11px;
+  font-size:13px;
+  color:#ddd;
+}
 input,textarea,select{
   width:100%;
   box-sizing:border-box;
   margin-top:5px;
   padding:11px;
-  border:none;
-  border-radius:10px;
+  border:0;
+  border-radius:12px;
   font-size:15px;
 }
-textarea{height:56px;resize:none}
+textarea{
+  height:58px;
+  resize:none;
+}
 .adjust{
   display:grid;
   grid-template-columns:1fr 1fr 1fr;
   gap:8px;
+  margin-top:8px;
 }
-.adjust button{
-  padding:11px;
-  border:none;
-  border-radius:10px;
-  background:#d8b85a;
+.adjust button,.mainbtn{
+  border:0;
+  border-radius:12px;
+  padding:12px;
   font-weight:900;
+  background:var(--main);
+  color:white;
 }
-.hidden{display:none}
-.list-card{
-  background:#111;
-  border:1px solid #d8b85a;
-  border-radius:14px;
-  padding:10px;
-  margin:8px 0;
+.mainbtn{
+  width:100%;
+  margin-top:16px;
+  font-size:16px;
 }
-.small{font-size:12px;color:#bfa75f}
+.hidden{display:none;}
 </style>
 </head>
 
 <body>
 <div class="app">
 
-  <div class="logo">BREAFSDANDOG</div>
-  <div class="sub">BREAFSDANDOG名刺作成</div>
+  <div class="logo">BRIEFSDAN-DOG</div>
+  <div class="sub">VIP DOG CARD 名刺作成</div>
 
   <div class="card">
-    <div class="vip">VIP CARD</div>
     <div class="card-title">BRIEFSDAN-DOG</div>
 
     <div class="card-body">
       <div class="photo-frame">
         <img id="dogPhoto" class="hidden">
         <div id="dogIcon" class="placeholder">🐶</div>
-
-        <svg class="mask-svg" viewBox="0 0 200 170">
-          <path id="maskShape"
-            d="M100 15
-            C45 15 25 55 28 95
-            C32 145 70 160 100 160
-            C130 160 168 145 172 95
-            C175 55 155 15 100 15Z"
-            fill="rgba(255,105,190,.72)"
-            stroke="white"
-            stroke-width="5"/>
-          <path d="M45 78 C65 58 85 64 90 83 C72 92 58 94 45 78Z" fill="white"/>
-          <path d="M155 78 C135 58 115 64 110 83 C128 92 142 94 155 78Z" fill="white"/>
-          <path d="M92 95 L100 83 L108 95 L100 103Z" fill="white"/>
-        </svg>
-
+        <div class="mask"></div>
         <div id="cardInitial" class="initial">C</div>
       </div>
 
       <div class="info">
         <div id="cardName" class="name">CHA CHA</div>
         <div>🎂 <span id="cardBirthday">2022.05.31</span></div>
-        <div>💬 <span id="cardMessage">おやつは別腹です</span></div>
-        <div>📷 <a id="instaLink" href="https://instagram.com/chacha_dog" target="_blank">@chacha_dog</a></div>
+        <div>💬 <span id="cardMessage">おやつは別腹です！</span></div>
+        <div>📷 <a id="instaLink" class="insta" href="https://instagram.com/chacha_dog" target="_blank">@chacha_dog</a></div>
       </div>
     </div>
 
     <div class="qr">QR</div>
   </div>
 
-  <button class="btn create" onclick="showCreate()">＋ 名刺を作る</button>
+  <div class="panel">
 
-  <div id="createPanel" class="panel hidden">
     <label>📷 写真</label>
     <input type="file" accept="image/*" onchange="loadPhoto(event)">
 
@@ -241,12 +228,14 @@ textarea{height:56px;resize:none}
     <label>📍 写真位置</label>
     <div class="adjust">
       <div></div><button onclick="movePhoto(0,-10)">↑</button><div></div>
-      <button onclick="movePhoto(-10,0)">←</button><button onclick="resetPhoto()">中央</button><button onclick="movePhoto(10,0)">→</button>
+      <button onclick="movePhoto(-10,0)">←</button>
+      <button onclick="resetPhoto()">中央</button>
+      <button onclick="movePhoto(10,0)">→</button>
       <div></div><button onclick="movePhoto(0,10)">↓</button><div></div>
     </div>
 
-    <label>🎭 覆面カラー</label>
-    <select id="maskColor" oninput="updateCard()">
+    <label>🎭 カラー</label>
+    <select id="themeColor" oninput="changeTheme()">
       <option value="pink">ピンク</option>
       <option value="white">白</option>
       <option value="blue">ブルー</option>
@@ -262,63 +251,65 @@ textarea{height:56px;resize:none}
     <input id="birthdayInput" value="2022.05.31" oninput="updateCard()">
 
     <label>💬 一言</label>
-    <textarea id="messageInput" oninput="updateCard()">おやつは別腹です</textarea>
+    <textarea id="messageInput" oninput="updateCard()">おやつは別腹です！</textarea>
 
     <label>📷 Instagram</label>
     <input id="instaInput" value="@chacha_dog" oninput="updateCard()">
 
-    <button class="btn done" onclick="saveCard()">決定して保存</button>
-    <div class="small">決定するとマイカードに入るよ</div>
+    <button class="mainbtn" onclick="updateCard()">🐾 名刺を作成する</button>
   </div>
-
-  <button class="btn" onclick="showMyCards()">💳 マイカード</button>
-  <div id="myCards" class="hidden"></div>
-
-  <button class="btn">📸 QRコード読み取り</button>
-  <button class="btn">👥 名刺帳</button>
 
 </div>
 
 <script>
-let photoX=0, photoY=0, photoData="";
-
-function showCreate(){
-  document.getElementById("createPanel").classList.toggle("hidden");
-}
+let photoX = 0;
+let photoY = 0;
 
 function updateCard(){
-  const initial=document.getElementById("initialInput").value||"C";
-  const name=document.getElementById("nameInput").value||"CHA CHA";
-  const birthday=document.getElementById("birthdayInput").value||"2022.05.31";
-  const message=document.getElementById("messageInput").value||"おやつは別腹です";
-  let insta=document.getElementById("instaInput").value||"@chacha_dog";
-  const color=document.getElementById("maskColor").value;
+  const initial = document.getElementById("initialInput").value || "C";
+  const name = document.getElementById("nameInput").value || "CHA CHA";
+  const birthday = document.getElementById("birthdayInput").value || "2022.05.31";
+  const message = document.getElementById("messageInput").value || "おやつは別腹です！";
+  let insta = document.getElementById("instaInput").value || "@chacha_dog";
 
-  if(!insta.startsWith("@")) insta="@"+insta;
+  if(!insta.startsWith("@")) insta = "@" + insta;
 
-  document.getElementById("cardInitial").textContent=initial;
-  document.getElementById("cardName").textContent=name;
-  document.getElementById("cardBirthday").textContent=birthday;
-  document.getElementById("cardMessage").textContent=message;
+  document.getElementById("cardInitial").textContent = initial;
+  document.getElementById("cardName").textContent = name;
+  document.getElementById("cardBirthday").textContent = birthday;
+  document.getElementById("cardMessage").textContent = message;
 
-  const link=document.getElementById("instaLink");
-  link.textContent=insta;
-  link.href="https://instagram.com/"+insta.replace("@","");
+  const link = document.getElementById("instaLink");
+  link.textContent = insta;
+  link.href = "https://instagram.com/" + insta.replace("@","");
+}
 
-  const mask=document.getElementById("maskShape");
-  if(color==="pink") mask.setAttribute("fill","rgba(255,105,190,.72)");
-  if(color==="white") mask.setAttribute("fill","rgba(255,255,255,.72)");
-  if(color==="blue") mask.setAttribute("fill","rgba(80,190,255,.72)");
+function changeTheme(){
+  const color = document.getElementById("themeColor").value;
+  const root = document.documentElement;
+
+  if(color === "pink"){
+    root.style.setProperty("--main","#ff4fa3");
+    root.style.setProperty("--soft","#ffb3d7");
+  }
+  if(color === "white"){
+    root.style.setProperty("--main","#ffffff");
+    root.style.setProperty("--soft","#dddddd");
+  }
+  if(color === "blue"){
+    root.style.setProperty("--main","#35bfff");
+    root.style.setProperty("--soft","#9ce2ff");
+  }
 }
 
 function loadPhoto(event){
-  const file=event.target.files[0];
-  if(!file)return;
-  const reader=new FileReader();
-  reader.onload=function(e){
-    photoData=e.target.result;
-    const img=document.getElementById("dogPhoto");
-    img.src=photoData;
+  const file = event.target.files[0];
+  if(!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const img = document.getElementById("dogPhoto");
+    img.src = e.target.result;
     img.classList.remove("hidden");
     document.getElementById("dogIcon").classList.add("hidden");
     updatePhoto();
@@ -327,54 +318,22 @@ function loadPhoto(event){
 }
 
 function updatePhoto(){
-  const img=document.getElementById("dogPhoto");
-  const scale=document.getElementById("photoScale").value;
-  img.style.transform=`translate(${photoX}px,${photoY}px) scale(${scale})`;
+  const img = document.getElementById("dogPhoto");
+  const scale = document.getElementById("photoScale").value;
+  img.style.transform = `translate(${photoX}px, ${photoY}px) scale(${scale})`;
 }
 
 function movePhoto(x,y){
-  photoX+=x;
-  photoY+=y;
+  photoX += x;
+  photoY += y;
   updatePhoto();
 }
 
 function resetPhoto(){
-  photoX=0; photoY=0;
-  document.getElementById("photoScale").value=1;
+  photoX = 0;
+  photoY = 0;
+  document.getElementById("photoScale").value = 1;
   updatePhoto();
-}
-
-function saveCard(){
-  updateCard();
-  const cards=JSON.parse(localStorage.getItem("briefCards")||"[]");
-  cards.push({
-    name:document.getElementById("nameInput").value,
-    birthday:document.getElementById("birthdayInput").value,
-    message:document.getElementById("messageInput").value,
-    insta:document.getElementById("instaInput").value
-  });
-  localStorage.setItem("briefCards",JSON.stringify(cards));
-  alert("マイカードに保存したよ！");
-}
-
-function showMyCards(){
-  const box=document.getElementById("myCards");
-  const cards=JSON.parse(localStorage.getItem("briefCards")||"[]");
-  box.classList.toggle("hidden");
-  box.innerHTML="";
-  if(cards.length===0){
-    box.innerHTML="<div class='list-card'>まだカードがありません</div>";
-    return;
-  }
-  cards.forEach(c=>{
-    box.innerHTML+=`
-      <div class="list-card">
-        <b>${c.name}</b><br>
-        🎂 ${c.birthday}<br>
-        💬 ${c.message}<br>
-        📷 ${c.insta}
-      </div>`;
-  });
 }
 </script>
 
