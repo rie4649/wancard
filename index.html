@@ -1,794 +1,327 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
-:root{
---pink:#ff4fa3;
---dark:#0b0b0b;
---card:#151515;
-}
-
-body{
-background:#000;
-color:#fff;
-padding-bottom:90px;
-}
-
-header{
-background:linear-gradient(135deg,#000,var(--pink));
-padding:18px;
-text-align:center;
-font-size:24px;
-font-weight:bold;
-letter-spacing:2px;
-box-shadow:0 0 25px rgba(255,79,163,.6);
-}
-
-.page{
-padding:15px;
-max-width:1000px;
-margin:auto;
-}
-
-.vip-card{
-background:linear-gradient(145deg,#111,#1f1f1f);
-border:3px solid var(--pink);
-border-radius:25px;
-overflow:hidden;
-box-shadow:
-0 0 15px var(--pink),
-0 0 40px rgba(255,79,163,.3);
-margin-bottom:20px;
-}
-
-.card-top{
-display:flex;
-min-height:250px;
-}
-
-.photo-area{
-width:45%;
-position:relative;
-background:#111;
-overflow:hidden;
-}
-
-.photo-area img{
-position:absolute;
-left:20px;
-top:20px;
-width:180px;
-height:180px;
-object-fit:cover;
-border-radius:20px;
-border:4px solid var(--pink);
-}
-
-.info-area{
-width:55%;
-padding:20px;
-position:relative;
-}
-
-.initial{
-font-size:70px;
-font-weight:bold;
-color:var(--pink);
-line-height:1;
-}
-
-.name{
-font-size:28px;
-font-weight:bold;
-margin-top:10px;
-}
-
-.birth{
-margin-top:10px;
-opacity:.8;
-}
-
-.message{
-margin-top:15px;
-font-size:15px;
-line-height:1.6;
-}
-
-.instagram{
-display:inline-block;
-margin-top:15px;
-padding:8px 14px;
-background:var(--pink);
-border-radius:20px;
-text-decoration:none;
-color:white;
-font-weight:bold;
-}
-
-.qr-box{
-margin-top:15px;
-width:100px;
-height:100px;
-background:white;
-border-radius:12px;
-display:flex;
-align-items:center;
-justify-content:center;
-color:black;
-font-weight:bold;
-}
-
-.control{
-background:#151515;
-border:2px solid #333;
-padding:15px;
-border-radius:20px;
-margin-bottom:15px;
-}
-
-.control input,
-.control textarea{
-width:100%;
-padding:12px;
-margin-top:8px;
-margin-bottom:12px;
-border:none;
-border-radius:12px;
-background:#222;
-color:white;
-}
-
-.control button{
-width:100%;
-padding:14px;
-border:none;
-border-radius:15px;
-background:var(--pink);
-color:white;
-font-size:16px;
-font-weight:bold;
-}
-
-.bottom-nav{
-position:fixed;
-bottom:0;
-left:0;
-right:0;
-height:75px;
-background:#000;
-border-top:2px solid var(--pink);
-display:flex;
-justify-content:space-around;
-align-items:center;
-z-index:999;
-}
-
-.bottom-nav a{
-color:white;
-text-decoration:none;
-font-size:13px;
-text-align:center;
-}
-
-.bottom-nav span{
-display:block;
-font-size:24px;
-margin-bottom:4px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-gap:15px;
-}
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>BRIEFSDAN-DOG</title>
-<link rel="stylesheet" href="style.css">
-</head>
+<title>BRIEFSDAN-DOG 名刺メーカー</title>
+<style>
+  body {
+    margin: 0;
+    font-family: "Helvetica", "Arial", sans-serif;
+    background: #ffffff;
+    color: #000000;
+  }
 
+  /* 画面切り替え */
+  section {
+    display: none;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  section.active {
+    display: block;
+  }
+
+  /* トップ画面 */
+  #screen-home h1 {
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 1.4;
+    margin-bottom: 40px;
+  }
+
+  button {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 14px 26px;
+    font-size: 16px;
+    border-radius: 8px;
+    margin: 10px;
+    cursor: pointer;
+  }
+
+  /* 名刺作成画面 */
+  #create-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+  }
+
+  /* 名刺プレビュー */
+  #cardPreview {
+    width: 320px;
+    height: 200px;
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dog-img, .mask-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  /* イニシャル（白文字×黒縁×太字） */
+  #initialText {
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    font-weight: 900;
+    color: #ffffff;
+    -webkit-text-stroke: 3px #000000;
+    text-shadow: 0 0 4px rgba(0,0,0,0.5);
+    pointer-events: none;
+  }
+
+  /* 名刺情報 */
+  #infoArea {
+    position: absolute;
+    bottom: 8px;
+    left: 12px;
+    right: 12px;
+    font-size: 12px;
+    text-align: left;
+  }
+
+  /* 操作パネル */
+  #controlPanel {
+    width: 300px;
+    text-align: left;
+  }
+
+  #controlPanel input, #controlPanel textarea {
+    width: 100%;
+    margin: 6px 0;
+    padding: 6px;
+    font-size: 14px;
+  }
+
+</style>
+</head>
 <body>
 
-<header>
-🐶 BRIEFSDAN-DOG
-</header>
+<!-- ① トップ画面 -->
+<section id="screen-home" class="active">
+  <h1>BRIEFSDAN-DOG<br>名刺メーカー</h1>
+  <button id="goCreate">名刺を作る</button>
+  <button id="goBook">名刺手帳を見る</button>
+</section>
 
-<div class="page">
+<!-- ② 名刺作成画面 -->
+<section id="screen-create">
+  <h2>名刺を作る</h2>
 
-<div class="vip-card">
+  <div id="create-container">
 
-<div class="card-top">
+    <!-- プレビュー -->
+    <div id="cardPreview">
+      <img id="dogImg" class="dog-img">
+      <img id="maskImg" class="mask-img" src="mask_pink.png">
+      <div id="initialText"></div>
 
-<div class="photo-area">
-<img id="homePhoto"
-src="https://placehold.jp/300x300.png">
-</div>
+      <div id="infoArea">
+        <div id="nameField">名前：</div>
+        <div id="birthdayField">誕生日：</div>
+        <div id="commentField">一言：</div>
+        <div id="instaField">Instagram：</div>
+      </div>
+    </div>
 
-<div class="info-area">
+    <!-- 操作パネル -->
+    <div id="controlPanel">
+      <label>犬写真アップロード</label>
+      <input type="file" id="dogUpload" accept="image/*">
 
-<div class="initial" id="homeInitial">
-B
-</div>
+      <label>覆面カラー</label>
+      <button data-mask="pink">ピンク</button>
+      <button data-mask="white">白</button>
+      <button data-mask="blue">青</button>
 
-<div class="name" id="homeName">
-VIP DOG
-</div>
+      <label>イニシャル</label>
+      <input type="text" id="initialInput" maxlength="2">
 
-<div class="birth" id="homeBirth">
-2026.01.01
-</div>
+      <label>名前</label>
+      <input type="text" id="nameInput">
 
-<div class="message" id="homeMessage">
-世界に一枚だけのVIP DOG CARD
-</div>
+      <label>誕生日</label>
+      <input type="text" id="birthdayInput">
 
-<a class="instagram"
-id="homeInstagram"
-href="#"
-target="_blank">
-Instagram
-</a>
+      <label>一言</label>
+      <textarea id="commentInput"></textarea>
 
-<div class="qr-box">
-QR
-</div>
+      <label>Instagram</label>
+      <input type="text" id="instaInput">
 
-</div>
+      <button id="goPreview">プレビューへ進む</button>
+    </div>
 
-</div>
-
-</div>
-
-<h2 style="margin-bottom:15px;">
-⭐ お気に入りカード
-</h2>
-
-<div class="grid" id="favoriteArea">
-</div>
-
-</div>
-
-<div class="bottom-nav">
-
-<a href="index.html">
-<span>🏠</span>
-ホーム
-</a>
-
-<a href="create.html">
-<span>➕</span>
-作る
-</a>
-
-<a href="mycard.html">
-<span>💳</span>
-マイカード
-</a>
-
-<a href="scan.html">
-<span>📷</span>
-QR読取
-</a>
-
-<a href="book.html">
-<span>📖</span>
-名刺帳
-</a>
-
-</div>
+  </div>
+</section>
 
 <script>
-
-const card=
-JSON.parse(localStorage.getItem("briefsdandog"));
-
-if(card){
-
-document.getElementById("homeName").innerText=
-card.name || "VIP DOG";
-
-document.getElementById("homeBirth").innerText=
-card.birth || "";
-
-document.getElementById("homeMessage").innerText=
-card.message || "";
-
-document.getElementById("homeInitial").innerText=
-(card.name || "B").charAt(0);
-
-document.getElementById("homePhoto").src=
-card.photo || "https://placehold.jp/300x300.png";
-
-document.getElementById("homeInstagram").href=
-card.instagram || "#";
-
+/* 画面切り替え */
+function showScreen(id) {
+  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
 }
 
-</script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>マイカード</title>
-<link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-<header>
-💳 マイカード
-</header>
-
-<div class="page">
-
-<div id="cardArea"></div>
-
-</div>
-
-<div class="bottom-nav">
-
-<a href="index.html">
-<span>🏠</span>
-ホーム
-</a>
-
-<a href="create.html">
-<span>➕</span>
-作る
-</a>
-
-<a href="mycard.html">
-<span>💳</span>
-マイカード
-</a>
-
-<a href="scan.html">
-<span>📷</span>
-QR読取
-</a>
-
-<a href="book.html">
-<span>📖</span>
-名刺帳
-</a>
-
-</div>
-
-<script>
-
-const card =
-JSON.parse(localStorage.getItem("briefsdandog"));
-
-const area =
-document.getElementById("cardArea");
-
-if(card){
-
-area.innerHTML = `
-
-<div class="vip-card">
-
-<div class="card-top">
-
-<div class="photo-area">
-
-<img
-src="${card.photo}"
-style="
-left:${card.left};
-top:${card.top};
-width:${card.width};
-height:${card.height};
-">
-
-</div>
-
-<div class="info-area">
-
-<div class="initial">
-${card.name ? card.name.charAt(0) : "B"}
-</div>
-
-<div class="name">
-${card.name || "VIP DOG"}
-</div>
-
-<div class="birth">
-${card.birth || ""}
-</div>
-
-<div class="message">
-${card.message || ""}
-</div>
-
-<a
-class="instagram"
-href="${card.instagram || '#'}"
-target="_blank">
-Instagram
-</a>
-
-<div class="qr-box">
-QR
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<button
-onclick="deleteCard()"
-style="
-width:100%;
-padding:15px;
-border:none;
-border-radius:15px;
-background:#ff4fa3;
-color:white;
-font-size:16px;
-font-weight:bold;
-margin-top:15px;
-">
-🗑 カード削除
-</button>
-
-`;
-
-}else{
-
-area.innerHTML=`
-
-<div class="control">
-
-<h2 style="text-align:center;">
-カードがありません
-</h2>
-
-<p style="
-text-align:center;
-margin-top:10px;
-opacity:.8;">
-まずはカードを作成してください
-</p>
-
-</div>
-
-`;
-
-}
-
-function deleteCard(){
-
-if(confirm("カードを削除しますか？")){
-
-localStorage.removeItem("briefsdandog");
-
-location.reload();
-
-}
-
-}
-
-</script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>QR読取</title>
-<link rel="stylesheet" href="style.css">
-
-<script src="https://unpkg.com/html5-qrcode"></script>
-
-</head>
-
-<body>
-
-<header>
-📷 QR読取
-</header>
-
-<div class="page">
-
-<div class="control">
-
-<h2 style="text-align:center;">
-QRコードを読み取る
-</h2>
-
-<div id="reader"
-style="
-width:100%;
-margin-top:15px;
-border-radius:20px;
-overflow:hidden;">
-</div>
-
-<div id="result"
-style="
-margin-top:15px;
-text-align:center;
-font-size:18px;
-font-weight:bold;">
-</div>
-
-</div>
-
-</div>
-
-<div class="bottom-nav">
-
-<a href="index.html">
-<span>🏠</span>
-ホーム
-</a>
-
-<a href="create.html">
-<span>➕</span>
-作る
-</a>
-
-<a href="mycard.html">
-<span>💳</span>
-マイカード
-</a>
-
-<a href="scan.html">
-<span>📷</span>
-QR読取
-</a>
-
-<a href="book.html">
-<span>📖</span>
-名刺帳
-</a>
-
-</div>
-
-<script>
-
-function success(decodedText){
-
-document.getElementById("result")
-.innerHTML=
-"読み取り成功<br><br>"+decodedText;
-
-}
-
-const qr=new Html5QrcodeScanner(
-"reader",
-{
-fps:10,
-qrbox:250
-}
-);
-
-qr.render(success);
-
-</script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>名刺帳</title>
-<link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-<header>
-📖 名刺帳
-</header>
-
-<div class="page">
-
-<div style="
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:15px;">
-
-<h2>保存カード</h2>
-
-<button onclick="clearBook()"
-style="
-width:auto;
-padding:10px 15px;
-border:none;
-border-radius:10px;
-background:#ff4fa3;
-color:white;">
-全削除
-</button>
-
-</div>
-
-<div id="bookArea" class="grid"></div>
-
-</div>
-
-<div class="bottom-nav">
-
-<a href="index.html">
-<span>🏠</span>
-ホーム
-</a>
-
-<a href="create.html">
-<span>➕</span>
-作る
-</a>
-
-<a href="mycard.html">
-<span>💳</span>
-マイカード
-</a>
-
-<a href="scan.html">
-<span>📷</span>
-QR読取
-</a>
-
-<a href="book.html">
-<span>📖</span>
-名刺帳
-</a>
-
-</div>
-
-<script>
-
-let cards=
-JSON.parse(localStorage.getItem("briefsdandog_book")) || [];
-
-const area=
-document.getElementById("bookArea");
-
-renderCards();
-
-function renderCards(){
-
-if(cards.length===0){
-
-area.innerHTML=`
-
-<div class="control">
-
-<h3 style="text-align:center;">
-名刺帳は空です
-</h3>
-
-<p style="
-text-align:center;
-margin-top:10px;">
-QR交換したカードが表示されます
-</p>
-
-</div>
-
-`;
-
-return;
-
-}
-
-area.innerHTML="";
-
-cards.forEach((card,index)=>{
-
-area.innerHTML += `
-
-<div class="vip-card">
-
-<div class="card-top">
-
-<div class="photo-area">
-
-<img
-src="${card.photo || 'https://placehold.jp/300x300.png'}"
-style="
-left:20px;
-top:20px;
-width:150px;
-height:150px;">
-
-</div>
-
-<div class="info-area">
-
-<div class="initial">
-${card.name ? card.name.charAt(0) : "B"}
-</div>
-
-<div class="name">
-${card.name || "VIP DOG"}
-</div>
-
-<div class="birth">
-${card.birth || ""}
-</div>
-
-<div class="message">
-${card.message || ""}
-</div>
-
-<a
-class="instagram"
-href="${card.instagram || '#'}"
-target="_blank">
-Instagram
-</a>
-
-</div>
-
-</div>
-
-<button
-onclick="deleteCard(${index})"
-style="
-width:100%;
-padding:12px;
-border:none;
-background:#ff4fa3;
-color:white;">
-削除
-</button>
-
-</div>
-
-`;
-
+document.getElementById("goCreate").onclick = () => showScreen("screen-create");
+
+/* 犬写真アップロード */
+document.getElementById("dogUpload").addEventListener("change", e => {
+  const
+<section id="screen-preview" style="display:none;">
+  <div id="finalCard"></div>
+  <button id="saveCard">保存</button>
+  <button id="goQR">QRコード表示</button>
+  <button id="backToCreate">戻る</button>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+/* QRコード画面へ進む */
+document.getElementById("goQR").onclick = () => {
+
+  // 名刺データをURL化（今回は簡易的にJSONをエンコード）
+  const cardData = {
+    dog: dogImg.src,
+    mask: maskImg.src,
+    initial: initialInput.value.toUpperCase(),
+    name: nameInput.value,
+    birthday: birthdayInput.value,
+    comment: commentInput.value,
+    insta: instaInput.value
+  };
+
+  const encoded = encodeURIComponent(JSON.stringify(cardData));
+  const url = location.origin + location.pathname + "?card=" + encoded;
+
+  // QRコード生成
+  const qrArea = document.getElementById("qrCode");
+  qrArea.innerHTML = "";
+  new QRCode(qrArea, {
+    text: url,
+    width: 200,
+    height: 200,
+    colorDark: "#000000",
+    colorLight: "#ffffff"
+  });
+
+  showScreen("screen-qr");
+};
+
+/* QR → プレビューに戻る */
+document.getElementById("backToPreview").onclick = () => {
+  showScreen("screen-preview");
+};
+/* URLに名刺データがあれば名刺手帳に保存 */
+window.addEventListener("load", () => {
+  const params = new URLSearchParams(location.search);
+  if (params.has("card")) {
+    const data = JSON.parse(decodeURIComponent(params.get("card")));
+
+    // 既存の手帳データを取得
+    const book = JSON.parse(localStorage.getItem("meishiBook") || "[]");
+
+    // 新しい名刺を追加
+    book.push(data);
+
+    // 保存
+    localStorage.setItem("meishiBook", JSON.stringify(book));
+
+    alert("名刺手帳に保存しました！");
+  }
 });
+/* 名刺手帳を表示 */
+document.getElementById("goBook").onclick = () => {
+  loadBook();
+  showScreen("screen-book");
+};
 
+/* トップへ戻る */
+document.getElementById("backHome").onclick = () => {
+  showScreen("screen-home");
+};
+
+/* 名刺手帳の読み込み */
+function loadBook() {
+  const list = document.getElementById("bookList");
+  list.innerHTML = "";
+
+  const book = JSON.parse(localStorage.getItem("meishiBook") || "[]");
+
+  if (book.length === 0) {
+    list.innerHTML = "<p>まだ名刺がありません</p>";
+    return;
+  }
+
+  book.forEach((card, index) => {
+    const item = document.createElement("div");
+    item.style = `
+      width: 160px;
+      border: 2px solid #000;
+      border-radius: 10px;
+      padding: 10px;
+      margin: 10px auto;
+      background:#fff;
+    `;
+
+    item.innerHTML = `
+      <div style="position:relative; width:100%; height:100px; overflow:hidden;">
+        <img src="${card.dog}" style="
+          position:absolute; top:50%; left:50%;
+          width:100px; height:100px;
+          transform:translate(-50%,-50%);
+          object-fit:cover;
+        ">
+        <img src="${card.mask}" style="
+          position:absolute; top:50%; left:50%;
+          width:100px; height:100px;
+          transform:translate(-50%,-50%);
+          object-fit:cover;
+        ">
+        <div style="
+          position:absolute;
+          top:38%; left:50%;
+          transform:translate(-50%,-50%);
+          font-size:28px;
+          font-weight:900;
+          color:#fff;
+          -webkit-text-stroke:2px #000;
+        ">
+          ${card.initial}
+        </div>
+      </div>
+
+      <p style="margin:6px 0; font-size:14px;">${card.name}</p>
+
+      <button data-del="${index}" style="
+        background:#000; color:#fff; padding:6px 10px;
+        border:none; border-radius:6px; font-size:12px;
+      ">削除</button>
+    `;
+
+    list.appendChild(item);
+  });
+
+  /* 削除ボタン */
+  document.querySelectorAll("[data-del]").forEach(btn => {
+    btn.onclick = () => {
+      const index = btn.getAttribute("data-del");
+      const book = JSON.parse(localStorage.getItem("meishiBook") || "[]");
+      book.splice(index, 1);
+      localStorage.setItem("meishiBook", JSON.stringify(book));
+      loadBook();
+    };
+  });
 }
 
-function deleteCard(index){
-
-cards.splice(index,1);
-
-localStorage.setItem(
-"briefsdandog_book",
-JSON.stringify(cards)
-);
-
-renderCards();
-
-}
-
-function clearBook(){
-
-if(confirm("名刺帳を全削除しますか？")){
-
-localStorage.removeItem("briefsdandog_book");
-
-cards=[];
-
-renderCards();
-
-}
-
-}
-
-</script>
-
-</body>
-</html>
