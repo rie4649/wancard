@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>BRIEFSDAN-DOG 名刺メーカー</title>
+
 <style>
   body {
     margin: 0;
@@ -11,7 +12,6 @@
     color: #000000;
   }
 
-  /* 画面切り替え */
   section {
     display: none;
     padding: 40px 20px;
@@ -21,11 +21,9 @@
     display: block;
   }
 
-  /* トップ画面 */
   #screen-home h1 {
     font-size: 32px;
     font-weight: 900;
-    line-height: 1.4;
     margin-bottom: 40px;
   }
 
@@ -40,7 +38,6 @@
     cursor: pointer;
   }
 
-  /* 名刺作成画面 */
   #create-container {
     display: flex;
     justify-content: center;
@@ -48,7 +45,6 @@
     margin-top: 20px;
   }
 
-  /* 名刺プレビュー */
   #cardPreview {
     width: 320px;
     height: 200px;
@@ -70,7 +66,6 @@
     pointer-events: none;
   }
 
-  /* イニシャル（白文字×黒縁×太字） */
   #initialText {
     position: absolute;
     top: 38%;
@@ -80,11 +75,8 @@
     font-weight: 900;
     color: #ffffff;
     -webkit-text-stroke: 3px #000000;
-    text-shadow: 0 0 4px rgba(0,0,0,0.5);
-    pointer-events: none;
   }
 
-  /* 名刺情報 */
   #infoArea {
     position: absolute;
     bottom: 8px;
@@ -94,7 +86,6 @@
     text-align: left;
   }
 
-  /* 操作パネル */
   #controlPanel {
     width: 300px;
     text-align: left;
@@ -106,9 +97,9 @@
     padding: 6px;
     font-size: 14px;
   }
-
 </style>
 </head>
+
 <body>
 
 <!-- ① トップ画面 -->
@@ -124,7 +115,6 @@
 
   <div id="create-container">
 
-    <!-- プレビュー -->
     <div id="cardPreview">
       <img id="dogImg" class="dog-img">
       <img id="maskImg" class="mask-img" src="mask_pink.png">
@@ -138,7 +128,6 @@
       </div>
     </div>
 
-    <!-- 操作パネル -->
     <div id="controlPanel">
       <label>犬写真アップロード</label>
       <input type="file" id="dogUpload" accept="image/*">
@@ -169,6 +158,31 @@
   </div>
 </section>
 
+<!-- ③ プレビュー画面 -->
+<section id="screen-preview">
+  <h2>プレビュー</h2>
+  <div id="finalCard"></div>
+  <button id="saveCard">保存</button>
+  <button id="goQR">QRコード表示</button>
+  <button id="backToCreate">戻る</button>
+</section>
+
+<!-- ④ QRコード画面 -->
+<section id="screen-qr">
+  <h2>QRコード</h2>
+  <div id="qrCode"></div>
+  <button id="backToPreview">戻る</button>
+</section>
+
+<!-- ⑤ 名刺手帳 -->
+<section id="screen-book">
+  <h2>名刺手帳</h2>
+  <div id="bookList"></div>
+  <button id="backHome">トップへ戻る</button>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 <script>
 /* 画面切り替え */
 function showScreen(id) {
@@ -180,18 +194,52 @@ document.getElementById("goCreate").onclick = () => showScreen("screen-create");
 
 /* 犬写真アップロード */
 document.getElementById("dogUpload").addEventListener("change", e => {
-  const
-<section id="screen-preview" style="display:none;">
-  <div id="finalCard"></div>
-  <button id="saveCard">保存</button>
-  <button id="goQR">QRコード表示</button>
-  <button id="backToCreate">戻る</button>
-</section>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-/* QRコード画面へ進む */
-document.getElementById("goQR").onclick = () => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    document.getElementById("dogImg").src = reader.result;
+  };
+  reader.readAsDataURL(file);
+});
 
-  // 名刺データをURL化（今回は簡易的にJSONをエンコード）
+/* 覆面カラー切り替え */
+document.querySelectorAll("[data-mask]").forEach(btn => {
+  btn.onclick = () => {
+    const color = btn.getAttribute("data-mask");
+    document.getElementById("maskImg").src = `mask_${color}.png`;
+  };
+});
+
+/* 入力反映 */
+document.getElementById("initialInput").oninput = () => {
+  document.getElementById("initialText").textContent =
+    document.getElementById("initialInput").value.toUpperCase();
+};
+
+document.getElementById("nameInput").oninput = () =>
+  document.getElementById("nameField").textContent = "名前：" + nameInput.value;
+
+document.getElementById("birthdayInput").oninput = () =>
+  document.getElementById("birthdayField").textContent = "誕生日：" + birthdayInput.value;
+
+document.getElementById("commentInput").oninput = () =>
+  document.getElementById("commentField").textContent = "一言：" + commentInput.value;
+
+document.getElementById("instaInput").oninput = () =>
+  document.getElementById("instaField").textContent = "Instagram：" + instaInput.value;
+
+/* プレビューへ */
+document.getElementById("goPreview").onclick = () => {
+  const preview = document.getElementById("cardPreview").cloneNode(true);
+  preview.style.transform = "scale(1.2)";
+  document.getElementById("finalCard").innerHTML = "";
+  document.getElementById("finalCard").appendChild(preview);
+  showScreen("screen-preview");
+};
+
+/* QRコードへ */
+document.getElementById("goQR").onclick = () => {
   const cardData = {
     dog: dogImg.src,
     mask: maskImg.src,
@@ -205,54 +253,28 @@ document.getElementById("goQR").onclick = () => {
   const encoded = encodeURIComponent(JSON.stringify(cardData));
   const url = location.origin + location.pathname + "?card=" + encoded;
 
-  // QRコード生成
   const qrArea = document.getElementById("qrCode");
   qrArea.innerHTML = "";
-  new QRCode(qrArea, {
-    text: url,
-    width: 200,
-    height: 200,
-    colorDark: "#000000",
-    colorLight: "#ffffff"
-  });
+  new QRCode(qrArea, { text: url, width: 200, height: 200 });
 
   showScreen("screen-qr");
 };
 
-/* QR → プレビューに戻る */
-document.getElementById("backToPreview").onclick = () => {
+document.getElementById("backToPreview").onclick = () =>
   showScreen("screen-preview");
-};
-/* URLに名刺データがあれば名刺手帳に保存 */
-window.addEventListener("load", () => {
-  const params = new URLSearchParams(location.search);
-  if (params.has("card")) {
-    const data = JSON.parse(decodeURIComponent(params.get("card")));
 
-    // 既存の手帳データを取得
-    const book = JSON.parse(localStorage.getItem("meishiBook") || "[]");
+document.getElementById("backToCreate").onclick = () =>
+  showScreen("screen-create");
 
-    // 新しい名刺を追加
-    book.push(data);
-
-    // 保存
-    localStorage.setItem("meishiBook", JSON.stringify(book));
-
-    alert("名刺手帳に保存しました！");
-  }
-});
-/* 名刺手帳を表示 */
+/* 名刺手帳 */
 document.getElementById("goBook").onclick = () => {
   loadBook();
   showScreen("screen-book");
 };
 
-/* トップへ戻る */
-document.getElementById("backHome").onclick = () => {
+document.getElementById("backHome").onclick = () =>
   showScreen("screen-home");
-};
 
-/* 名刺手帳の読み込み */
 function loadBook() {
   const list = document.getElementById("bookList");
   list.innerHTML = "";
@@ -277,43 +299,21 @@ function loadBook() {
 
     item.innerHTML = `
       <div style="position:relative; width:100%; height:100px; overflow:hidden;">
-        <img src="${card.dog}" style="
-          position:absolute; top:50%; left:50%;
-          width:100px; height:100px;
-          transform:translate(-50%,-50%);
-          object-fit:cover;
-        ">
-        <img src="${card.mask}" style="
-          position:absolute; top:50%; left:50%;
-          width:100px; height:100px;
-          transform:translate(-50%,-50%);
-          object-fit:cover;
-        ">
-        <div style="
-          position:absolute;
-          top:38%; left:50%;
-          transform:translate(-50%,-50%);
-          font-size:28px;
-          font-weight:900;
-          color:#fff;
-          -webkit-text-stroke:2px #000;
-        ">
+        <img src="${card.dog}" style="position:absolute; top:50%; left:50%; width:100px; height:100px; transform:translate(-50%,-50%); object-fit:cover;">
+        <img src="${card.mask}" style="position:absolute; top:50%; left:50%; width:100px; height:100px; transform:translate(-50%,-50%); object-fit:cover;">
+        <div style="position:absolute; top:38%; left:50%; transform:translate(-50%,-50%); font-size:28px; font-weight:900; color:#fff; -webkit-text-stroke:2px #000;">
           ${card.initial}
         </div>
       </div>
 
       <p style="margin:6px 0; font-size:14px;">${card.name}</p>
 
-      <button data-del="${index}" style="
-        background:#000; color:#fff; padding:6px 10px;
-        border:none; border-radius:6px; font-size:12px;
-      ">削除</button>
+      <button data-del="${index}" style="background:#000; color:#fff; padding:6px 10px; border:none; border-radius:6px; font-size:12px;">削除</button>
     `;
 
     list.appendChild(item);
   });
 
-  /* 削除ボタン */
   document.querySelectorAll("[data-del]").forEach(btn => {
     btn.onclick = () => {
       const index = btn.getAttribute("data-del");
@@ -324,4 +324,7 @@ function loadBook() {
     };
   });
 }
+</script>
 
+</body>
+</html>
