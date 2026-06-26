@@ -6,83 +6,81 @@
   <title>名刺メーカー</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <h1>名刺メーカー</h1>
+<h1>名刺メーカー</h1>
 
-  <!-- プレビュー -->
-  <section class="preview-area">
-    <div id="card" class="card">
+<section class="preview-area">
+  <div id="card" class="card">
 
-      <div class="card-info">
-        <div id="previewName" class="dog-name">名前</div>
-        <div id="previewBirthday" class="birthday">誕生日</div>
-        <div id="previewMessage" class="message">一言</div>
-        <div id="previewInstagram" class="instagram">Instagram</div>
-      </div>
-
-      <div class="photo-frame">
-        <img id="dogPhoto" class="dog-photo" alt="">
-        <img id="maskPhoto" class="mask-photo" src="Copilot_20260624_201334.png" alt="">
-        <div id="maskInitial" class="mask-initial">P</div>
-      </div>
-
+    <div class="card-info">
+      <div id="previewName" class="dog-name">名前</div>
+      <div id="previewBirthday" class="birthday">誕生日</div>
+      <div id="previewMessage" class="message">一言</div>
+      <div id="previewInstagram" class="instagram">Instagram</div>
     </div>
 
-    <button id="saveBtn" class="save-btn">保存</button>
-  </section>
+    <div class="photo-frame">
+      <img id="dogPhoto" class="dog-photo" alt="">
+      <img id="maskPhoto" class="mask-photo" src="pink.png" alt="">
+      <div id="maskInitial" class="mask-initial">P</div>
+    </div>
 
-  <!-- 入力 -->
-  <section class="control-area">
+  </div>
 
-    <label>写真を選ぶ</label>
-    <input type="file" id="photoInput" accept="image/*">
+  <button id="saveBtn">保存</button>
+</section>
 
-    <label>写真 左右</label>
-    <input type="range" id="photoX" min="-180" max="180" value="0">
+<section class="control-area">
 
-    <label>写真 上下</label>
-    <input type="range" id="photoY" min="-180" max="180" value="0">
+  <label>写真を選ぶ</label>
+  <input type="file" id="photoInput" accept="image/*">
 
-    <label>写真 大きさ</label>
-    <input type="range" id="photoScale" min="70" max="220" value="100">
+  <label>写真 左右</label>
+  <input type="range" id="photoX" min="-200" max="200" value="0">
 
-    <label>覆面カラー</label>
-    <select id="maskSelect">
-      <option value="Copilot_20260624_201334.png">ピンク</option>
-      <option value="Copilot_20260624_201549.png">白</option>
-      <option value="Copilot_20260624_201738.png">青</option>
-    </select>
+  <label>写真 上下</label>
+  <input type="range" id="photoY" min="-200" max="200" value="0">
 
-    <label>覆面 左右</label>
-    <input type="range" id="maskX" min="-180" max="180" value="0">
+  <label>写真 大きさ</label>
+  <input type="range" id="photoScale" min="70" max="240" value="100">
 
-    <label>覆面 上下</label>
-    <input type="range" id="maskY" min="-180" max="180" value="0">
+  <label>覆面カラー</label>
+  <select id="maskSelect">
+    <option value="pink.png">ピンク</option>
+    <option value="shiro.png">白</option>
+    <option value="blue.png">青</option>
+  </select>
 
-    <label>覆面 大きさ</label>
-    <input type="range" id="maskScale" min="40" max="200" value="90">
+  <label>覆面 左右</label>
+  <input type="range" id="maskX" min="-200" max="200" value="0">
 
-    <label>名前</label>
-    <input type="text" id="nameInput" placeholder="名前">
+  <label>覆面 上下</label>
+  <input type="range" id="maskY" min="-200" max="200" value="0">
 
-    <label>誕生日</label>
-    <input type="text" id="birthdayInput" placeholder="5月31日">
+  <label>覆面 大きさ</label>
+  <input type="range" id="maskScale" min="60" max="260" value="150">
 
-    <label>一言</label>
-    <input type="text" id="messageInput" placeholder="一言">
+  <label>名前</label>
+  <input type="text" id="nameInput" placeholder="名前">
 
-    <label>Instagram</label>
-    <input type="text" id="instagramInput" placeholder="@instagram">
+  <label>誕生日</label>
+  <input type="text" id="birthdayInput" placeholder="5月31日">
 
-    <label>イニシャル</label>
-    <input type="text" id="initialInput" maxlength="2" placeholder="P">
+  <label>一言</label>
+  <input type="text" id="messageInput" placeholder="一言">
 
-  </section>
+  <label>Instagram</label>
+  <input type="text" id="instagramInput" placeholder="@instagram">
 
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-  <script src="script.js"></script>
+  <label>イニシャル</label>
+  <input type="text" id="initialInput" maxlength="2" placeholder="P">
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
+
