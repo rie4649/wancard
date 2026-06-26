@@ -1,67 +1,159 @@
-const photoInput = document.getElementById("photoInput");
-const dogPhoto = document.getElementById("dogPhoto");
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
 
-const previewName = document.getElementById("previewName");
-const previewBirthday = document.getElementById("previewBirthday");
-const previewMessage = document.getElementById("previewMessage");
-const previewInstagram = document.getElementById("previewInstagram");
-const maskInitial = document.getElementById("maskInitial");
+body{
+    background:#0b0b0b;
+    color:#fff;
+    padding:20px;
+}
 
-const nameInput = document.getElementById("nameInput");
-const birthdayInput = document.getElementById("birthdayInput");
-const messageInput = document.getElementById("messageInput");
-const instagramInput = document.getElementById("instagramInput");
-const initialInput = document.getElementById("initialInput");
+h1{
+    text-align:center;
+    color:#ff4fa3;
+    margin-bottom:25px;
+    font-size:36px;
+}
 
-const maskPhoto = document.getElementById("maskPhoto");
-const maskSelect = document.getElementById("maskSelect");
+.preview-area{
+    max-width:950px;
+    margin:auto;
+}
 
-photoInput.addEventListener("change", function(e){
+.card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#181818;
+    border:5px solid #ff4fa3;
+    border-radius:25px;
+    padding:30px;
+    min-height:430px;
+    box-shadow:0 0 25px rgba(255,79,163,.35);
+}
 
-    const file = e.target.files[0];
+.card-info{
+    width:45%;
+}
 
-    if(!file) return;
+.dog-name{
+    font-size:48px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
 
-    dogPhoto.src = URL.createObjectURL(file);
+.birthday,
+.message,
+.instagram{
+    font-size:24px;
+    margin-bottom:15px;
+}
 
-});
+.photo-frame{
+    position:relative;
+    width:320px;
+    height:380px;
+    border:5px solid #fff;
+    border-radius:20px;
+    overflow:hidden;
+    background:#333;
+}
 
-nameInput.addEventListener("input",()=>{
-    previewName.textContent=nameInput.value;
-});
+.dog-photo{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transform:translate(-50%,-50%);
+}
 
-birthdayInput.addEventListener("input",()=>{
-    previewBirthday.textContent=birthdayInput.value;
-});
+.mask-photo{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:75%;
+    transform:translate(-50%,-50%);
+    pointer-events:none;
+}
 
-messageInput.addEventListener("input",()=>{
-    previewMessage.textContent=messageInput.value;
-});
+.mask-initial{
+    position:absolute;
+    left:50%;
+    top:24%;
+    transform:translateX(-50%);
+    font-size:34px;
+    font-weight:bold;
+    color:#111;
+}
 
-instagramInput.addEventListener("input",()=>{
-    previewInstagram.textContent=instagramInput.value;
-});
+.save-btn{
+    width:100%;
+    margin-top:20px;
+    padding:18px;
+    background:#ff4fa3;
+    color:#fff;
+    border:none;
+    border-radius:15px;
+    font-size:22px;
+    font-weight:bold;
+    cursor:pointer;
+}
 
-initialInput.addEventListener("input",()=>{
-    maskInitial.textContent=initialInput.value.toUpperCase();
-});
+.control-area{
+    max-width:950px;
+    margin:35px auto;
+}
 
-maskSelect.addEventListener("change",()=>{
-    maskPhoto.src=maskSelect.value;
-});
+label{
+    display:block;
+    margin-top:18px;
+    margin-bottom:8px;
+    color:#ffb8d8;
+    font-size:18px;
+}
 
-document.getElementById("saveBtn").addEventListener("click",()=>{
+input,
+select{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+}
 
-    html2canvas(document.getElementById("card")).then(canvas=>{
+input[type=range]{
+    padding:0;
+}
 
-        const link=document.createElement("a");
+@media(max-width:850px){
 
-        link.download="meishi.png";
+.card{
+    flex-direction:column;
+}
 
-        link.href=canvas.toDataURL();
+.card-info{
+    width:100%;
+    margin-bottom:25px;
+}
 
-        link.click();
+.photo-frame{
+    width:260px;
+    height:310px;
+}
 
-    });
+.dog-name{
+    font-size:34px;
+}
 
-});
+.birthday,
+.message,
+.instagram{
+    font-size:18px;
+}
+
+}
