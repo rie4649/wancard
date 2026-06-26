@@ -1,160 +1,140 @@
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body{
-    background:#0b0b0b;
-    color:#fff;
-    padding:20px;
+  background:#0d0d0d;
+  color:#fff;
+  font-family:Arial,sans-serif;
+  padding:20px;
 }
 
 h1{
-    text-align:center;
-    color:#ff4fa3;
-    margin-bottom:25px;
-    font-size:36px;
+  text-align:center;
+  color:#ff4fa3;
+  margin-bottom:20px;
 }
 
-.preview-area{
-    max-width:950px;
-    margin:auto;
+.preview-area,
+.control-area{
+  max-width:900px;
+  margin:auto;
+  background:#181818;
+  border:3px solid #ff4fa3;
+  border-radius:25px;
+  padding:20px;
+  margin-bottom:25px;
 }
 
 .card{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:#181818;
-    border:5px solid #ff4fa3;
-    border-radius:25px;
-    padding:30px;
-    min-height:430px;
-    box-shadow:0 0 25px rgba(255,79,163,.35);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#111;
+  border:6px solid #ff4fa3;
+  border-radius:25px;
+  padding:35px;
 }
 
 .card-info{
-    width:45%;
+  width:45%;
 }
 
 .dog-name{
-    font-size:48px;
-    font-weight:bold;
-    margin-bottom:20px;
+  font-size:50px;
+  font-weight:bold;
 }
 
-.birthday,
-.message,
+.birthday{
+  font-size:24px;
+  margin-top:18px;
+}
+
+.message{
+  font-size:24px;
+  margin-top:18px;
+}
+
 .instagram{
-    font-size:24px;
-    margin-bottom:15px;
+  font-size:24px;
+  margin-top:18px;
 }
 
 .photo-frame{
-    position:relative;
-    width:320px;
-    height:380px;
-    border:5px solid #fff;
-    border-radius:20px;
-    overflow:hidden;
-    background:#333;
+  width:340px;
+  height:340px;
+  border-radius:25px;
+  background:#444;
+  position:relative;
+  overflow:hidden;
 }
 
 .dog-photo{
-    position:absolute;
-    left:50%;
-    top:50%;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transform:translate(-50%,-50%);
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:100%;
+  height:100%;
+  transform:translate(-50%,-50%);
+  object-fit:cover;
+  z-index:1;
 }
 
 .mask-photo{
-    position:absolute;
-    left:50%;
-    top:50%;
-    width:75%;
-    transform:translate(-50%,-50%);
-    pointer-events:none;
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:100%;
+  height:100%;
+  transform:translate(-50%,-50%);
+  object-fit:contain;
+  z-index:20;
+  pointer-events:none;
 }
 
 .mask-initial{
-    position:absolute;
-    left:50%;
-    top:24%;
-    transform:translateX(-50%);
-    font-size:34px;
-    font-weight:bold;
-    color:#111;
+  position:absolute;
+  top:12px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:44px;
+  font-weight:bold;
+  color:#222;
+  z-index:30;
 }
 
-.save-btn{
-    width:100%;
-    margin-top:20px;
-    padding:18px;
-    background:#ff4fa3;
-    color:#fff;
-    border:none;
-    border-radius:15px;
-    font-size:22px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.control-area{
-    max-width:950px;
-    margin:35px auto;
+button{
+  width:100%;
+  padding:18px;
+  margin-top:20px;
+  border:none;
+  border-radius:18px;
+  background:#ff4fa3;
+  color:#fff;
+  font-size:24px;
+  cursor:pointer;
 }
 
 label{
-    display:block;
-    margin-top:18px;
-    margin-bottom:8px;
-    color:#ffb8d8;
-    font-size:18px;
+  display:block;
+  margin-top:18px;
+  font-size:20px;
 }
 
 input,
 select{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:12px;
-    font-size:18px;
+  width:100%;
+  margin-top:8px;
+  padding:10px;
+  border-radius:10px;
+  border:none;
+  font-size:18px;
 }
 
 input[type=range]{
-    padding:0;
+  padding:0;
 }
 
-@media(max-width:850px){
-
-.card{
-    flex-direction:column;
-}
-
-.card-info{
-    width:100%;
-    margin-bottom:25px;
-}
-
-.photo-frame{
-    width:260px;
-    height:310px;
-}
-
-.dog-name{
-    font-size:34px;
-}
-
-.birthday,
-.message,
-.instagram{
-    font-size:18px;
-}
-
-}
 
