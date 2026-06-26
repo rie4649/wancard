@@ -1,1 +1,160 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#0b0b0b;
+    color:#fff;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+    color:#ff4fa3;
+    margin-bottom:25px;
+    font-size:36px;
+}
+
+.preview-area{
+    max-width:950px;
+    margin:auto;
+}
+
+.card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#181818;
+    border:5px solid #ff4fa3;
+    border-radius:25px;
+    padding:30px;
+    min-height:430px;
+    box-shadow:0 0 25px rgba(255,79,163,.35);
+}
+
+.card-info{
+    width:45%;
+}
+
+.dog-name{
+    font-size:48px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.birthday,
+.message,
+.instagram{
+    font-size:24px;
+    margin-bottom:15px;
+}
+
+.photo-frame{
+    position:relative;
+    width:320px;
+    height:380px;
+    border:5px solid #fff;
+    border-radius:20px;
+    overflow:hidden;
+    background:#333;
+}
+
+.dog-photo{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transform:translate(-50%,-50%);
+}
+
+.mask-photo{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:75%;
+    transform:translate(-50%,-50%);
+    pointer-events:none;
+}
+
+.mask-initial{
+    position:absolute;
+    left:50%;
+    top:24%;
+    transform:translateX(-50%);
+    font-size:34px;
+    font-weight:bold;
+    color:#111;
+}
+
+.save-btn{
+    width:100%;
+    margin-top:20px;
+    padding:18px;
+    background:#ff4fa3;
+    color:#fff;
+    border:none;
+    border-radius:15px;
+    font-size:22px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.control-area{
+    max-width:950px;
+    margin:35px auto;
+}
+
+label{
+    display:block;
+    margin-top:18px;
+    margin-bottom:8px;
+    color:#ffb8d8;
+    font-size:18px;
+}
+
+input,
+select{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+}
+
+input[type=range]{
+    padding:0;
+}
+
+@media(max-width:850px){
+
+.card{
+    flex-direction:column;
+}
+
+.card-info{
+    width:100%;
+    margin-bottom:25px;
+}
+
+.photo-frame{
+    width:260px;
+    height:310px;
+}
+
+.dog-name{
+    font-size:34px;
+}
+
+.birthday,
+.message,
+.instagram{
+    font-size:18px;
+}
+
+}
 
