@@ -1,159 +1,101 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
+const photoInput = document.getElementById("photoInput");
+const dogPhoto = document.getElementById("dogPhoto");
+const maskPhoto = document.getElementById("maskPhoto");
+const maskInitial = document.getElementById("maskInitial");
+
+const previewName = document.getElementById("previewName");
+const previewBirthday = document.getElementById("previewBirthday");
+const previewMessage = document.getElementById("previewMessage");
+const previewInstagram = document.getElementById("previewInstagram");
+
+const nameInput = document.getElementById("nameInput");
+const birthdayInput = document.getElementById("birthdayInput");
+const messageInput = document.getElementById("messageInput");
+const instagramInput = document.getElementById("instagramInput");
+const initialInput = document.getElementById("initialInput");
+
+const maskSelect = document.getElementById("maskSelect");
+
+const photoX = document.getElementById("photoX");
+const photoY = document.getElementById("photoY");
+const photoScale = document.getElementById("photoScale");
+
+const maskX = document.getElementById("maskX");
+const maskY = document.getElementById("maskY");
+const maskScale = document.getElementById("maskScale");
+
+photoInput.addEventListener("change", function(){
+    const file = this.files[0];
+    if(!file) return;
+
+    dogPhoto.src = URL.createObjectURL(file);
+    dogPhoto.style.display = "block";
+});
+
+nameInput.addEventListener("input", function(){
+    previewName.textContent = nameInput.value || "名前";
+});
+
+birthdayInput.addEventListener("input", function(){
+    previewBirthday.textContent = birthdayInput.value || "誕生日";
+});
+
+messageInput.addEventListener("input", function(){
+    previewMessage.textContent = messageInput.value || "一言";
+});
+
+instagramInput.addEventListener("input", function(){
+    previewInstagram.textContent = instagramInput.value || "Instagram";
+});
+
+initialInput.addEventListener("input", function(){
+    maskInitial.textContent = (initialInput.value || "P").toUpperCase();
+});
+
+maskSelect.addEventListener("change", function(){
+    maskPhoto.src = maskSelect.value;
+});
+
+function updatePhoto(){
+    const x = photoX.value;
+    const y = photoY.value;
+    const scale = photoScale.value / 100;
+
+    dogPhoto.style.transform =
+        `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(${scale})`;
 }
 
-body{
-    background:#0b0b0b;
-    color:#fff;
-    padding:20px;
+function updateMask(){
+    const x = maskX.value;
+    const y = maskY.value;
+    const scale = maskScale.value / 100;
+
+    maskPhoto.style.transform =
+        `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(${scale})`;
+
+    maskInitial.style.transform =
+        `translate(calc(-50% + ${x}px), calc(-50% + ${y * 0.55}px)) scale(${scale})`;
 }
 
-h1{
-    text-align:center;
-    color:#ff4fa3;
-    margin-bottom:25px;
-    font-size:36px;
-}
+photoX.addEventListener("input", updatePhoto);
+photoY.addEventListener("input", updatePhoto);
+photoScale.addEventListener("input", updatePhoto);
 
-.preview-area{
-    max-width:950px;
-    margin:auto;
-}
+maskX.addEventListener("input", updateMask);
+maskY.addEventListener("input", updateMask);
+maskScale.addEventListener("input", updateMask);
 
-.card{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:#181818;
-    border:5px solid #ff4fa3;
-    border-radius:25px;
-    padding:30px;
-    min-height:430px;
-    box-shadow:0 0 25px rgba(255,79,163,.35);
-}
+document.getElementById("saveBtn").addEventListener("click", function(){
+    html2canvas(document.getElementById("card"), {
+        scale: 3,
+        useCORS: true
+    }).then(function(canvas){
+        const link = document.createElement("a");
+        link.download = "meishi.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+    });
+});
 
-.card-info{
-    width:45%;
-}
-
-.dog-name{
-    font-size:48px;
-    font-weight:bold;
-    margin-bottom:20px;
-}
-
-.birthday,
-.message,
-.instagram{
-    font-size:24px;
-    margin-bottom:15px;
-}
-
-.photo-frame{
-    position:relative;
-    width:320px;
-    height:380px;
-    border:5px solid #fff;
-    border-radius:20px;
-    overflow:hidden;
-    background:#333;
-}
-
-.dog-photo{
-    position:absolute;
-    left:50%;
-    top:50%;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transform:translate(-50%,-50%);
-}
-
-.mask-photo{
-    position:absolute;
-    left:50%;
-    top:50%;
-    width:75%;
-    transform:translate(-50%,-50%);
-    pointer-events:none;
-}
-
-.mask-initial{
-    position:absolute;
-    left:50%;
-    top:24%;
-    transform:translateX(-50%);
-    font-size:34px;
-    font-weight:bold;
-    color:#111;
-}
-
-.save-btn{
-    width:100%;
-    margin-top:20px;
-    padding:18px;
-    background:#ff4fa3;
-    color:#fff;
-    border:none;
-    border-radius:15px;
-    font-size:22px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.control-area{
-    max-width:950px;
-    margin:35px auto;
-}
-
-label{
-    display:block;
-    margin-top:18px;
-    margin-bottom:8px;
-    color:#ffb8d8;
-    font-size:18px;
-}
-
-input,
-select{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:12px;
-    font-size:18px;
-}
-
-input[type=range]{
-    padding:0;
-}
-
-@media(max-width:850px){
-
-.card{
-    flex-direction:column;
-}
-
-.card-info{
-    width:100%;
-    margin-bottom:25px;
-}
-
-.photo-frame{
-    width:260px;
-    height:310px;
-}
-
-.dog-name{
-    font-size:34px;
-}
-
-.birthday,
-.message,
-.instagram{
-    font-size:18px;
-}
-
-}
+updatePhoto();
+updateMask();
