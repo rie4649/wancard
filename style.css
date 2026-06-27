@@ -282,3 +282,20 @@ button{
     text-shadow:0 2px 6px #000;
     pointer-events:none;
 }
+.dog-photo{
+    display:block !important;
+    z-index:1 !important;
+    opacity:1 !important;
+}
+
+.photo-frame{
+    background:#fff !important;
+}
+
+.mask-photo{
+    z-index:2 !important;
+}
+
+.mask-group{
+    z-index:2 !important;
+}
