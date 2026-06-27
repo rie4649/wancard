@@ -256,3 +256,48 @@ button{
 .bottom-info{
   display:none;
 }
+.preview-name{
+  position:absolute;
+  left:12%;
+  top:41%;
+  font-size:34px;
+  color:#d8b35a;
+  font-family:Georgia,serif;
+  font-style:italic;
+  text-shadow:0 3px 5px #000;
+  z-index:5;
+}
+
+.preview-id{
+  position:absolute;
+  right:12%;
+  top:42%;
+  font-size:26px;
+  color:#d8b35a;
+  font-weight:bold;
+  text-shadow:0 3px 5px #000;
+  z-index:5;
+}
+
+.preview-birthday{
+  position:absolute;
+  left:12%;
+  top:62%;
+  color:#f6d27a;
+  font-size:18px;
+  z-index:5;
+}
+
+.preview-instagram{
+  position:absolute;
+  left:12%;
+  top:68%;
+  color:#f6d27a;
+  font-size:18px;
+  z-index:5;
+}
+
+.mask-initial{
+  top:13% !important;
+  font-size:54px !important;
+}
