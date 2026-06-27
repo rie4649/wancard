@@ -36,8 +36,10 @@ const saveBtn = $("saveBtn");
 const card = $("card");
 
 function updatePhoto(){
+  dogPhoto.style.left = "50%";
+  dogPhoto.style.top = "50%";
   dogPhoto.style.transform =
-    `translate(${photoX.value}px, ${photoY.value}px) scale(${photoScale.value / 100})`;
+    `translate(calc(-50% + ${photoX.value}px), calc(-50% + ${photoY.value}px)) scale(${photoScale.value / 100})`;
 }
 
 function updateMask(){
@@ -68,9 +70,11 @@ photoInput.addEventListener("change", function(){
   reader.onload = function(e){
     dogPhoto.src = e.target.result;
     dogPhoto.style.display = "block";
+
     if(photoGuide){
       photoGuide.style.display = "none";
     }
+
     updatePhoto();
   };
 
@@ -99,44 +103,28 @@ birthdayInput.addEventListener("input", updateText);
 messageInput.addEventListener("input", updateText);
 instagramInput.addEventListener("input", updateText);
 
-saveBtn.addEventListener("click", () => {
+saveBtn.addEventListener("click", function(){
+  const savePreview = document.getElementById("savePreview");
+  const saveCardArea = document.getElementById("saveCardArea");
 
-    const savePreview = document.getElementById("savePreview");
-    const saveCardArea = document.getElementById("saveCardArea");
-    const target = document.getElementById("card");
+  saveCardArea.innerHTML = "";
 
-    saveCardArea.innerHTML = "";
+  const clone = card.cloneNode(true);
+  clone.id = "saveCardOnly";
+  saveCardArea.appendChild(clone);
 
-    const clone = target.cloneNode(true);
-    clone.id = "saveCardOnly";
-    saveCardArea.appendChild(clone);
-
-    savePreview.classList.add("show");
-
+  savePreview.classList.add("show");
 });
-    },300);
 
-});
+const savePreview = document.getElementById("savePreview");
+if(savePreview){
+  savePreview.addEventListener("click", function(){
+    savePreview.classList.remove("show");
+    document.getElementById("saveCardArea").innerHTML = "";
+  });
+}
+
 updatePhoto();
 updateMask();
 updateInitial();
 updateText();
-photoInput.addEventListener("change", function(){
-  const file = photoInput.files[0];
-  if(!file) return;
-
-  const reader = new FileReader();
-
-  reader.onload = function(e){
-    dogPhoto.src = e.target.result;
-    dogPhoto.style.display = "block";
-    updatePhoto();
-  };
-
-  reader.readAsDataURL(file);
-});
-
-saveBtn.addEventListener("click", function(){
-  const savePreview = document.getElementById("savePreview");
-  const saveCardArea = document.getElementById("saveCardArea");
- 
