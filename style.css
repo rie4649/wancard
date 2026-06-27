@@ -4,7 +4,7 @@
 
 body{
   margin:0;
-  background:#050505;
+  background:radial-gradient(circle at top,#1b160d,#050505 65%);
   color:#fff;
   font-family:Arial,"Yu Gothic",sans-serif;
 }
@@ -12,59 +12,80 @@ body{
 .app{
   max-width:1200px;
   margin:auto;
-  padding:20px;
+  padding:16px;
 }
 
 h1{
+  margin:8px 0 0;
   text-align:center;
   color:#d8b35a;
-  letter-spacing:4px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:42px;
+  letter-spacing:5px;
+  text-shadow:0 4px 10px #000;
 }
 
-.main-layout{
+.sub{
+  text-align:center;
+  margin:4px 0 18px;
+  color:#f6d27a;
+}
+
+.maker{
   display:grid;
-  grid-template-columns:1.3fr .9fr;
-  gap:20px;
+  grid-template-columns:1.15fr .85fr;
+  gap:18px;
   align-items:start;
 }
 
-.preview-box{
-  background:#111;
+.preview-area{
+  background:#101010;
   border:2px solid #d8b35a;
   border-radius:22px;
-  padding:18px;
+  padding:14px;
+  box-shadow:0 0 24px rgba(216,179,90,.22);
 }
 
-.vip-card{
+.card{
   width:100%;
   aspect-ratio:16/9;
   position:relative;
   overflow:hidden;
   border-radius:28px;
-  background:
-    radial-gradient(circle at center,#2a2110 0%,#070707 55%,#000 100%);
   border:5px solid #d8b35a;
-  box-shadow:0 0 35px rgba(216,179,90,.45);
+  background:
+    radial-gradient(circle at 50% 38%,#332713 0%,#111 42%,#000 100%);
+  box-shadow:0 0 35px rgba(216,179,90,.45), inset 0 0 35px rgba(216,179,90,.18);
 }
 
-.vip-card::before{
-  content:"MEMBERSHIP CARD";
+.card:before{
+  content:"";
+  position:absolute;
+  inset:18px;
+  border:1px solid rgba(246,210,122,.42);
+  border-radius:22px;
+  pointer-events:none;
+}
+
+.card-title{
   position:absolute;
   top:6%;
   left:0;
   width:100%;
   text-align:center;
   color:#d8b35a;
-  font-size:38px;
-  font-weight:900;
-  letter-spacing:5px;
-  text-shadow:0 3px 8px #000;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:40px;
+  font-style:italic;
+  letter-spacing:2px;
+  text-shadow:0 4px 8px #000;
+  z-index:4;
 }
 
-.photo-frame{
+.photo-circle{
   position:absolute;
-  top:22%;
   left:50%;
+  top:22%;
   width:38%;
   aspect-ratio:1/1;
   transform:translateX(-50%);
@@ -82,8 +103,8 @@ h1{
   width:100%;
   height:100%;
   object-fit:cover;
-  transform:translate(-50%,-50%) scale(1.2);
   display:none;
+  transform:translate(-50%,-50%) scale(1.2);
   z-index:1;
 }
 
@@ -94,18 +115,20 @@ h1{
   align-items:center;
   justify-content:center;
   color:#777;
-  font-size:24px;
+  font-weight:bold;
+  letter-spacing:2px;
   z-index:0;
 }
 
-.mask-group{
+.mask-wrap{
   position:absolute;
   inset:0;
   z-index:2;
+  transform-origin:center;
   pointer-events:none;
 }
 
-.mask-photo{
+.mask-img{
   position:absolute;
   left:50%;
   top:50%;
@@ -115,98 +138,67 @@ h1{
   transform:translate(-50%,-50%);
 }
 
-.mask-initial{
+.initial-text{
   position:absolute;
   left:50%;
-  top:18%;
-  transform:translateX(-50%);
-  font-size:58px;
+  top:25%;
+  transform:translate(-50%,-50%);
+  font-size:44px;
   font-weight:900;
-  color:#f7f7f7;
-  text-shadow:
-    0 3px 0 #8b8b8b,
-    0 6px 6px #000,
-    0 0 12px rgba(255,255,255,.8);
+  color:#f8f8f8;
+  line-height:1;
+  text-shadow:0 3px 0 #888,0 6px 8px #000,0 0 10px rgba(255,255,255,.8);
   z-index:3;
 }
 
-.preview-name{
+.card-name{
   position:absolute;
-  left:8%;
-  top:38%;
+  left:7%;
+  top:40%;
   color:#d8b35a;
-  font-family:Georgia,serif;
+  font-family:Georgia,"Times New Roman",serif;
   font-size:44px;
   font-style:italic;
+  font-weight:700;
   text-shadow:0 4px 8px #000;
+  z-index:4;
 }
 
-.preview-id{
+.card-id{
   position:absolute;
-  right:8%;
-  top:39%;
+  right:7%;
+  top:41%;
   color:#d8b35a;
   font-size:30px;
   font-weight:900;
   text-shadow:0 4px 8px #000;
+  z-index:4;
 }
 
-.preview-birthday{
+.card-birthday{
   position:absolute;
-  left:9%;
+  left:8%;
   bottom:16%;
   color:#f6d27a;
   font-size:20px;
+  z-index:4;
 }
 
-.preview-instagram{
+.card-instagram{
   position:absolute;
-  right:9%;
+  right:8%;
   bottom:16%;
   color:#f6d27a;
   font-size:20px;
+  z-index:4;
 }
 
-.control-box{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-
-.panel{
-  background:#151515;
-  border:2px solid #d8b35a;
-  border-radius:18px;
-  padding:16px;
-}
-
-.panel h2{
-  margin-top:0;
-  color:#d8b35a;
-}
-
-label{
-  display:block;
-  margin-top:12px;
-  color:#f6d27a;
-  font-weight:bold;
-}
-
-input,select,button{
+.save-btn{
   width:100%;
-  margin-top:6px;
-  padding:10px;
+  margin-top:14px;
+  padding:14px;
   border:0;
-  border-radius:10px;
-  font-size:16px;
-}
-
-input[type=range]{
-  padding:0;
-}
-
-button{
-  margin-top:16px;
+  border-radius:14px;
   background:linear-gradient(#f8dc88,#b88726);
   color:#111;
   font-size:20px;
@@ -214,88 +206,89 @@ button{
   cursor:pointer;
 }
 
+.controls{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.box{
+  background:#151515;
+  border:2px solid #d8b35a;
+  border-radius:18px;
+  padding:14px;
+}
+
+.box h2{
+  margin:0 0 8px;
+  color:#d8b35a;
+  font-size:20px;
+}
+
+label{
+  display:block;
+  margin-top:10px;
+  color:#f6d27a;
+  font-weight:bold;
+  font-size:14px;
+}
+
+input,
+select{
+  width:100%;
+  margin-top:5px;
+  padding:9px;
+  border:0;
+  border-radius:9px;
+  font-size:15px;
+}
+
+input[type=range]{
+  padding:0;
+  accent-color:#d8b35a;
+}
+
 @media(max-width:850px){
-  .main-layout{
+  .app{
+    padding:10px;
+  }
+
+  h1{
+    font-size:30px;
+  }
+
+  .maker{
     grid-template-columns:1fr;
   }
 
-  .control-box{
+  .controls{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .card-title{
+    font-size:24px;
+  }
+
+  .card-name{
+    font-size:24px;
+  }
+
+  .card-id{
+    font-size:18px;
+  }
+
+  .card-birthday,
+  .card-instagram{
+    font-size:12px;
+  }
+
+  .initial-text{
+    font-size:34px;
+  }
+}
+
+@media(max-width:520px){
+  .controls{
     grid-template-columns:1fr;
   }
-
-  .vip-card::before{
-    font-size:22px;
-  }
-
-  .preview-name{
-    font-size:26px;
-  }
-
-  .preview-id{
-    font-size:20px;
-  }
-
-  .preview-birthday,
-  .preview-instagram{
-    font-size:13px;
-  }
-
-  .mask-initial{
-    font-size:36px;
-  }
-}
-.vip-card::before{
-  content:"Membership Card";
-  font-family: "Times New Roman", Georgia, serif;
-  font-style: italic;
-  font-weight: 400;
-  text-transform: none;
-  letter-spacing: 3px;
-  font-size: 52px;
-}
-
-.mask-initial{
-  top: 29% !important;
-  font-size: 52px !important;
-}
-
-.dog-photo{
-  z-index: 1 !important;
-  display: block;
-}
-
-.photo-guide{
-  z-index: 0;
-}
-
-.mask-group{
-  z-index: 2 !important;
-}
-.mask-initial{
-    position:absolute;
-    left:50%;
-    top:28%;
-    transform:translate(-50%,-50%);
-    font-size:46px;
-    font-weight:bold;
-    color:#fff;
-    text-shadow:0 2px 6px #000;
-    pointer-events:none;
-}
-.dog-photo{
-    display:block !important;
-    z-index:1 !important;
-    opacity:1 !important;
-}
-
-.photo-frame{
-    background:#fff !important;
-}
-
-.mask-photo{
-    z-index:2 !important;
-}
-
-.mask-group{
-    z-index:2 !important;
 }
