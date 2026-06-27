@@ -125,29 +125,21 @@ instagramInput.addEventListener("input", updateText);
 
 saveBtn.addEventListener("click", function(){
 
-  saveCardArea.innerHTML = "";
-  savePreview.classList.add("show");
-
-  html2canvas(card,{
-    scale:3,
-    useCORS:true,
-    backgroundColor:null
-  }).then(function(canvas){
-
-    const img = document.createElement("img");
-    img.src = canvas.toDataURL("image/png");
-    img.style.width = "100%";
-    img.style.borderRadius = "18px";
-
     saveCardArea.innerHTML = "";
-    saveCardArea.appendChild(img);
 
-  });
+    const clone = card.cloneNode(true);
+
+    saveCardArea.appendChild(clone);
+
+    savePreview.classList.add("show");
 
 });
+
 savePreview.addEventListener("click", function(){
-  savePreview.classList.remove("show");
-  saveCardArea.innerHTML = "";
+
+    savePreview.classList.remove("show");
+    saveCardArea.innerHTML = "";
+
 });
 
 updatePhoto();
