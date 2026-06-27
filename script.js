@@ -101,3 +101,6 @@ const maskPhoto = document.getElementById("maskPhoto");
 if(maskPhoto){
     maskPhoto.src = "black.png";
 }
+maskSelect.addEventListener("change", function(){
+    maskPhoto.src = this.value;
+});
