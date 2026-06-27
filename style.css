@@ -358,3 +358,6 @@ body{
   font-size:20px;
   font-weight:bold;
 }
+.save-preview p{
+  display:none !important;
+}
