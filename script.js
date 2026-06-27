@@ -1,18 +1,21 @@
 const photoInput = document.getElementById("photoInput");
 const dogPhoto = document.getElementById("dogPhoto");
+const photoGuide = document.getElementById("photoGuide");
+
 const maskPhoto = document.getElementById("maskPhoto");
+const maskGroup = document.getElementById("maskGroup");
 const maskInitial = document.getElementById("maskInitial");
 
 const previewName = document.getElementById("previewName");
 const previewBirthday = document.getElementById("previewBirthday");
-const previewMessage = document.getElementById("previewMessage");
 const previewInstagram = document.getElementById("previewInstagram");
+const previewMemberId = document.getElementById("previewMemberId");
 
 const nameInput = document.getElementById("nameInput");
 const birthdayInput = document.getElementById("birthdayInput");
-const messageInput = document.getElementById("messageInput");
 const instagramInput = document.getElementById("instagramInput");
 const initialInput = document.getElementById("initialInput");
+const memberIdInput = document.getElementById("memberIdInput");
 
 const photoX = document.getElementById("photoX");
 const photoY = document.getElementById("photoY");
@@ -23,48 +26,48 @@ const maskX = document.getElementById("maskX");
 const maskY = document.getElementById("maskY");
 const maskScale = document.getElementById("maskScale");
 
+const saveBtn = document.getElementById("saveBtn");
+const card = document.getElementById("card");
+
+maskPhoto.src = "black.png";
+
 photoInput.addEventListener("change", function(){
   const file = this.files[0];
   if(!file) return;
 
   dogPhoto.src = URL.createObjectURL(file);
   dogPhoto.style.display = "block";
-photoGuide.style.display = "none";
+  photoGuide.style.display = "none";
   updatePhoto();
 });
 
 function updatePhoto(){
   const x = photoX.value;
   const y = photoY.value;
-  const scale = photoScale.value / 100;
+  const s = photoScale.value / 100;
 
   dogPhoto.style.transform =
-    `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(${scale})`;
+    `translate(${x}px, ${y}px) scale(${s})`;
 }
 
 function updateMask(){
   const x = maskX.value;
   const y = maskY.value;
-  const scale = maskScale.value / 100;
+  const s = maskScale.value / 100;
 
-  maskPhoto.style.transform =
-    `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(${scale})`;
-
-  maskInitial.style.transform =
-    `translate(calc(-50% + ${x}px), calc(-50% + ${y * 0.35}px)) scale(${scale})`;
+  maskGroup.style.transform =
+    `translate(${x}px, ${y}px) scale(${s})`;
 }
 
 function updateText(){
-  previewName.textContent = nameInput.value || "名前";
-  previewBirthday.textContent = birthdayInput.value || "誕生日";
-  previewMessage.textContent = messageInput.value || "一言";
-  previewInstagram.textContent = instagramInput.value || "Instagram";
-  maskInitial.textContent = (initialInput.value || "P").toUpperCase();
-}
+  previewName.textContent = nameInput.value || "Your Name";
+  previewBirthday.textContent = birthdayInput.value || "Birthday";
+  previewInstagram.textContent = instagramInput.value || "@instagram";
+  previewMemberId.textContent = memberIdInput.value || "2026-00001";
 
-maskSelect.addEventListener("change", function(){
-  maskPhoto.src = maskSelect.value;
-});
+  const ini = initialInput.value.trim().toUpperCase();
+  maskInitial.textContent = ini;
+}
 
 photoX.addEventListener("input", updatePhoto);
 photoY.addEventListener("input", updatePhoto);
@@ -74,20 +77,23 @@ maskX.addEventListener("input", updateMask);
 maskY.addEventListener("input", updateMask);
 maskScale.addEventListener("input", updateMask);
 
+maskSelect.addEventListener("change", function(){
+  maskPhoto.src = this.value;
+});
+
 nameInput.addEventListener("input", updateText);
 birthdayInput.addEventListener("input", updateText);
-messageInput.addEventListener("input", updateText);
 instagramInput.addEventListener("input", updateText);
 initialInput.addEventListener("input", updateText);
+memberIdInput.addEventListener("input", updateText);
 
-document.getElementById("saveBtn").addEventListener("click", function(){
-  html2canvas(document.getElementById("card"), {
-    scale: 3,
-    useCORS: true,
-    backgroundColor: null
-  }).then(function(canvas){
+saveBtn.addEventListener("click", function(){
+  html2canvas(card, {
+    backgroundColor: null,
+    scale: 2
+  }).then(canvas => {
     const link = document.createElement("a");
-    link.download = "meishi.png";
+    link.download = "dog-card.png";
     link.href = canvas.toDataURL("image/png");
     link.click();
   });
@@ -95,12 +101,4 @@ document.getElementById("saveBtn").addEventListener("click", function(){
 
 updatePhoto();
 updateMask();
-updateText()
-const maskPhoto = document.getElementById("maskPhoto");
-
-if(maskPhoto){
-    maskPhoto.src = "black.png";
-}
-maskSelect.addEventListener("change", function(){
-    maskPhoto.src = this.value;
-});
+updateText();
