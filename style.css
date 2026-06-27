@@ -300,3 +300,29 @@ body{
     font-size:12px !important;
   }
 }
+@media(max-width:900px){
+
+  .photo-box{
+    width:48% !important;
+    aspect-ratio:1/1 !important;
+  }
+
+  .info-box{
+    width:52% !important;
+  }
+
+  .card-title{
+    font-size:20px !important;
+  }
+
+  .card-name{
+    font-size:18px !important;
+  }
+
+  .card-birthday,
+  .card-message,
+  .card-instagram{
+    font-size:11px !important;
+  }
+
+}
