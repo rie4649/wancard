@@ -101,23 +101,41 @@ instagramInput.addEventListener("input", updateText);
 
 saveBtn.addEventListener("click", () => {
 
+    const savePreview = document.getElementById("savePreview");
+    const saveCardArea = document.getElementById("saveCardArea");
     const target = document.getElementById("card");
 
-    html2canvas(target,{
-        scale:4,
-        backgroundColor:null,
-        useCORS:true
-    }).then(canvas=>{
+    saveCardArea.innerHTML = "";
 
-        const link=document.createElement("a");
-        link.download="WANCARD.png";
-        link.href=canvas.toDataURL("image/png");
-        link.click();
+    const clone = target.cloneNode(true);
+    clone.id = "saveCardOnly";
+    saveCardArea.appendChild(clone);
 
-    });
+    savePreview.classList.add("show");
+
+    setTimeout(() => {
+
+        html2canvas(clone,{
+            scale:4,
+            backgroundColor:null,
+            useCORS:true
+        }).then(canvas=>{
+
+            const link=document.createElement("a");
+            link.download="WANCARD.png";
+            link.href=canvas.toDataURL("image/png");
+            link.click();
+
+            setTimeout(()=>{
+                savePreview.classList.remove("show");
+                saveCardArea.innerHTML="";
+            },800);
+
+        });
+
+    },300);
 
 });
-
 updatePhoto();
 updateMask();
 updateInitial();
