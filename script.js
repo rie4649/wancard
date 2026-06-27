@@ -39,7 +39,8 @@ function updatePhoto(){
   dogPhoto.style.left = "50%";
   dogPhoto.style.top = "50%";
   dogPhoto.style.transform =
-    `translate(calc(-50% + ${photoX.value}px), calc(-50% + ${photoY.value}px)) scale(${photoScale.value / 100})`;
+    `translate(calc(-50% + ${photoX.value}px), calc(-50% + ${photoY.value}px)) scale(${photoScale.value}px))
+scale(${photoScale.value / 100})`;
 }
 
 function updateMask(){
