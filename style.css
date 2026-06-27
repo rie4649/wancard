@@ -361,3 +361,7 @@ body{
 .save-preview p{
   display:none !important;
 }
+.save-preview,
+.save-preview.show{
+  display:none !important;
+}
