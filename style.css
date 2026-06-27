@@ -65,9 +65,9 @@ h1{
 
 .photo-frame{
   position:absolute;
-  top:22%;
+  top:18%;
   left:50%;
-  width:34%;
+  width:42%;
   aspect-ratio:1/1;
   transform:translateX(-50%);
   border-radius:50%;
