@@ -95,4 +95,8 @@ document.getElementById("saveBtn").addEventListener("click", function(){
 updatePhoto();
 updateMask();
 updateText()
+const maskPhoto = document.getElementById("maskPhoto");
 
+if(maskPhoto){
+    maskPhoto.src = "black.png";
+}
