@@ -3,21 +3,21 @@ const $ = id => document.getElementById(id);
 const photoInput = $("photoInput");
 const dogPhoto = $("dogPhoto");
 const photoGuide = $("photoGuide");
-const maskPhoto = $("maskPhoto");
-const maskGroup = $("maskGroup");
-const maskInitial = $("maskInitial");
 
-const previewName = $("previewName");
-const previewBirthday = $("previewBirthday");
-const previewInstagram = $("previewInstagram");
-const previewMemberId = $("previewMemberId");
+const maskImg = $("maskImg");
+const maskWrap = $("maskWrap");
+const initialText = $("initialText");
+
+const cardName = $("cardName");
+const cardBirthday = $("cardBirthday");
+const cardInstagram = $("cardInstagram");
+const cardId = $("cardId");
 
 const nameInput = $("nameInput");
 const birthdayInput = $("birthdayInput");
 const instagramInput = $("instagramInput");
+const memberInput = $("memberInput");
 const initialInput = $("initialInput");
-const memberIdInput = $("memberIdInput");
-
 const photoX = $("photoX");
 const photoY = $("photoY");
 const photoScale = $("photoScale");
