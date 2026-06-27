@@ -118,3 +118,20 @@ photoInput.onchange = function(){
 
   reader.readAsDataURL(file);
 };
+const initialX = document.getElementById("initialX");
+const initialY = document.getElementById("initialY");
+const initialScale = document.getElementById("initialScale");
+
+function updateInitial(){
+
+    maskInitial.style.left = `calc(50% + ${initialX.value}px)`;
+    maskInitial.style.top = `calc(28% + ${initialY.value}px)`;
+    maskInitial.style.fontSize = initialScale.value + "px";
+
+}
+
+initialX.addEventListener("input", updateInitial);
+initialY.addEventListener("input", updateInitial);
+initialScale.addEventListener("input", updateInitial);
+
+updateInitial();
