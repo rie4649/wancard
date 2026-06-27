@@ -251,4 +251,8 @@ button{
     font-size:12px;
   }
 }
-
+.card-title,
+.status,
+.bottom-info{
+  display:none;
+}
