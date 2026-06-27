@@ -301,3 +301,18 @@ button{
   top:13% !important;
   font-size:54px !important;
 }
+.dog-photo{
+  transform-origin:center center;
+}
+
+.photo-frame{
+  background:transparent !important;
+}
+
+.mask-photo{
+  pointer-events:none;
+}
+
+.mask-group{
+  pointer-events:none;
+}
