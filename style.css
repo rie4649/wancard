@@ -365,3 +365,23 @@ body{
 .save-preview.show{
   display:none !important;
 }
+body.preview-mode section{
+    display:none;
+}
+
+body.preview-mode #card{
+    position:fixed;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%) scale(1.25);
+    z-index:9999;
+    display:block;
+}
+
+body.preview-mode #saveBtn{
+    position:fixed;
+    bottom:30px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:10000;
+}
