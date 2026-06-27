@@ -18,57 +18,63 @@ const birthdayInput = $("birthdayInput");
 const instagramInput = $("instagramInput");
 const memberInput = $("memberInput");
 const initialInput = $("initialInput");
+
 const photoX = $("photoX");
 const photoY = $("photoY");
 const photoScale = $("photoScale");
+
 const maskSelect = $("maskSelect");
 const maskX = $("maskX");
 const maskY = $("maskY");
 const maskScale = $("maskScale");
 
-const saveBtn = $("saveBtn");
+const initialX = $("initialX");
+const initialY = $("initialY");
+const initialSize = $("initialSize");
+
 const card = $("card");
-
-maskPhoto.src = maskSelect.value || "black.png";
-
-photoInput.addEventListener("change", function(){
-  const file = this.files && this.files[0];
-  if(!file) return;
-
-  dogPhoto.src = URL.createObjectURL(file);
-  dogPhoto.style.display = "block";
-  photoGuide.style.display = "none";
-  updatePhoto();
-});
+const saveBtn = $("saveBtn");
 
 function updatePhoto(){
-  const x = Number(photoX.value);
-  const y = Number(photoY.value);
-  const s = Number(photoScale.value) / 100;
-
   dogPhoto.style.transform =
-    `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(${s})`;
+    `translate(calc(-50% + ${photoX.value}px), calc(-50% + ${photoY.value}px)) scale(${photoScale.value / 100})`;
 }
 
 function updateMask(){
-  const x = Number(maskX.value);
-  const y = Number(maskY.value);
-  const s = Number(maskScale.value) / 100;
+  maskWrap.style.transform =
+    `translate(${maskX.value}px, ${maskY.value}px) scale(${maskScale.value / 100})`;
+}
 
-  maskGroup.style.transform =
-    `translate(${x}px, ${y}px) scale(${s})`;
+function updateInitial(){
+  initialText.textContent = (initialInput.value || "").toUpperCase();
+  initialText.style.left = `calc(50% + ${initialX.value}px)`;
+  initialText.style.top = `calc(25% + ${initialY.value}px)`;
+  initialText.style.fontSize = initialSize.value + "px";
 }
 
 function updateText(){
-  previewName.textContent = nameInput.value || "YOUR NAME";
-  previewBirthday.textContent = birthdayInput.value || "BIRTHDAY";
-  previewInstagram.textContent = instagramInput.value || "@instagram";
-  previewMemberId.textContent = memberIdInput.value || "MEMBER ID";
-  maskInitial.textContent = (initialInput.value || "").trim().toUpperCase();
+  cardName.textContent = nameInput.value || "Your Name";
+  cardBirthday.textContent = birthdayInput.value || "BIRTHDAY";
+  cardInstagram.textContent = instagramInput.value || "@instagram";
+  cardId.textContent = memberInput.value || "2025-00001";
 }
 
+photoInput.addEventListener("change", function(){
+  const file = photoInput.files[0];
+  if(!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e){
+    dogPhoto.src = e.target.result;
+    dogPhoto.style.display = "block";
+    photoGuide.style.display = "none";
+    updatePhoto();
+  };
+  reader.readAsDataURL(file);
+});
+
 maskSelect.addEventListener("change", function(){
-  maskPhoto.src = this.value;
+  maskImg.src = maskSelect.value;
 });
 
 photoX.addEventListener("input", updatePhoto);
@@ -79,11 +85,15 @@ maskX.addEventListener("input", updateMask);
 maskY.addEventListener("input", updateMask);
 maskScale.addEventListener("input", updateMask);
 
+initialX.addEventListener("input", updateInitial);
+initialY.addEventListener("input", updateInitial);
+initialSize.addEventListener("input", updateInitial);
+initialInput.addEventListener("input", updateInitial);
+
 nameInput.addEventListener("input", updateText);
 birthdayInput.addEventListener("input", updateText);
 instagramInput.addEventListener("input", updateText);
-initialInput.addEventListener("input", updateText);
-memberIdInput.addEventListener("input", updateText);
+memberInput.addEventListener("input", updateText);
 
 saveBtn.addEventListener("click", function(){
   html2canvas(card, {
@@ -100,65 +110,5 @@ saveBtn.addEventListener("click", function(){
 
 updatePhoto();
 updateMask();
-updateText();
-photoInput.onchange = function(){
-  const file = photoInput.files[0];
-  if(!file) return;
-
-  const reader = new FileReader();
-
-  reader.onload = function(e){
-    dogPhoto.src = e.target.result;
-    dogPhoto.style.display = "block";
-    if(photoGuide){
-      photoGuide.style.display = "none";
-    }
-    updatePhoto();
-  };
-
-  reader.readAsDataURL(file);
-};
-const initialX = document.getElementById("initialX");
-const initialY = document.getElementById("initialY");
-const initialScale = document.getElementById("initialScale");
-
-function updateInitial(){
-
-    maskInitial.style.left = `calc(50% + ${initialX.value}px)`;
-    maskInitial.style.top = `calc(28% + ${initialY.value}px)`;
-    maskInitial.style.fontSize = initialScale.value + "px";
-
-}
-
-initialX.addEventListener("input", updateInitial);
-initialY.addEventListener("input", updateInitial);
-initialScale.addEventListener("input", updateInitial);
-
 updateInitial();
-document.getElementById("photoInput").addEventListener("change", function(event){
-
-    const file = event.target.files[0];
-
-    if(!file){
-        alert("写真が選ばれていません");
-        return;
-    }
-
-    const reader = new FileReader();
-
-    reader.onload = function(e){
-        const img = document.getElementById("dogPhoto");
-        const guide = document.getElementById("photoGuide");
-
-        img.src = e.target.result;
-        img.style.display = "block";
-        img.style.opacity = "1";
-        img.style.zIndex = "1";
-
-        if(guide){
-            guide.style.display = "none";
-        }
-    };
-
-    reader.readAsDataURL(file);
-});
+updateText();
