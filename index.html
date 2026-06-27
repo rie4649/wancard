@@ -10,21 +10,14 @@
 <body>
 
 <div class="app">
-
-  <div class="top-image">
-    <img src="card.png" alt="トップ画像">
-  </div>
-
   <h1>名刺メーカー</h1>
 
   <section class="preview-wrap">
     <div id="card" class="vip-card">
 
-      <div class="card-title">MEMBERSHIP CARD</div>
-
       <div class="photo-frame">
         <img id="dogPhoto" class="dog-photo">
-        <div id="photoGuide" class="photo-guide">写真を選ぶ</div>
+        <div id="photoGuide" class="photo-guide">写真</div>
 
         <div id="maskGroup" class="mask-group">
           <img id="maskPhoto" class="mask-photo" src="black.png">
@@ -32,22 +25,10 @@
         </div>
       </div>
 
-      <div class="name-area">
-        <div class="label">NAME</div>
-        <div id="previewName" class="gold-name">Your Name</div>
-      </div>
-
-      <div class="id-area">
-        <div class="label">MEMBER ID</div>
-        <div id="previewMemberId" class="gold-id">2026-00001</div>
-      </div>
-
-      <div class="status">VIP STATUS MEMBER</div>
-
-      <div class="bottom-info">
-        <span id="previewBirthday">Birthday</span>
-        <span id="previewInstagram">@instagram</span>
-      </div>
+      <div id="previewName" class="preview-name">Your Name</div>
+      <div id="previewMemberId" class="preview-id">2025-00001</div>
+      <div id="previewBirthday" class="preview-birthday">Birthday</div>
+      <div id="previewInstagram" class="preview-instagram">@instagram</div>
 
     </div>
   </section>
@@ -83,7 +64,7 @@
       <input type="range" id="maskY" min="-200" max="200" value="0">
 
       <label>覆面 大きさ</label>
-      <input type="range" id="maskScale" min="80" max="280" value="160">
+      <input type="range" id="maskScale" min="80" max="280" value="150">
     </div>
 
     <div class="panel">
@@ -102,13 +83,12 @@
       <input type="text" id="initialInput" maxlength="2" placeholder="C">
 
       <label>MEMBER ID</label>
-      <input type="text" id="memberIdInput" placeholder="2026-00001">
+      <input type="text" id="memberIdInput" placeholder="2025-00001">
 
       <button id="saveBtn">画像保存</button>
     </div>
 
   </section>
-
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
