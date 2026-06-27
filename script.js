@@ -125,7 +125,15 @@ instagramInput.addEventListener("input", updateText);
 
 saveBtn.addEventListener("click", function(){
 
-    alert("名刺はこの上のカードをスクショして保存してね");
+saveBtn.addEventListener("click", function(){
+
+    document.body.classList.toggle("preview-mode");
+
+    if(document.body.classList.contains("preview-mode")){
+        saveBtn.textContent = "編集に戻る";
+    }else{
+        saveBtn.textContent = "画像保存";
+    }
 
 });
 updatePhoto();
