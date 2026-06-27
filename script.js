@@ -29,6 +29,7 @@ photoInput.addEventListener("change", function(){
 
   dogPhoto.src = URL.createObjectURL(file);
   dogPhoto.style.display = "block";
+photoGuide.style.display = "none";
   updatePhoto();
 });
 
