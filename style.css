@@ -191,3 +191,57 @@ body{
 }
 
 }
+@media(max-width:900px){
+
+  .card{
+    aspect-ratio:16/9;
+    padding:16px;
+  }
+
+  .card-title{
+    font-size:26px;
+    margin-bottom:10px;
+  }
+
+  .card-inner{
+    flex-direction:row;
+    gap:14px;
+  }
+
+  .photo-box{
+    width:42%;
+    height:auto;
+    aspect-ratio:1/1;
+  }
+
+  .info-box{
+    width:58%;
+  }
+
+  .label{
+    margin-top:7px;
+    font-size:10px;
+  }
+
+  .card-name{
+    font-size:24px;
+  }
+
+  .card-birthday,
+  .card-message,
+  .card-instagram{
+    font-size:15px;
+  }
+
+  .preview-area{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:#0b0b0b;
+    padding-bottom:8px;
+  }
+
+  .controls{
+    margin-top:10px;
+  }
+}
