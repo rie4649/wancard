@@ -125,23 +125,9 @@ instagramInput.addEventListener("input", updateText);
 
 saveBtn.addEventListener("click", function(){
 
-    saveCardArea.innerHTML = "";
-
-    const clone = card.cloneNode(true);
-
-    saveCardArea.appendChild(clone);
-
-    savePreview.classList.add("show");
+    alert("名刺はこの上のカードをスクショして保存してね");
 
 });
-
-savePreview.addEventListener("click", function(){
-
-    savePreview.classList.remove("show");
-    saveCardArea.innerHTML = "";
-
-});
-
 updatePhoto();
 updateMask();
 updateInitial();
