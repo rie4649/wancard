@@ -101,3 +101,20 @@ saveBtn.addEventListener("click", function(){
 updatePhoto();
 updateMask();
 updateText();
+photoInput.onchange = function(){
+  const file = photoInput.files[0];
+  if(!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function(e){
+    dogPhoto.src = e.target.result;
+    dogPhoto.style.display = "block";
+    if(photoGuide){
+      photoGuide.style.display = "none";
+    }
+    updatePhoto();
+  };
+
+  reader.readAsDataURL(file);
+};
