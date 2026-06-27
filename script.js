@@ -99,17 +99,23 @@ birthdayInput.addEventListener("input", updateText);
 messageInput.addEventListener("input", updateText);
 instagramInput.addEventListener("input", updateText);
 
-saveBtn.addEventListener("click", function(){
-  html2canvas(card, {
-    scale: 3,
-    useCORS: true,
-    backgroundColor: null
-  }).then(function(canvas){
-    const a = document.createElement("a");
-    a.download = "wancard.png";
-    a.href = canvas.toDataURL("image/png");
-    a.click();
-  });
+saveBtn.addEventListener("click", () => {
+
+    const target = document.getElementById("card");
+
+    html2canvas(target,{
+        scale:4,
+        backgroundColor:null,
+        useCORS:true
+    }).then(canvas=>{
+
+        const link=document.createElement("a");
+        link.download="WANCARD.png";
+        link.href=canvas.toDataURL("image/png");
+        link.click();
+
+    });
+
 });
 
 updatePhoto();
