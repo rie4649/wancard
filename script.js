@@ -124,15 +124,27 @@ messageInput.addEventListener("input", updateText);
 instagramInput.addEventListener("input", updateText);
 
 saveBtn.addEventListener("click", function(){
+
   saveCardArea.innerHTML = "";
-
-  const clone = card.cloneNode(true);
-  clone.id = "saveCardOnly";
-
-  saveCardArea.appendChild(clone);
   savePreview.classList.add("show");
-});
 
+  html2canvas(card,{
+    scale:3,
+    useCORS:true,
+    backgroundColor:null
+  }).then(function(canvas){
+
+    const img = document.createElement("img");
+    img.src = canvas.toDataURL("image/png");
+    img.style.width = "100%";
+    img.style.borderRadius = "18px";
+
+    saveCardArea.innerHTML = "";
+    saveCardArea.appendChild(img);
+
+  });
+
+});
 savePreview.addEventListener("click", function(){
   savePreview.classList.remove("show");
   saveCardArea.innerHTML = "";
