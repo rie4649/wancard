@@ -21,7 +21,6 @@ const memberIdInput = $("memberIdInput");
 const photoX = $("photoX");
 const photoY = $("photoY");
 const photoScale = $("photoScale");
-
 const maskSelect = $("maskSelect");
 const maskX = $("maskX");
 const maskY = $("maskY");
@@ -33,7 +32,7 @@ const card = $("card");
 maskPhoto.src = maskSelect.value || "black.png";
 
 photoInput.addEventListener("change", function(){
-  const file = this.files[0];
+  const file = this.files && this.files[0];
   if(!file) return;
 
   dogPhoto.src = URL.createObjectURL(file);
@@ -43,35 +42,55 @@ photoInput.addEventListener("change", function(){
 });
 
 function updatePhoto(){
+  const x = Number(photoX.value);
+  const y = Number(photoY.value);
+  const s = Number(photoScale.value) / 100;
+
   dogPhoto.style.transform =
-    `translate(${photoX.value}px, ${photoY.value}px) scale(${photoScale.value / 100})`;
+    `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(${s})`;
 }
 
 function updateMask(){
+  const x = Number(maskX.value);
+  const y = Number(maskY.value);
+  const s = Number(maskScale.value) / 100;
+
   maskGroup.style.transform =
-    `translate(${maskX.value}px, ${maskY.value}px) scale(${maskScale.value / 100})`;
+    `translate(${x}px, ${y}px) scale(${s})`;
 }
 
 function updateText(){
-  previewName.textContent = nameInput.value || "Your Name";
-  previewBirthday.textContent = birthdayInput.value || "Birthday";
+  previewName.textContent = nameInput.value || "YOUR NAME";
+  previewBirthday.textContent = birthdayInput.value || "BIRTHDAY";
   previewInstagram.textContent = instagramInput.value || "@instagram";
-  previewMemberId.textContent = memberIdInput.value || "2025-00001";
-  maskInitial.textContent = (initialInput.value || "").toUpperCase();
+  previewMemberId.textContent = memberIdInput.value || "MEMBER ID";
+  maskInitial.textContent = (initialInput.value || "").trim().toUpperCase();
 }
 
 maskSelect.addEventListener("change", function(){
   maskPhoto.src = this.value;
 });
 
-[photoX, photoY, photoScale].forEach(el => el.addEventListener("input", updatePhoto));
-[maskX, maskY, maskScale].forEach(el => el.addEventListener("input", updateMask));
-[nameInput, birthdayInput, instagramInput, initialInput, memberIdInput].forEach(el => {
-  el.addEventListener("input", updateText);
-});
+photoX.addEventListener("input", updatePhoto);
+photoY.addEventListener("input", updatePhoto);
+photoScale.addEventListener("input", updatePhoto);
+
+maskX.addEventListener("input", updateMask);
+maskY.addEventListener("input", updateMask);
+maskScale.addEventListener("input", updateMask);
+
+nameInput.addEventListener("input", updateText);
+birthdayInput.addEventListener("input", updateText);
+instagramInput.addEventListener("input", updateText);
+initialInput.addEventListener("input", updateText);
+memberIdInput.addEventListener("input", updateText);
 
 saveBtn.addEventListener("click", function(){
-  html2canvas(card, {scale:2}).then(canvas => {
+  html2canvas(card, {
+    scale: 3,
+    useCORS: true,
+    backgroundColor: null
+  }).then(function(canvas){
     const a = document.createElement("a");
     a.download = "wancard.png";
     a.href = canvas.toDataURL("image/png");
