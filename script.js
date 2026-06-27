@@ -135,3 +135,30 @@ initialY.addEventListener("input", updateInitial);
 initialScale.addEventListener("input", updateInitial);
 
 updateInitial();
+document.getElementById("photoInput").addEventListener("change", function(event){
+
+    const file = event.target.files[0];
+
+    if(!file){
+        alert("写真が選ばれていません");
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+        const img = document.getElementById("dogPhoto");
+        const guide = document.getElementById("photoGuide");
+
+        img.src = e.target.result;
+        img.style.display = "block";
+        img.style.opacity = "1";
+        img.style.zIndex = "1";
+
+        if(guide){
+            guide.style.display = "none";
+        }
+    };
+
+    reader.readAsDataURL(file);
+});
