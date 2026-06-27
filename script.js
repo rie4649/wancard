@@ -34,25 +34,44 @@ const initialSize = $("initialSize");
 
 const saveBtn = $("saveBtn");
 const card = $("card");
+const savePreview = $("savePreview");
+const saveCardArea = $("saveCardArea");
 
 function updatePhoto(){
-  dogPhoto.style.left = "50%";
-  dogPhoto.style.top = "50%";
-  dogPhoto.style.transform =
-    `translate(calc(-50% + ${photoX.value}px), calc(-50% + ${photoY.value}px)) scale(${photoScale.value}px))
-scale(${photoScale.value / 100})`;
+  if(!dogPhoto) return;
+
+  dogPhoto.style.setProperty("position","absolute","important");
+  dogPhoto.style.setProperty("left","50%","important");
+  dogPhoto.style.setProperty("top","50%","important");
+  dogPhoto.style.setProperty("width","100%","important");
+  dogPhoto.style.setProperty("height","100%","important");
+  dogPhoto.style.setProperty("object-fit","cover","important");
+
+  dogPhoto.style.setProperty(
+    "transform",
+    `translate(-50%, -50%) translate(${photoX.value}px, ${photoY.value}px) scale(${photoScale.value / 100})`,
+    "important"
+  );
 }
 
 function updateMask(){
-  maskWrap.style.transform =
-    `translate(${maskX.value}px, ${maskY.value}px) scale(${maskScale.value / 100})`;
+  if(!maskWrap) return;
+
+  maskWrap.style.setProperty(
+    "transform",
+    `translate(${maskX.value}px, ${maskY.value}px) scale(${maskScale.value / 100})`,
+    "important"
+  );
 }
 
 function updateInitial(){
+  if(!initialText) return;
+
   initialText.textContent = (initialInput.value || "").toUpperCase();
-  initialText.style.left = `calc(50% + ${initialX.value}px)`;
-  initialText.style.top = `calc(20px + ${initialY.value}px)`;
-  initialText.style.fontSize = initialSize.value + "px";
+
+  initialText.style.setProperty("left", `calc(50% + ${initialX.value}px)`, "important");
+  initialText.style.setProperty("top", `calc(20px + ${initialY.value}px)`, "important");
+  initialText.style.setProperty("font-size", initialSize.value + "px", "important");
 }
 
 function updateText(){
@@ -70,7 +89,7 @@ photoInput.addEventListener("change", function(){
 
   reader.onload = function(e){
     dogPhoto.src = e.target.result;
-    dogPhoto.style.display = "block";
+    dogPhoto.style.setProperty("display","block","important");
 
     if(photoGuide){
       photoGuide.style.display = "none";
@@ -105,25 +124,19 @@ messageInput.addEventListener("input", updateText);
 instagramInput.addEventListener("input", updateText);
 
 saveBtn.addEventListener("click", function(){
-  const savePreview = document.getElementById("savePreview");
-  const saveCardArea = document.getElementById("saveCardArea");
-
   saveCardArea.innerHTML = "";
 
   const clone = card.cloneNode(true);
   clone.id = "saveCardOnly";
-  saveCardArea.appendChild(clone);
 
+  saveCardArea.appendChild(clone);
   savePreview.classList.add("show");
 });
 
-const savePreview = document.getElementById("savePreview");
-if(savePreview){
-  savePreview.addEventListener("click", function(){
-    savePreview.classList.remove("show");
-    document.getElementById("saveCardArea").innerHTML = "";
-  });
-}
+savePreview.addEventListener("click", function(){
+  savePreview.classList.remove("show");
+  saveCardArea.innerHTML = "";
+});
 
 updatePhoto();
 updateMask();
