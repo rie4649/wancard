@@ -10,13 +10,13 @@ const initialText = $("initialText");
 
 const cardName = $("cardName");
 const cardBirthday = $("cardBirthday");
+const cardMessage = $("cardMessage");
 const cardInstagram = $("cardInstagram");
-const cardId = $("cardId");
 
 const nameInput = $("nameInput");
 const birthdayInput = $("birthdayInput");
+const messageInput = $("messageInput");
 const instagramInput = $("instagramInput");
-const memberInput = $("memberInput");
 const initialInput = $("initialInput");
 
 const photoX = $("photoX");
@@ -32,12 +32,12 @@ const initialX = $("initialX");
 const initialY = $("initialY");
 const initialSize = $("initialSize");
 
-const card = $("card");
 const saveBtn = $("saveBtn");
+const card = $("card");
 
 function updatePhoto(){
   dogPhoto.style.transform =
-    `translate(calc(-50% + ${photoX.value}px), calc(-50% + ${photoY.value}px)) scale(${photoScale.value / 100})`;
+    `translate(${photoX.value}px, ${photoY.value}px) scale(${photoScale.value / 100})`;
 }
 
 function updateMask(){
@@ -48,15 +48,15 @@ function updateMask(){
 function updateInitial(){
   initialText.textContent = (initialInput.value || "").toUpperCase();
   initialText.style.left = `calc(50% + ${initialX.value}px)`;
-  initialText.style.top = `calc(25% + ${initialY.value}px)`;
+  initialText.style.top = `calc(20px + ${initialY.value}px)`;
   initialText.style.fontSize = initialSize.value + "px";
 }
 
 function updateText(){
   cardName.textContent = nameInput.value || "Your Name";
-  cardBirthday.textContent = birthdayInput.value || "BIRTHDAY";
+  cardBirthday.textContent = birthdayInput.value || "Birthday";
+  cardMessage.textContent = messageInput.value || "Message";
   cardInstagram.textContent = instagramInput.value || "@instagram";
-  cardId.textContent = memberInput.value || "2025-00001";
 }
 
 photoInput.addEventListener("change", function(){
@@ -64,12 +64,16 @@ photoInput.addEventListener("change", function(){
   if(!file) return;
 
   const reader = new FileReader();
+
   reader.onload = function(e){
     dogPhoto.src = e.target.result;
     dogPhoto.style.display = "block";
-    photoGuide.style.display = "none";
+    if(photoGuide){
+      photoGuide.style.display = "none";
+    }
     updatePhoto();
   };
+
   reader.readAsDataURL(file);
 });
 
@@ -92,8 +96,8 @@ initialInput.addEventListener("input", updateInitial);
 
 nameInput.addEventListener("input", updateText);
 birthdayInput.addEventListener("input", updateText);
+messageInput.addEventListener("input", updateText);
 instagramInput.addEventListener("input", updateText);
-memberInput.addEventListener("input", updateText);
 
 saveBtn.addEventListener("click", function(){
   html2canvas(card, {
