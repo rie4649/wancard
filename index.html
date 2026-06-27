@@ -3,38 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WANCARD 名刺メーカー</title>
+<title>名刺メーカー</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 <div class="app">
 
-<h1>WANCARD</h1>
-<p class="sub">名刺メーカー</p>
-
 <section class="maker">
 
   <div class="preview-area">
     <div id="card" class="card">
 
-      <div class="card-title">Membership Card</div>
+      <div class="card-title">MEMBERSHIP CARD</div>
 
-      <div id="photoCircle" class="photo-circle">
-        <img id="dogPhoto" class="dog-photo" alt="">
-        <div id="photoGuide" class="photo-guide">PHOTO</div>
+      <div class="card-inner">
 
-        <div id="maskWrap" class="mask-wrap">
-          <img id="maskImg" class="mask-img" src="black.png" alt="">
-          <div id="initialText" class="initial-text"></div>
+        <div class="photo-box">
+          <img id="dogPhoto" class="dog-photo" alt="">
+          <div id="photoGuide" class="photo-guide">PHOTO</div>
+
+          <div id="maskWrap" class="mask-wrap">
+            <img id="maskImg" class="mask-img" src="black.png" alt="">
+            <div id="initialText" class="initial-text"></div>
+          </div>
         </div>
+
+        <div class="info-box">
+          <div class="label">NAME</div>
+          <div id="cardName" class="card-name">Your Name</div>
+
+          <div class="label">BIRTHDAY</div>
+          <div id="cardBirthday" class="card-birthday">Birthday</div>
+
+          <div class="label">MESSAGE</div>
+          <div id="cardMessage" class="card-message">Message</div>
+
+          <div class="label">INSTAGRAM</div>
+          <div id="cardInstagram" class="card-instagram">@instagram</div>
+        </div>
+
       </div>
-
-      <div id="cardName" class="card-name">Your Name</div>
-      <div id="cardId" class="card-id">2025-00001</div>
-      <div id="cardBirthday" class="card-birthday">BIRTHDAY</div>
-      <div id="cardInstagram" class="card-instagram">@instagram</div>
-
     </div>
 
     <button id="saveBtn" class="save-btn">画像保存</button>
@@ -78,19 +87,21 @@
       <h2>文字</h2>
 
       <label>名前</label>
-      <input type="text" id="nameInput" placeholder="CHA CHA">
+      <input type="text" id="nameInput" placeholder="POM">
 
       <label>誕生日</label>
-      <input type="text" id="birthdayInput" placeholder="2022.05.31">
+      <input type="text" id="birthdayInput" placeholder="2020.09.30">
+
+      <label>一言</label>
+      <input type="text" id="messageInput" placeholder="おやつは別腹です！">
 
       <label>Instagram</label>
-      <input type="text" id="instagramInput" placeholder="@chacha_dog">
+      <input type="text" id="instagramInput" placeholder="@pom_dog">
 
-      <label>MEMBER ID</label>
-      <input type="text" id="memberInput" placeholder="2025-00001">
+      <input type="hidden" id="memberInput" value="">
 
       <label>イニシャル</label>
-      <input type="text" id="initialInput" maxlength="2" placeholder="C">
+      <input type="text" id="initialInput" maxlength="2" placeholder="P">
 
       <label>イニシャル 左右</label>
       <input type="range" id="initialX" min="-80" max="80" value="0">
