@@ -160,3 +160,14 @@ body{
     align-items:center;
     gap:20px;
 }
+.vip-card{
+    width:90%;
+    max-width:900px;
+    aspect-ratio:16/9;
+    position:relative;
+    overflow:hidden;
+    border-radius:28px;
+    background:radial-gradient(circle,#1f1a10 0%,#080808 60%,#000 100%);
+    border:4px solid #c99b3a;
+    box-shadow:0 0 35px rgba(201,155,58,.45);
+}
