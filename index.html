@@ -8,79 +8,118 @@
 </head>
 <body>
 
-<h1>名刺メーカー</h1>
+<header class="top">
+  <img src="card.png" class="top-card" alt="会員証イメージ">
+</header>
 
-<section class="preview-area">
-  <div id="card" class="card">
+<main>
 
-    <div class="card-info">
-      <div id="previewName" class="dog-name">名前</div>
-      <div id="previewBirthday" class="birthday">誕生日</div>
-      <div id="previewMessage" class="message">一言</div>
-      <div id="previewInstagram" class="instagram">Instagram</div>
+  <section class="preview-area">
+    <h1>名刺メーカー</h1>
+
+    <div id="card" class="vip-card">
+
+      <div class="card-title">MEMBERSHIP CARD</div>
+
+      <div class="photo-stage">
+        <img id="dogPhoto" class="dog-photo" alt="">
+        <div id="photoGuide" class="photo-guide">写真</div>
+
+        <div id="maskGroup" class="mask-group">
+          <img id="maskPhoto" class="mask-photo" src="black.png" alt="">
+          <div id="maskInitial" class="mask-initial">C</div>
+        </div>
+      </div>
+
+      <div class="name-block">
+        <div class="small-label">NAME</div>
+        <div id="previewName" class="preview-name">Your Name</div>
+      </div>
+
+      <div class="id-block">
+        <div class="small-label">MEMBER ID</div>
+        <div id="previewMemberId" class="preview-id">2026-00001</div>
+      </div>
+
+      <div class="info-line">
+        <span id="previewBirthday">Birthday</span>
+        <span id="previewInstagram">@instagram</span>
+      </div>
+
+      <div id="previewMessage" class="preview-message">VIP STATUS MEMBER</div>
+
     </div>
 
-    <div class="photo-frame">
-      <img id="dogPhoto" class="dog-photo" alt="">
-      <img id="maskPhoto" class="mask-photo" src="pink.png" alt="">
-      <div id="maskInitial" class="mask-initial">P</div>
+    <button id="saveBtn">保存</button>
+  </section>
+
+  <section class="control-area">
+
+    <div class="control-grid">
+
+      <div class="panel">
+        <h2>写真</h2>
+
+        <label>写真を選ぶ</label>
+        <input type="file" id="photoInput" accept="image/*">
+
+        <label>写真 左右</label>
+        <input type="range" id="photoX" min="-200" max="200" value="0">
+
+        <label>写真 上下</label>
+        <input type="range" id="photoY" min="-200" max="200" value="0">
+
+        <label>写真 大きさ</label>
+        <input type="range" id="photoScale" min="60" max="260" value="120">
+      </div>
+
+      <div class="panel">
+        <h2>覆面</h2>
+
+        <label>覆面カラー</label>
+        <select id="maskSelect">
+          <option value="black.png">黒</option>
+          <option value="pink.png">ピンク</option>
+          <option value="blue.png">青</option>
+        </select>
+
+        <label>覆面 左右</label>
+        <input type="range" id="maskX" min="-200" max="200" value="0">
+
+        <label>覆面 上下</label>
+        <input type="range" id="maskY" min="-200" max="200" value="0">
+
+        <label>覆面 大きさ</label>
+        <input type="range" id="maskScale" min="80" max="280" value="165">
+      </div>
+
+      <div class="panel">
+        <h2>入力</h2>
+
+        <label>名前</label>
+        <input type="text" id="nameInput" placeholder="CHA CHA">
+
+        <label>誕生日</label>
+        <input type="text" id="birthdayInput" placeholder="2022.05.31">
+
+        <label>Instagram</label>
+        <input type="text" id="instagramInput" placeholder="@chacha_dog">
+
+        <label>一言</label>
+        <input type="text" id="messageInput" placeholder="VIP STATUS MEMBER">
+
+        <label>イニシャル</label>
+        <input type="text" id="initialInput" maxlength="2" placeholder="C">
+      </div>
+
     </div>
 
-  </div>
+  </section>
 
-  <button id="saveBtn">保存</button>
-</section>
-
-<section class="control-area">
-
-  <label>写真を選ぶ</label>
-  <input type="file" id="photoInput" accept="image/*">
-
-  <label>写真 左右</label>
-  <input type="range" id="photoX" min="-200" max="200" value="0">
-
-  <label>写真 上下</label>
-  <input type="range" id="photoY" min="-200" max="200" value="0">
-
-  <label>写真 大きさ</label>
-  <input type="range" id="photoScale" min="70" max="240" value="100">
-
-  <label>覆面カラー</label>
-  <select id="maskSelect">
-    <option value="pink.png">ピンク</option>
-    <option value="shiro.png">白</option>
-    <option value="blue.png">青</option>
-  </select>
-
-  <label>覆面 左右</label>
-  <input type="range" id="maskX" min="-200" max="200" value="0">
-
-  <label>覆面 上下</label>
-  <input type="range" id="maskY" min="-200" max="200" value="0">
-
-  <label>覆面 大きさ</label>
-  <input type="range" id="maskScale" min="60" max="260" value="150">
-
-  <label>名前</label>
-  <input type="text" id="nameInput" placeholder="名前">
-
-  <label>誕生日</label>
-  <input type="text" id="birthdayInput" placeholder="5月31日">
-
-  <label>一言</label>
-  <input type="text" id="messageInput" placeholder="一言">
-
-  <label>Instagram</label>
-  <input type="text" id="instagramInput" placeholder="@instagram">
-
-  <label>イニシャル</label>
-  <input type="text" id="initialInput" maxlength="2" placeholder="P">
-
-</section>
+</main>
 
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="script.js"></script>
 
 </body>
 </html>
-
