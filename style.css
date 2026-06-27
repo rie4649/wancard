@@ -4,83 +4,85 @@
 
 body{
   margin:0;
-  background:#070707;
+  background:#050505;
   color:#fff;
-  font-family:Arial,sans-serif;
+  font-family:Arial,"Yu Gothic",sans-serif;
 }
 
 .app{
-  max-width:1100px;
+  max-width:1200px;
   margin:auto;
   padding:20px;
 }
 
-.top-image{
-  text-align:center;
-  margin-bottom:20px;
-}
-
-.top-image img{
-  width:100%;
-  max-width:850px;
-  border-radius:20px;
-}
-
 h1{
   text-align:center;
-  color:#f6c65b;
+  color:#d8b35a;
+  letter-spacing:4px;
 }
 
-.preview-wrap{
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    margin-bottom:30px;
+.main-layout{
+  display:grid;
+  grid-template-columns:1.3fr .9fr;
+  gap:20px;
+  align-items:start;
+}
+
+.preview-box{
+  background:#111;
+  border:2px solid #d8b35a;
+  border-radius:22px;
+  padding:18px;
 }
 
 .vip-card{
   width:100%;
-  max-width:900px;
   aspect-ratio:16/9;
   position:relative;
   overflow:hidden;
   border-radius:28px;
-  background-image:url("card.png");
-  background-size:cover;
-  background-position:center;
+  background:
+    radial-gradient(circle at center,#2a2110 0%,#070707 55%,#000 100%);
+  border:5px solid #d8b35a;
   box-shadow:0 0 35px rgba(216,179,90,.45);
 }
 
-.card-title{
+.vip-card::before{
+  content:"MEMBERSHIP CARD";
   position:absolute;
-  top:5%;
+  top:6%;
+  left:0;
   width:100%;
   text-align:center;
-  font-size:42px;
-  font-weight:bold;
   color:#d8b35a;
-  letter-spacing:3px;
-  text-shadow:0 4px 8px #000;
+  font-size:38px;
+  font-weight:900;
+  letter-spacing:5px;
+  text-shadow:0 3px 8px #000;
 }
 
 .photo-frame{
   position:absolute;
-  top:18%;
+  top:22%;
   left:50%;
-  width:42%;
+  width:38%;
   aspect-ratio:1/1;
   transform:translateX(-50%);
   border-radius:50%;
   overflow:hidden;
-  background:#eee;
+  background:#111;
   border:7px solid #d8b35a;
+  box-shadow:0 0 20px rgba(216,179,90,.55);
 }
 
 .dog-photo{
   position:absolute;
+  left:50%;
+  top:50%;
   width:100%;
   height:100%;
   object-fit:cover;
+  transform:translate(-50%,-50%) scale(1.2);
   display:none;
   z-index:1;
 }
@@ -91,8 +93,8 @@ h1{
   display:flex;
   align-items:center;
   justify-content:center;
-  color:#999;
-  font-size:22px;
+  color:#777;
+  font-size:24px;
   z-index:0;
 }
 
@@ -100,103 +102,87 @@ h1{
   position:absolute;
   inset:0;
   z-index:2;
+  pointer-events:none;
 }
 
 .mask-photo{
   position:absolute;
+  left:50%;
+  top:50%;
   width:100%;
   height:100%;
   object-fit:contain;
+  transform:translate(-50%,-50%);
 }
 
 .mask-initial{
   position:absolute;
-  top:6%;
   left:50%;
+  top:18%;
   transform:translateX(-50%);
-  font-size:34px;
+  font-size:58px;
   font-weight:900;
   color:#f7f7f7;
   text-shadow:
-    0 2px 0 #999,
-    0 4px 4px #000,
-    0 0 10px rgba(255,255,255,.6);
+    0 3px 0 #8b8b8b,
+    0 6px 6px #000,
+    0 0 12px rgba(255,255,255,.8);
   z-index:3;
 }
 
-.name-area{
+.preview-name{
   position:absolute;
   left:8%;
-  top:35%;
-}
-
-.id-area{
-  position:absolute;
-  right:8%;
-  top:36%;
-  text-align:center;
-}
-
-.label{
-  color:#f6d27a;
-  font-size:20px;
-  letter-spacing:2px;
-}
-
-.gold-name{
-  font-size:44px;
+  top:38%;
   color:#d8b35a;
   font-family:Georgia,serif;
+  font-size:44px;
   font-style:italic;
-  text-shadow:0 3px 5px #000;
+  text-shadow:0 4px 8px #000;
 }
 
-.gold-id{
-  font-size:34px;
-  color:#d8b35a;
-  font-weight:bold;
-  text-shadow:0 3px 5px #000;
-}
-
-.status{
+.preview-id{
   position:absolute;
-  bottom:16%;
-  width:100%;
-  text-align:center;
+  right:8%;
+  top:39%;
   color:#d8b35a;
   font-size:30px;
-  letter-spacing:3px;
-  font-weight:bold;
+  font-weight:900;
+  text-shadow:0 4px 8px #000;
 }
 
-.bottom-info{
+.preview-birthday{
   position:absolute;
-  bottom:7%;
-  width:100%;
-  text-align:center;
+  left:9%;
+  bottom:16%;
   color:#f6d27a;
-  font-size:18px;
-  display:flex;
-  justify-content:center;
-  gap:30px;
+  font-size:20px;
 }
 
-.editor{
+.preview-instagram{
+  position:absolute;
+  right:9%;
+  bottom:16%;
+  color:#f6d27a;
+  font-size:20px;
+}
+
+.control-box{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:18px;
+  gap:14px;
 }
 
 .panel{
   background:#151515;
   border:2px solid #d8b35a;
   border-radius:18px;
-  padding:18px;
+  padding:16px;
 }
 
 .panel h2{
-  color:#f6c65b;
   margin-top:0;
+  color:#d8b35a;
 }
 
 label{
@@ -210,8 +196,8 @@ input,select,button{
   width:100%;
   margin-top:6px;
   padding:10px;
+  border:0;
   border-radius:10px;
-  border:none;
   font-size:16px;
 }
 
@@ -220,99 +206,41 @@ input[type=range]{
 }
 
 button{
-  margin-top:20px;
-  background:linear-gradient(#f7d67a,#b98725);
+  margin-top:16px;
+  background:linear-gradient(#f8dc88,#b88726);
   color:#111;
-  font-weight:bold;
+  font-size:20px;
+  font-weight:900;
+  cursor:pointer;
 }
 
-@media(max-width:700px){
-  .editor{
+@media(max-width:850px){
+  .main-layout{
     grid-template-columns:1fr;
   }
 
-  .card-title{
-    font-size:24px;
+  .control-box{
+    grid-template-columns:1fr;
   }
 
-  .gold-name{
-    font-size:28px;
-  }
-
-  .gold-id{
+  .vip-card::before{
     font-size:22px;
   }
 
-  .status{
-    font-size:18px;
+  .preview-name{
+    font-size:26px;
   }
 
-  .bottom-info{
-    font-size:12px;
+  .preview-id{
+    font-size:20px;
   }
-}
-.card-title,
-.status,
-.bottom-info{
-  display:none;
-}
-.preview-name{
-  position:absolute;
-  left:12%;
-  top:41%;
-  font-size:34px;
-  color:#d8b35a;
-  font-family:Georgia,serif;
-  font-style:italic;
-  text-shadow:0 3px 5px #000;
-  z-index:5;
-}
 
-.preview-id{
-  position:absolute;
-  right:12%;
-  top:42%;
-  font-size:26px;
-  color:#d8b35a;
-  font-weight:bold;
-  text-shadow:0 3px 5px #000;
-  z-index:5;
-}
+  .preview-birthday,
+  .preview-instagram{
+    font-size:13px;
+  }
 
-.preview-birthday{
-  position:absolute;
-  left:12%;
-  top:62%;
-  color:#f6d27a;
-  font-size:18px;
-  z-index:5;
-}
-
-.preview-instagram{
-  position:absolute;
-  left:12%;
-  top:68%;
-  color:#f6d27a;
-  font-size:18px;
-  z-index:5;
-}
-
-.mask-initial{
-  top:13% !important;
-  font-size:54px !important;
-}
-.dog-photo{
-  transform-origin:center center;
-}
-
-.photo-frame{
-  background:transparent !important;
-}
-
-.mask-photo{
-  pointer-events:none;
-}
-
-.mask-group{
-  pointer-events:none;
+  .mask-initial{
+    font-size:36px;
+  }
 }
