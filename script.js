@@ -113,26 +113,7 @@ saveBtn.addEventListener("click", () => {
 
     savePreview.classList.add("show");
 
-    setTimeout(() => {
-
-        html2canvas(clone,{
-            scale:4,
-            backgroundColor:null,
-            useCORS:true
-        }).then(canvas=>{
-
-            const link=document.createElement("a");
-            link.download="WANCARD.png";
-            link.href=canvas.toDataURL("image/png");
-            link.click();
-
-            setTimeout(()=>{
-                savePreview.classList.remove("show");
-                saveCardArea.innerHTML="";
-            },800);
-
-        });
-
+});
     },300);
 
 });
