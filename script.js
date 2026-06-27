@@ -32,46 +32,29 @@ const initialX = $("initialX");
 const initialY = $("initialY");
 const initialSize = $("initialSize");
 
-const saveBtn = $("saveBtn");
+const previewBtn = $("previewBtn");
+const backBtn = $("backBtn");
+const previewScreen = $("previewScreen");
+const previewCardBox = $("previewCardBox");
 const card = $("card");
-const savePreview = $("savePreview");
-const saveCardArea = $("saveCardArea");
 
 function updatePhoto(){
-  if(!dogPhoto) return;
-
-  dogPhoto.style.setProperty("position","absolute","important");
-  dogPhoto.style.setProperty("left","50%","important");
-  dogPhoto.style.setProperty("top","50%","important");
-  dogPhoto.style.setProperty("width","100%","important");
-  dogPhoto.style.setProperty("height","100%","important");
-  dogPhoto.style.setProperty("object-fit","cover","important");
-
-  dogPhoto.style.setProperty(
-    "transform",
-    `translate(-50%, -50%) translate(${photoX.value}px, ${photoY.value}px) scale(${photoScale.value / 100})`,
-    "important"
-  );
+  dogPhoto.style.left = "50%";
+  dogPhoto.style.top = "50%";
+  dogPhoto.style.transform =
+    `translate(calc(-50% + ${photoX.value}px), calc(-50% + ${photoY.value}px)) scale(${photoScale.value / 100})`;
 }
 
 function updateMask(){
-  if(!maskWrap) return;
-
-  maskWrap.style.setProperty(
-    "transform",
-    `translate(${maskX.value}px, ${maskY.value}px) scale(${maskScale.value / 100})`,
-    "important"
-  );
+  maskWrap.style.transform =
+    `translate(${maskX.value}px, ${maskY.value}px) scale(${maskScale.value / 100})`;
 }
 
 function updateInitial(){
-  if(!initialText) return;
-
   initialText.textContent = (initialInput.value || "").toUpperCase();
-
-  initialText.style.setProperty("left", `calc(50% + ${initialX.value}px)`, "important");
-  initialText.style.setProperty("top", `calc(20px + ${initialY.value}px)`, "important");
-  initialText.style.setProperty("font-size", initialSize.value + "px", "important");
+  initialText.style.left = `calc(50% + ${initialX.value}px)`;
+  initialText.style.top = `calc(20px + ${initialY.value}px)`;
+  initialText.style.fontSize = initialSize.value + "px";
 }
 
 function updateText(){
@@ -89,7 +72,7 @@ photoInput.addEventListener("change", function(){
 
   reader.onload = function(e){
     dogPhoto.src = e.target.result;
-    dogPhoto.style.setProperty("display","block","important");
+    dogPhoto.style.display = "block";
 
     if(photoGuide){
       photoGuide.style.display = "none";
@@ -123,19 +106,21 @@ birthdayInput.addEventListener("input", updateText);
 messageInput.addEventListener("input", updateText);
 instagramInput.addEventListener("input", updateText);
 
-saveBtn.addEventListener("click", function(){
+previewBtn.addEventListener("click", function(){
+  previewCardBox.innerHTML = "";
 
-saveBtn.addEventListener("click", function(){
+  const clone = card.cloneNode(true);
+  clone.id = "previewCard";
 
-    document.body.classList.toggle("preview-mode");
-
-    if(document.body.classList.contains("preview-mode")){
-        saveBtn.textContent = "編集に戻る";
-    }else{
-        saveBtn.textContent = "画像保存";
-    }
-
+  previewCardBox.appendChild(clone);
+  previewScreen.classList.add("show");
 });
+
+backBtn.addEventListener("click", function(){
+  previewScreen.classList.remove("show");
+  previewCardBox.innerHTML = "";
+});
+
 updatePhoto();
 updateMask();
 updateInitial();
