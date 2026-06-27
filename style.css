@@ -244,3 +244,30 @@ button{
     font-size:36px;
   }
 }
+.vip-card::before{
+  content:"Membership Card";
+  font-family: "Times New Roman", Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 3px;
+  font-size: 52px;
+}
+
+.mask-initial{
+  top: 29% !important;
+  font-size: 52px !important;
+}
+
+.dog-photo{
+  z-index: 1 !important;
+  display: block;
+}
+
+.photo-guide{
+  z-index: 0;
+}
+
+.mask-group{
+  z-index: 2 !important;
+}
