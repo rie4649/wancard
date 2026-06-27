@@ -326,3 +326,35 @@ body{
   }
 
 }
+.save-preview{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.92);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  padding:20px;
+}
+
+.save-preview.show{
+  display:flex;
+}
+
+.save-preview-inner{
+  width:min(95vw,900px);
+  text-align:center;
+}
+
+#saveCardArea .card{
+  width:100%;
+  max-width:900px;
+  margin:auto;
+}
+
+.save-preview p{
+  margin-top:18px;
+  color:#f6d27a;
+  font-size:20px;
+  font-weight:bold;
+}
