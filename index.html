@@ -3,128 +3,125 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>名刺メーカー</title>
+<title>メンバーズカード</title>
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+
 <div class="app">
 
 <section class="maker">
 
-  <div class="preview-area">
-    <div id="card" class="card">
+<div class="preview-area">
+  <div id="card" class="card">
 
-      <div class="card-title">MEMBERSHIP CARD</div>
+    <div class="card-title">MEMBERSHIP CARD</div>
 
-      <div class="card-inner">
+    <div class="card-content">
 
-        <div class="photo-box">
-          <img id="dogPhoto" class="dog-photo" alt="">
-          <div id="photoGuide" class="photo-guide">PHOTO</div>
+      <div class="photo-area">
+        <img id="dogPhoto" class="dog-photo">
+        <div id="photoGuide" class="photo-guide">PHOTO</div>
 
-          <div id="maskWrap" class="mask-wrap">
-            <img id="maskImg" class="mask-img" src="black.png" alt="">
-            <div id="initialText" class="initial-text"></div>
-          </div>
+        <div id="maskWrap" class="mask-wrap">
+          <img id="maskImg" class="mask-img" src="black.png">
+          <div id="initialText" class="initial-text"></div>
         </div>
-
-        <div class="info-box">
-          <div class="label">NAME</div>
-          <div id="cardName" class="card-name">Your Name</div>
-
-          <div class="label">BIRTHDAY</div>
-          <div id="cardBirthday" class="card-birthday">Birthday</div>
-
-          <div class="label">MESSAGE</div>
-          <div id="cardMessage" class="card-message">Message</div>
-
-          <div class="label">INSTAGRAM</div>
-          <div id="cardInstagram" class="card-instagram">@instagram</div>
-        </div>
-
       </div>
-    </div>
 
-    <button id="saveBtn" class="save-btn">画像保存</button>
+      <div class="info-area">
+        <div class="label">NAME</div>
+        <div id="cardName" class="card-name">Your Name</div>
+
+        <div class="label">BIRTHDAY</div>
+        <div id="cardBirthday" class="card-text">Birthday</div>
+
+        <div class="label">MESSAGE</div>
+        <div id="cardMessage" class="card-text">Message</div>
+
+        <div class="label">INSTAGRAM</div>
+        <div id="cardInstagram" class="card-text">@instagram</div>
+      </div>
+
+    </div>
   </div>
 
-  <div class="controls">
+  <button id="previewBtn">プレビュー</button>
+</div>
 
-    <div class="box">
-      <h2>写真・覆面</h2>
+<div class="controls">
 
-      <label>写真を選ぶ</label>
-      <input type="file" id="photoInput" accept="image/*">
+  <div class="box">
+    <h2>写真・覆面</h2>
 
-      <label>覆面カラー</label>
-      <select id="maskSelect">
-        <option value="black.png">黒</option>
-        <option value="pink.png">ピンク</option>
-        <option value="blue.png">青</option>
-      </select>
+    <label>写真を選ぶ</label>
+    <input type="file" id="photoInput" accept="image/*">
 
-      <label>写真 左右</label>
-      <input type="range" id="photoX" min="-120" max="120" value="0">
+    <label>覆面カラー</label>
+    <select id="maskSelect">
+      <option value="black.png">黒</option>
+      <option value="pink.png">ピンク</option>
+      <option value="blue.png">青</option>
+    </select>
 
-      <label>写真 上下</label>
-      <input type="range" id="photoY" min="-120" max="120" value="0">
+    <label>写真 左右</label>
+    <input type="range" id="photoX" min="-150" max="150" value="0">
 
-      <label>写真 大きさ</label>
-      <input type="range" id="photoScale" min="70" max="220" value="120">
+    <label>写真 上下</label>
+    <input type="range" id="photoY" min="-150" max="150" value="0">
 
-      <label>覆面 左右</label>
-      <input type="range" id="maskX" min="-100" max="100" value="0">
+    <label>写真 大きさ</label>
+    <input type="range" id="photoScale" min="70" max="250" value="120">
 
-      <label>覆面 上下</label>
-      <input type="range" id="maskY" min="-100" max="100" value="0">
+    <label>覆面 左右</label>
+    <input type="range" id="maskX" min="-120" max="120" value="0">
 
-      <label>覆面 大きさ</label>
-      <input type="range" id="maskScale" min="70" max="220" value="140">
-    </div>
+    <label>覆面 上下</label>
+    <input type="range" id="maskY" min="-120" max="120" value="0">
 
-    <div class="box">
-      <h2>文字</h2>
-
-      <label>名前</label>
-      <input type="text" id="nameInput" placeholder="POM">
-
-      <label>誕生日</label>
-      <input type="text" id="birthdayInput" placeholder="2020.09.30">
-
-      <label>一言</label>
-      <input type="text" id="messageInput" placeholder="おやつは別腹です！">
-
-      <label>Instagram</label>
-      <input type="text" id="instagramInput" placeholder="@pom_dog">
-
-      <input type="hidden" id="memberInput" value="">
-
-      <label>イニシャル</label>
-      <input type="text" id="initialInput" maxlength="2" placeholder="P">
-
-      <label>イニシャル 左右</label>
-      <input type="range" id="initialX" min="-80" max="80" value="0">
-
-      <label>イニシャル 上下</label>
-      <input type="range" id="initialY" min="-80" max="80" value="0">
-
-      <label>イニシャル 大きさ</label>
-      <input type="range" id="initialSize" min="24" max="80" value="44">
-    </div>
-
+    <label>覆面 大きさ</label>
+    <input type="range" id="maskScale" min="70" max="250" value="140">
   </div>
+
+  <div class="box">
+    <h2>文字</h2>
+
+    <label>名前</label>
+    <input type="text" id="nameInput" placeholder="POM">
+
+    <label>誕生日</label>
+    <input type="text" id="birthdayInput" placeholder="2024.05.31">
+
+    <label>一言</label>
+    <input type="text" id="messageInput" placeholder="おやつ命">
+
+    <label>Instagram</label>
+    <input type="text" id="instagramInput" placeholder="@pocha1005">
+
+    <label>イニシャル</label>
+    <input type="text" id="initialInput" maxlength="2" placeholder="P">
+
+    <label>イニシャル 左右</label>
+    <input type="range" id="initialX" min="-80" max="80" value="0">
+
+    <label>イニシャル 上下</label>
+    <input type="range" id="initialY" min="-80" max="80" value="0">
+
+    <label>イニシャル 大きさ</label>
+    <input type="range" id="initialSize" min="20" max="80" value="42">
+  </div>
+
+</div>
 
 </section>
 
 </div>
-<div id="savePreview" class="save-preview">
-  <div class="save-preview-inner">
-    <div id="saveCardArea"></div>
-    <p>保存中...</p>
-  </div>
+
+<div id="previewScreen" class="preview-screen">
+  <div id="previewCardBox"></div>
+  <button id="backBtn">編集に戻る</button>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
 <script src="script.js"></script>
 </body>
 </html>
