@@ -171,3 +171,28 @@ body{
     border:4px solid #c99b3a;
     box-shadow:0 0 35px rgba(201,155,58,.45);
 }
+.card-title{
+    position:absolute;
+    top:5%;
+    left:0;
+    width:100%;
+    text-align:center;
+    font-size:42px;
+    font-weight:bold;
+    color:#d8b35a;
+    letter-spacing:3px;
+    text-shadow:0 3px 6px #000;
+}
+
+.photo-stage{
+    position:absolute;
+    top:22%;
+    left:50%;
+    width:34%;
+    aspect-ratio:1/1;
+    transform:translateX(-50%);
+    border-radius:50%;
+    overflow:hidden;
+    background:#eee;
+    border:6px solid #d8b35a;
+}
