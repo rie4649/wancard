@@ -121,3 +121,22 @@ updatePhoto();
 updateMask();
 updateInitial();
 updateText();
+photoInput.addEventListener("change", function(){
+  const file = photoInput.files[0];
+  if(!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function(e){
+    dogPhoto.src = e.target.result;
+    dogPhoto.style.display = "block";
+    updatePhoto();
+  };
+
+  reader.readAsDataURL(file);
+});
+
+saveBtn.addEventListener("click", function(){
+  const savePreview = document.getElementById("savePreview");
+  const saveCardArea = document.getElementById("saveCardArea");
+ 
